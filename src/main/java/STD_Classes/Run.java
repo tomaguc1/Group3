@@ -25,6 +25,7 @@ public class Run {
 		int x=s.nextInt();
 		System.out.println("Enter Y:");
 		int y=s.nextInt();
+
 		
 		Position position = new Position(y,x);
 		b.move(position);
