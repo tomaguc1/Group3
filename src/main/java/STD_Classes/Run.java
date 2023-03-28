@@ -1,14 +1,25 @@
 package STD_Classes;
+import GUI_Frontend.AlliedGrid;
 
+import java.awt.GridLayout;
 import java.util.Scanner;
+
+import javax.swing.JLabel;
+
+import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import GUI_Frontend.BoardGUI;
 public class Run {
 
 	public static void main(String[] args) {
+		
 		Board b = new Board();
+		new BoardGUI();
 		b.printBoard();
-		BoardGUI BoardGUI = new BoardGUI();
 		Scanner s = new Scanner(System.in);
 		System.out.println("Enter X:");
 		int x=s.nextInt();
