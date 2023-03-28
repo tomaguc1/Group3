@@ -1,9 +1,9 @@
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import STD_Classes.Position;
-import STD_Classes.Direction;
-import STD_Classes.Ship;
+import org.group3.STD_Classes.Position;
+import org.group3.STD_Classes.Direction;
+import org.group3.STD_Classes.Ship;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
