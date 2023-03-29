@@ -1,9 +1,9 @@
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import STD_Classes.Position;
-import STD_Classes.Direction;
-import STD_Classes.Ship;
+import battleBoard.Direction;
+import battleBoard.Position;
+import battleBoard.Ship;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -28,7 +28,7 @@ public class StepsOurs {
 	@When("I am placing the ship on the position {string} {int}")
 	public void i_am_placing_the_ship_on_the_position(String s, int int2) {
 		newPosition = new Position(s.charAt(0), int2);
-		ship1.setPosition(newPosition);
+		//ship1.setPosition(newPosition);
 	}
 	
 	@Then("we check the position")
