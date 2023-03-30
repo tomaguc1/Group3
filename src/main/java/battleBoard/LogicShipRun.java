@@ -1,6 +1,6 @@
 package battleBoard;
 import java.util.Scanner;
-public class Run {
+public class LogicShipRun {
 
 	public static void main(String[] args) {
 		Board b = new Board();
