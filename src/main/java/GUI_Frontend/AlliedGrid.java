@@ -18,6 +18,5 @@ public class AlliedGrid extends JPanel {
         this.setBounds(screenSize.width/3,0, screenSize.width/3, screenSize.height);
         this.setBackground(Color.RED);
 
-
     }
 }
