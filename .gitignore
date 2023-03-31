@@ -8,10 +8,10 @@ target/
 *.ear
 *.class
 
-# eclipse specific
+#eclipse -- Eclipse IDE
 *.pydevproject
 .project
-.metadata
+.metadata/
 bin/**
 tmp/**
 tmp/**/*
