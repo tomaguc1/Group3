@@ -1,6 +1,6 @@
 package STD_Classes;
 
-public class Board {
+public class Board_2 {
 	
 	Object[][] board = new Object [10][10];
 	private Ocean ocean; 
