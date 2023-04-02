@@ -12,59 +12,78 @@ public class Server implements Runnable{
     private ArrayList<ConnectionHandler> connections_list;
     private ExecutorService pool;
     private boolean done;
+
+    public Server(){
+        connections_list = new ArrayList<>();
+        done = false;
+    }
+    public void shutdown_serv(){
+        try {
+            done = true;
+            if (!server.isClosed()) {
+                server.close();
+            }
+            for (ConnectionHandler ch : connections_list) {
+                ch.shutdown_handler();
+            }
+        }catch (IOException e){
+            //ignore
+        }
+    }
     @Override
     public void run() {
-        try{
+        try {
             server = new ServerSocket(9999);
             pool = Executors.newCachedThreadPool();
 
-            /*
+
             Client internal_client = new Client();
             Thread internal_client_thread = new Thread(internal_client);
+            System.out.println("-> Internal Client Started !");
             internal_client_thread.start();
-             */
 
-            while (!done){              //TODO:Handle multiple client connections
+
+            while (!done) {              //TODO:Handle multiple client connections
                 Socket client = server.accept();
-                System.out.println(" client connection accepted !");
-                // TODO: Remove the temp lines  [ 31 - 36 ]
-                Object accept_obj;
-                ObjectInputStream ois = new ObjectInputStream(client.getInputStream()); // Server <- Client :: Stream
-                while((accept_obj = ois.readObject()) != null) {
-                    if (((String) accept_obj).equals("Connected")) {
-                        System.out.println(" Client Connected ! ");
-                    }
-                }
+                    System.out.println("-> server.accept() executed ");
+
 
                 ConnectionHandler handler = new ConnectionHandler(client);
                 connections_list.add(handler);
-                System.out.println("Handler added !");
+                    System.out.println("-> handler created and added");
                 pool.execute(handler);
             }
 
-        }catch (IOException e){
-            //TODO:Shutdown server
-
-        }// TODO : REMOVE THIS SHIT BELOW 3 lines
-        catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
+        } catch (IOException e) {
+            shutdown_serv();
         }
     }
 
-
 //===== Connection Handler inner class================================================
     class ConnectionHandler implements Runnable{
+        ObjectInputStream ois;
+        ObjectOutputStream oos;
         private Socket client;
         private String nickname;
         public ConnectionHandler(Socket client_sock){
             this.client = client_sock;
         }
+        public void shutdown_handler(){
+            try {
+                ois.close();
+                oos.close();
+                if(!client.isClosed()){
+                    client.close();
+                }
+            } catch (IOException e) {
+                // Ignore exception handling
+            }
+        }
         @Override
         public void run() {
             try{
-                System.out.println(" ois from client created !");
-                ObjectInputStream ois = new ObjectInputStream(client.getInputStream()); // Server <- Client :: Stream
-                ObjectOutputStream oos = new ObjectOutputStream(client.getOutputStream());
+                ois = new ObjectInputStream(client.getInputStream()); // Server <- Client :: Stream
+                oos = new ObjectOutputStream(client.getOutputStream());
 
                 Object accept_obj;
                 while((accept_obj = ois.readObject()) != null) {
@@ -73,16 +92,10 @@ public class Server implements Runnable{
                     }
                 }
             }catch (IOException | ClassNotFoundException e){
-                //TODO:Shutdown handler
+                shutdown_handler();
 
             }
 
         }
     }
-
-
-
-
-
-
 }
