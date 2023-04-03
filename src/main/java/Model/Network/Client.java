@@ -17,14 +17,14 @@ public class Client implements Runnable{
 
     public Client() {
         try {
-            server_socket = new Socket("127.0.0.1",9999);
+            server_socket = new Socket("127.0.0.1",10004);
         } catch (IOException e) {
             shutdown(server_socket, ois, oos);
         }
     }
     public Client(String IP)  {
         try {
-            server_socket = new Socket(IP,9999);
+            server_socket = new Socket(IP,10004);
         } catch (IOException e) {
             shutdown(server_socket, ois, oos);
         }
@@ -76,7 +76,7 @@ public class Client implements Runnable{
 
                         System.out.println("Connected object client -> server sent !");
                     oos.writeObject(outObj);
-                    done = true;
+                    done = true;  //TODO : Implement scheduling so the clients WAIT
                         System.out.println(" Client.run() executed !");
                 }
             }catch ( IOException e){

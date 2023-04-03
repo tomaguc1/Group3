@@ -33,7 +33,7 @@ public class Server implements Runnable{
     @Override
     public void run() {
         try {
-            server = new ServerSocket(9999);
+            server = new ServerSocket(10004);
             pool = Executors.newCachedThreadPool();
 
 
@@ -55,6 +55,7 @@ public class Server implements Runnable{
             }
 
         } catch (IOException e) {
+                System.out.println("#EXCEPTION: IOEXCEPTION at Server.run()");
             shutdown_serv();
         }
     }
