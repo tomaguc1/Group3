@@ -1,4 +1,4 @@
-package Views.ConnectingPanels;
+package Views.Menu1_ServerConnection;
 
 import Helpers.ImageLibrary;
 
@@ -9,7 +9,7 @@ public class MenuConnect extends JFrame{
 
     ImageLibrary graphics = new ImageLibrary();
 
-    JLayeredPane servingDecisionPANEL;
+    JLayeredPane menuLayeredPane;
     JButton buttonHost;
     JButton buttonClient;
     SERVICE service; // Used for client/server execution flow
@@ -21,15 +21,17 @@ public class MenuConnect extends JFrame{
         this.setResizable(false);
         this.setSize(1280,720);
         this.getContentPane().setBackground(Color.MAGENTA);
-        this.setLayout(new BorderLayout(10,15));        //----------------------------------------------------------------------------------------------------------------------
+//        this.setLayout(new BorderLayout(10,15));        //----------------------------------------------------------------------------------------------------------------------
 //======================================================================================================================
 
 
         //Pannels
-        servingDecisionPANEL = new ServDecisionPanel();
+        menuLayeredPane = new MenuLayeredPane();
+
 //ADD components to the frame
         //''this'' -- Frame Component
-        this.add(servingDecisionPANEL);
+
+        this.add(menuLayeredPane);
         this.setVisible(true);
 
 

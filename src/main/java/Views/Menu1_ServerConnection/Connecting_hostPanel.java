@@ -7,7 +7,7 @@ public class Connecting_hostPanel extends JPanel {
     public Connecting_hostPanel(){
 //LABEL:
         this.setLayout(new FlowLayout());
-        this.setPreferredSize(new Dimension(100, 200));
+        this.setPreferredSize(new Dimension(100, 190));
         centerLabel = new JLabel("Connect to Localhost ...", JLabel.CENTER );  //TODO: add display of localhost
         centerLabel.setVerticalAlignment(JLabel.TOP);
         centerLabel.setHorizontalAlignment(JLabel.CENTER);

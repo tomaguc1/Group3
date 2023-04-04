@@ -20,7 +20,7 @@ public class Connecting_clientPanel extends JPanel implements ActionListener {
     public Connecting_clientPanel(){
 //LABEL:
         this.setLayout(new FlowLayout(FlowLayout.CENTER));
-        this.setPreferredSize(new Dimension(100, 200));
+        this.setPreferredSize(new Dimension(100, 190));
         centerLabel = new JLabel("Localhost ...", JLabel.CENTER );  //TODO: add display of localhost
         centerLabel.setVerticalAlignment(JLabel.TOP);
         centerLabel.setHorizontalAlignment(JLabel.CENTER);

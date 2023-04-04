@@ -1,6 +1,6 @@
 package STD_Classes;
 
-import Views.ConnectingPanels.MenuConnect;
+import Views.MenuConnect;
 
 public class Run {
 
