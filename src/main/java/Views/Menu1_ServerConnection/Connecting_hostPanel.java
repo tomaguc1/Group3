@@ -1,7 +1,10 @@
-package Views.ConnectingPanels;
+package Views.Menu1_ServerConnection;
+import Model.Network.Server;
+
 import javax.swing.*;
 import java.awt.*;
 public class Connecting_hostPanel extends JPanel {
+    Server server;
     JLabel centerLabel;
     JButton buttonStart;
     public Connecting_hostPanel(){
@@ -26,7 +29,9 @@ public class Connecting_hostPanel extends JPanel {
         buttonStart.setHorizontalAlignment(SwingConstants.CENTER);
         buttonStart.setVerticalAlignment(SwingConstants.BOTTOM);
         buttonStart.addActionListener(e -> {System.out.println(" ->-> Start button pressed !");
-                                                }
+                                                server = new Server();
+                                                server.run();
+        }
                                     );
         //Button formatting
         buttonStart.setFocusable(false);                         //removes the box around text

@@ -8,23 +8,23 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class Server implements Runnable{
+    public static final int PORT = 9999;
     private ServerSocket server;
-    private ArrayList<ConnectionHandler> connections_list;
+    private static ArrayList<ConnectionHandler> client_list;
     private ExecutorService pool;
-    private boolean done;
 
-    public Server(){
-        connections_list = new ArrayList<>();
-        done = false;
+    public Server() {
+        try {
+            server = new ServerSocket(PORT);
+        } catch (IOException e) {
+            shutdown_serv();
+        }
+        client_list = new ArrayList<>();
     }
     public void shutdown_serv(){
         try {
-            done = true;
             if (!server.isClosed()) {
                 server.close();
-            }
-            for (ConnectionHandler ch : connections_list) {
-                ch.shutdown_handler();
             }
         }catch (IOException e){
             //ignore
@@ -33,70 +33,74 @@ public class Server implements Runnable{
     @Override
     public void run() {
         try {
-            server = new ServerSocket(10004);
-            pool = Executors.newCachedThreadPool();
 
+            pool = Executors.newCachedThreadPool();
 
             Client internal_client = new Client();
             Thread internal_client_thread = new Thread(internal_client);
             System.out.println("-> Internal Client Started !");
             internal_client_thread.start();
 
-
-            while (!done) {              //TODO:Handle multiple client connections
+            boolean done = false;
+            while(done != true){
+                System.out.println("-> run() While Loop Enter");
                 Socket client = server.accept();
-                    System.out.println("-> server.accept() executed ");
-
-
                 ConnectionHandler handler = new ConnectionHandler(client);
-                connections_list.add(handler);
-                    System.out.println("-> handler created and added");
-                pool.execute(handler);
-            }
+                client_list.add(handler);
+                System.out.println("->There are " + queryTwoClients()
+                        + "connected !");
 
-        } catch (IOException e) {
-                System.out.println("#EXCEPTION: IOEXCEPTION at Server.run()");
+            }
+            System.out.println("EXIT While loop");
+
+
+            } catch (IOException e) {
             shutdown_serv();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
 
+public static boolean queryTwoClients() throws InterruptedException {
+        long waitTime = 1000;
+        Thread.sleep(waitTime);
+        if(client_list == null) {return false ;}
+        else return client_list.size() == 2;
+}
+
 //===== Connection Handler inner class================================================
     class ConnectionHandler implements Runnable{
-        ObjectInputStream ois;
-        ObjectOutputStream oos;
         private Socket client;
-        private String nickname;
+        ObjectInputStream ois;
         public ConnectionHandler(Socket client_sock){
             this.client = client_sock;
-        }
-        public void shutdown_handler(){
-            try {
-                ois.close();
-                oos.close();
-                if(!client.isClosed()){
-                    client.close();
-                }
-            } catch (IOException e) {
-                // Ignore exception handling
-            }
         }
         @Override
         public void run() {
             try{
                 ois = new ObjectInputStream(client.getInputStream()); // Server <- Client :: Stream
-                oos = new ObjectOutputStream(client.getOutputStream());
-
                 Object accept_obj;
                 while((accept_obj = ois.readObject()) != null) {
                     if (((String) accept_obj).equals("Connected")) {
-                        System.out.println(" Client Connected ! ");
+                        System.out.println("--> Client Object received! ");
                     }
                 }
             }catch (IOException | ClassNotFoundException e){
-                shutdown_handler();
-
+                shutdown_handler(client, ois);
             }
 
         }
+
+    //SHUTDOWN
+            public void shutdown_handler(Socket cl, ObjectInputStream oi){
+                try {
+                    oi.close();
+                    if(!cl.isClosed()){
+                        cl.close();
+                    }
+                } catch (IOException e) {
+                    // Ignore exception handling
+                }
+            }
     }
 }

@@ -1,4 +1,6 @@
-package Views.ConnectingPanels;
+package Views.Menu1_ServerConnection;
+
+import Model.Network.Client;
 
 import javax.swing.*;
 import java.awt.*;
@@ -6,7 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Connecting_clientPanel extends JPanel implements ActionListener {
-
+    Client client;
     JLabel centerLabel;
     JButton buttonReady;
     JTextField servIpText;
@@ -39,6 +41,7 @@ public class Connecting_clientPanel extends JPanel implements ActionListener {
         buttonReady.setVerticalAlignment(SwingConstants.BOTTOM);
         buttonReady.addActionListener(e -> {System.out.println(" ->-> Ready button pressed !");
                                             System.out.println(servIpText.getText());
+                                            client = new Client();
                                             buttonReady.setEnabled(false); // Stop button and textbox from being used
                                             servIpText.setEditable(false);
                 }

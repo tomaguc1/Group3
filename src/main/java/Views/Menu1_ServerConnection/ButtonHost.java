@@ -1,4 +1,4 @@
-package Views.ConnectingPanels;
+package Views.Menu1_ServerConnection;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,38 +1,36 @@
-package Views.ConnectingPanels;
+package Views.Menu1_ServerConnection;
 
 import Helpers.ImageLibrary;
+import Model.Network.Client;
+import Model.Network.Server;
+import Views.UI_Panels;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-enum SERVICE{
-    CLIENT,
-    SERVER
-}
 
-
-public class MenuLayeredPane extends JLayeredPane implements ActionListener {
+public class HostClient_Pane extends JLayeredPane implements ActionListener {
     ImageLibrary graphics = new ImageLibrary();
     JButton buttonHost;
     JButton buttonClient;
-    SERVICE service;
     ImageIcon image = new ImageIcon(graphics.shipImage.getImage());
     JLabel menuLabel_shipLabel;
     JPanel SOUTHbasePanel;
     JPanel clientConPanel;
     JPanel hostConPanel;
     JPanel menuLabel_Pane;
-    public MenuLayeredPane() {
+    public HostClient_Pane() {
                         hostConPanel = new Connecting_hostPanel();
                         clientConPanel = new Connecting_clientPanel();
                         //Button for Hosting
                         //HOST  :
-                        buttonHost = new ButtonClient();
+                        buttonHost = new ButtonHost();
                         buttonHost.addActionListener(e -> {
                             System.out.println("->hostButton pressed !");
                             SOUTHbasePanel.setVisible(false);
+                                Server serv = new Server();
                             this.add(hostConPanel, BorderLayout.SOUTH);
                         });
 
@@ -40,6 +38,7 @@ public class MenuLayeredPane extends JLayeredPane implements ActionListener {
                         buttonClient.addActionListener(e -> {
                             System.out.println("->clientButton pressed !");
                             SOUTHbasePanel.setVisible(false);
+                                Client clie = new Client();
                             this.add(clientConPanel, BorderLayout.SOUTH);
                         });
 
@@ -66,27 +65,21 @@ public class MenuLayeredPane extends JLayeredPane implements ActionListener {
         menuLabel_Pane.setBackground(Color.BLACK);
         menuLabel_Pane.setVisible(true);
 
-        JPanel emptyEastPanel = new JPanel();
-        emptyEastPanel.setPreferredSize(new Dimension(150,100));
-        emptyEastPanel.setBackground(Color.LIGHT_GRAY);
-        JPanel emptyWestPanel = new JPanel();
-        emptyWestPanel.setPreferredSize(new Dimension(150,100));
-        emptyWestPanel.setBackground(Color.MAGENTA);
-        JPanel emptyNorthPanel = new JPanel();
-        emptyNorthPanel.setPreferredSize(new Dimension(150,70));
-        emptyNorthPanel.setBackground(Color.CYAN);
-        JPanel emptyCenterPanel = new JPanel();
-        emptyCenterPanel.add(menuLabel_shipLabel);
-        emptyCenterPanel.setPreferredSize(new Dimension(150,100));
-        emptyCenterPanel.setBackground(Color.ORANGE);
+
+        JPanel emptyEastPanel = new UI_Panels(150, 100, Color.LIGHT_GRAY);
+        JPanel emptyWestPanel = new UI_Panels(150, 100, Color.MAGENTA);
+        JPanel emptyNorthPanel = new UI_Panels(150, 70, Color.CYAN);
+        JPanel centerPanel = new JPanel();
+        centerPanel.add(menuLabel_shipLabel);
+        centerPanel.setPreferredSize(new Dimension(150,100));
+        centerPanel.setBackground(Color.ORANGE);
 
 
-        SOUTHbasePanel = new JPanel();
+        SOUTHbasePanel = new UI_Panels(100, 190, Color.RED);
         SOUTHbasePanel.setLayout(new FlowLayout());
-        SOUTHbasePanel.setPreferredSize(new Dimension(100,190));
         SOUTHbasePanel.add(buttonHost);
         SOUTHbasePanel.add(buttonClient);
-        SOUTHbasePanel.setBackground(Color.RED); //TODO: REMOVE
+
 
 
 
@@ -109,7 +102,7 @@ public class MenuLayeredPane extends JLayeredPane implements ActionListener {
 //        this.add(menuLabel_Pane, BorderLayout.CENTER);
         this.add(emptyNorthPanel, BorderLayout.NORTH);
         this.add(emptyWestPanel, BorderLayout.WEST);
-        this.add(emptyCenterPanel, BorderLayout.CENTER);
+        this.add(centerPanel, BorderLayout.CENTER);
         this.add(emptyEastPanel, BorderLayout.EAST);
         this.add(SOUTHbasePanel, BorderLayout.SOUTH);
         this.setVisible(true);
