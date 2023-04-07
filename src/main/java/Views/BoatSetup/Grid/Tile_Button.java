@@ -12,6 +12,7 @@ public class Tile_Button extends JButton {
         this.setBorder(BorderFactory.createLineBorder(Color.BLUE, 1));
     }
     public Tile_Button(String s){
+        this();
         this.setText(s);
         this.setBorder(BorderFactory.createEtchedBorder());
     }
