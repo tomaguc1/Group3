@@ -1,6 +1,7 @@
 package Views.BoatSetup;
 
 import Views.BoatSetup.Grid.Layer0_panel;
+import Views.BoatSetup.Grid.Draft_Layer1_panel;
 import Views.BoatSetup.Grid.Layer1_panel;
 
 import javax.swing.*;

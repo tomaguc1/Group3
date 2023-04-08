@@ -10,7 +10,7 @@ import java.awt.*;
 
 public class MainFrame extends JFrame{
 
-    ImageLibrary graphics = new ImageLibrary();
+    public static ImageLibrary graphics = new ImageLibrary();
 
     JLayeredPane menuLayeredPane;
     JLayeredPane boatSetPane;
