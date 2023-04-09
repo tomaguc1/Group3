@@ -28,7 +28,7 @@ public class HostClient_Pane extends JLayeredPane implements ActionListener {
                         //HOST  :
                         buttonHost = new ButtonHost();
                         buttonHost.addActionListener(e -> {
-                            System.out.println("->hostButton pressed !");
+                            System.out.println("->hostButton pressed 2 !");
                             SOUTHbasePanel.setVisible(false);
                                 Server serv = new Server();
                             this.add(hostConPanel, BorderLayout.SOUTH);
@@ -38,13 +38,16 @@ public class HostClient_Pane extends JLayeredPane implements ActionListener {
                         buttonClient.addActionListener(e -> {
                             System.out.println("->clientButton pressed !");
                             SOUTHbasePanel.setVisible(false);
-                                Client clie = new Client();
+//                                Client clie = new Client();
                             this.add(clientConPanel, BorderLayout.SOUTH);
                         });
 
         this.setBackground(Color.CYAN);
         this.setPreferredSize(new Dimension(1280,720));
         this.setLayout(new BorderLayout());
+
+
+
 //Label Ship + Text
         menuLabel_shipLabel = new JLabel(image);
 //        menuLabel_shipLabel.setSize(new Dimension(500,400));

@@ -21,7 +21,7 @@ public class ButtonHost extends JButton implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == this){
-            System.out.println("->hostButton Pressed !");
+            System.out.println("->hostButton Pressed 1 !");
         }
     };
 

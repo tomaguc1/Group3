@@ -41,7 +41,7 @@ public class Connecting_clientPanel extends JPanel implements ActionListener {
         buttonReady.setVerticalAlignment(SwingConstants.BOTTOM);
         buttonReady.addActionListener(e -> {System.out.println(" ->-> Ready button pressed !");
                                             System.out.println(servIpText.getText());
-                                            client = new Client();
+                                            client = new Client(servIpText.getText());
                                             buttonReady.setEnabled(false); // Stop button and textbox from being used
                                             servIpText.setEditable(false);
                 }
@@ -59,7 +59,7 @@ public class Connecting_clientPanel extends JPanel implements ActionListener {
 //servIP
         servIpText = new JTextField();
         servIpText.setPreferredSize(new Dimension(160,30));
-        servIpText.setText("Remote IP ...");
+        servIpText.setText("127.0.0.1");
 
         this.addCompoToPannel(centerLabel, servIpText, buttonReady);
         this.setVisible(true);

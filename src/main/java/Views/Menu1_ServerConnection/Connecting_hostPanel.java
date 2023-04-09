@@ -10,7 +10,7 @@ public class Connecting_hostPanel extends JPanel {
     public Connecting_hostPanel(){
 //LABEL:
         this.setLayout(new FlowLayout());
-        this.setPreferredSize(new Dimension(100, 190));
+        this.setPreferredSize(new Dimension(1, 190));
         centerLabel = new JLabel("Connect to Localhost ...", JLabel.CENTER );  //TODO: add display of localhost
         centerLabel.setVerticalAlignment(JLabel.TOP);
         centerLabel.setHorizontalAlignment(JLabel.CENTER);
@@ -29,8 +29,8 @@ public class Connecting_hostPanel extends JPanel {
         buttonStart.setHorizontalAlignment(SwingConstants.CENTER);
         buttonStart.setVerticalAlignment(SwingConstants.BOTTOM);
         buttonStart.addActionListener(e -> {System.out.println(" ->-> Start button pressed !");
-                                                server = new Server();
-                                                server.run();
+//                                                server = new Server();
+//                                                server.run();
         }
                                     );
         //Button formatting

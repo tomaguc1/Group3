@@ -1,4 +1,4 @@
-package battleBoard;
+package Model.Board;
 public class Ship {
 	private Direction direction;
 	private int length;

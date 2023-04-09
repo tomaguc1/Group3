@@ -1,4 +1,4 @@
-package battleBoard;
+package Model.Board;
 import java.util.Scanner;
 public class LogicShipRun {
 

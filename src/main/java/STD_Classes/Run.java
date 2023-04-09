@@ -1,15 +1,16 @@
 package STD_Classes;
 
-import Model.Network.Client;
-import Model.Network.Server;
-import Views.MainFrame;
-
-import java.util.Scanner;
+import Controller.MainController;
+import Model.Main.MainModel;
+import Views.MainView;
 
 public class Run {
 
 	public static void main(String[] args) throws InterruptedException {
-		MainFrame mainMenu = new MainFrame();
+
+		MainModel model = new MainModel();
+		MainView view = new MainView(model);
+		MainController controller = new MainController(model, view);
 
 //		Scanner s = new Scanner(System.in);
 //		int x = s.nextInt();

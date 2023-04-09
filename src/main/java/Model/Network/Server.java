@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class Server implements Runnable{
+public class Server implements Runnable {
     public static final int PORT = 9999;
     private ServerSocket server;
     private static ArrayList<ConnectionHandler> client_list;
@@ -20,16 +20,20 @@ public class Server implements Runnable{
             shutdown_serv();
         }
         client_list = new ArrayList<>();
+        new Thread(this);
     }
-    public void shutdown_serv(){
+
+    public void shutdown_serv() {
         try {
-            if (!server.isClosed()) {
-                server.close();
-            }
-        }catch (IOException e){
+            if (server != null)
+                if (!server.isClosed()) {
+                    server.close();
+                }
+        } catch (IOException e) {
             //ignore
         }
     }
+
     @Override
     public void run() {
         try {
@@ -40,9 +44,8 @@ public class Server implements Runnable{
             Thread internal_client_thread = new Thread(internal_client);
             System.out.println("-> Internal Client Started !");
             internal_client_thread.start();
-
             boolean done = false;
-            while(done != true){
+            while (done != true) {
                 System.out.println("-> run() While Loop Enter");
                 Socket client = server.accept();
                 ConnectionHandler handler = new ConnectionHandler(client);
@@ -54,53 +57,56 @@ public class Server implements Runnable{
             System.out.println("EXIT While loop");
 
 
-            } catch (IOException e) {
+        } catch (IOException e) {
             shutdown_serv();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
     }
 
-public static boolean queryTwoClients() throws InterruptedException {
+    public static boolean queryTwoClients() throws InterruptedException {
         long waitTime = 1000;
-        Thread.sleep(waitTime);
-        if(client_list == null) {return false ;}
-        else return client_list.size() == 2;
-}
+//        Thread.sleep(waitTime);
+        if (client_list == null) {
+            return false;
+        } else return client_list.size() == 2;
+    }
 
-//===== Connection Handler inner class================================================
-    class ConnectionHandler implements Runnable{
+    //===== Connection Handler inner class================================================
+    class ConnectionHandler implements Runnable {
         private Socket client;
         ObjectInputStream ois;
-        public ConnectionHandler(Socket client_sock){
+
+        public ConnectionHandler(Socket client_sock) {
             this.client = client_sock;
         }
+
         @Override
         public void run() {
-            try{
+            try {
                 ois = new ObjectInputStream(client.getInputStream()); // Server <- Client :: Stream
                 Object accept_obj;
-                while((accept_obj = ois.readObject()) != null) {
+                while ((accept_obj = ois.readObject()) != null) {
                     if (((String) accept_obj).equals("Connected")) {
                         System.out.println("--> Client Object received! ");
                     }
                 }
-            }catch (IOException | ClassNotFoundException e){
+            } catch (IOException | ClassNotFoundException e) {
                 shutdown_handler(client, ois);
             }
 
         }
 
-    //SHUTDOWN
-            public void shutdown_handler(Socket cl, ObjectInputStream oi){
-                try {
-                    oi.close();
-                    if(!cl.isClosed()){
-                        cl.close();
-                    }
-                } catch (IOException e) {
-                    // Ignore exception handling
+        //SHUTDOWN
+        public void shutdown_handler(Socket cl, ObjectInputStream oi) {
+            try {
+                oi.close();
+                if (!cl.isClosed()) {
+                    cl.close();
                 }
+            } catch (IOException e) {
+                // Ignore exception handling
             }
+        }
     }
 }

@@ -1,14 +1,14 @@
 package Views;
 
 import Helpers.ImageLibrary;
+import Model.Main.MainModel;
 import Views.BoatSetup.BoatSet_LayerPanel;
-import Views.BoatSetup.Grid.testLayerPane;
 import Views.Menu1_ServerConnection.HostClient_Pane;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class MainFrame extends JFrame{
+public class MainView extends JFrame{
 
     public static ImageLibrary graphics = new ImageLibrary();
 
@@ -17,15 +17,19 @@ public class MainFrame extends JFrame{
     JButton buttonHost;
     JButton buttonClient;
 
+    private MainModel model;
 
-    public MainFrame() {
+    public MainView(MainModel model) {
+
+        this.model = model;
+
           //Frame settings
-        this.setLayout(null);
+        this.setLayout(new BorderLayout());
         this.setTitle("MenuConnect Title !");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
         this.setSize(1280,720);
-        this.getContentPane().setBackground(Color.ORANGE);
+        this.getContentPane().setBackground(Color.GREEN);
 //----------------------------------------------------------------------------------------------------------------------
 //======================================================================================================================
 
@@ -38,11 +42,23 @@ public class MainFrame extends JFrame{
         //''this'' -- Frame Component
 
         this.add(menuLayeredPane);
+        this.add(boatSetPane);
 
 
         this.setVisible(true);
 
 
     }//End of constrctor
+
+    public void showMenu() {
+        this.boatSetPane.setVisible(false);
+        this.menuLayeredPane.setVisible(true);
+    }
+
+    public void showGame() {
+        this.menuLayeredPane.setVisible(false);
+        this.boatSetPane.setVisible(true);
+    }
+
 }
  

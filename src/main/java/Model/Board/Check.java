@@ -1,4 +1,4 @@
-package battleBoard;
+package Model.Board;
 //import Position;
 
 public class Check {

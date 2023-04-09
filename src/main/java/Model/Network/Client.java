@@ -19,13 +19,16 @@ import java.io.ObjectOutputStream;
         public Object clientReceivedObj;
 
     public Client() {
+        System.out.println("Client to default");
         try {
             server_socket = new Socket("127.0.0.1", Server.PORT);
         } catch (IOException e) {
             shutdown(server_socket, ois, oos);
         }
+        new Thread(this);
     }
     public Client(String IP)  {
+        System.out.println("Client to [" + IP + "]");
         try {
             server_socket = new Socket(IP, Server.PORT);
         } catch (IOException e) {
@@ -49,11 +52,16 @@ import java.io.ObjectOutputStream;
         public void shutdown(Socket server_socket, ObjectInputStream ois, ObjectOutputStream oos){
             done = true;
             try{
-                ois.close();
-                oos.close();
-                if(!server_socket.isClosed()){
-                    server_socket.close();
-                }
+                if (ois != null)
+                    ois.close();
+
+                if (oos != null)
+                    oos.close();
+
+                if (server_socket != null)
+                    if(!server_socket.isClosed()){
+                        server_socket.close();
+                    }
             }catch (IOException e){
                 //ignore handling
             }
