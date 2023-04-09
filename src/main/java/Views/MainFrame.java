@@ -34,11 +34,10 @@ public class MainFrame extends JFrame{
         menuLayeredPane = new HostClient_Pane();
         boatSetPane = new BoatSet_LayerPanel();
 
-
 //ADD components to the frame
         //''this'' -- Frame Component
 
-        this.add(boatSetPane);
+        this.add(menuLayeredPane);
 
 
         this.setVisible(true);
