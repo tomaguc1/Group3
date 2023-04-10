@@ -11,7 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
-public class HostClient_Pane extends JLayeredPane implements ActionListener {
+public class HostClient_Pane extends JLayeredPane {
     ImageLibrary graphics = new ImageLibrary();
     JButton buttonHost;
     JButton buttonClient;
@@ -110,13 +110,4 @@ public class HostClient_Pane extends JLayeredPane implements ActionListener {
         this.add(SOUTHbasePanel, BorderLayout.SOUTH);
         this.setVisible(true);
     }//End of constrctor
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == buttonHost){
-            System.out.println("=>actionEvent on host");
-        }else if(e.getSource() == buttonClient){
-
-        }
-    }
 }

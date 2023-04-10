@@ -7,7 +7,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Connecting_clientPanel extends JPanel implements ActionListener {
+public class Connecting_clientPanel extends JPanel {
     Client client;
     JLabel centerLabel;
     JButton buttonReady;
@@ -65,8 +65,4 @@ public class Connecting_clientPanel extends JPanel implements ActionListener {
         this.setVisible(true);
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
-    }
 }

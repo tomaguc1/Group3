@@ -1,64 +1,112 @@
 package Views;
 
+import Controller.MainController;
 import Helpers.ImageLibrary;
 import Model.Main.MainModel;
+import Model.Main.Screen;
 import Views.BoatSetup.BoatSet_LayerPanel;
 import Views.Menu1_ServerConnection.HostClient_Pane;
+import Views.Menu.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Observable;
+import java.util.Observer;
 
 public class MainView extends JFrame{
 
     public static ImageLibrary graphics = new ImageLibrary();
 
-    JLayeredPane menuLayeredPane;
     JLayeredPane boatSetPane;
     JButton buttonHost;
     JButton buttonClient;
 
-    private MainModel model;
+    private MainController controller;
 
-    public MainView(MainModel model) {
+    private ChooseSingleplayerOrMultiplayer chooseSingleplayerOrMultiplayer;
+    private ChooseServerOrClient            chooseServerOrClient;
+    private ServerWaitingForConnection      serverWaitingForConnection;
+    private ClientProvideAddress            clientProvideAddress;
+    private ClientConnecting                clientConnecting;
 
-        this.model = model;
+    public MainView(MainController controller) {
+
+        this.controller = controller;
+
+        this.chooseSingleplayerOrMultiplayer = new ChooseSingleplayerOrMultiplayer(controller);
+        this.chooseServerOrClient            = new ChooseServerOrClient(controller);
+        this.serverWaitingForConnection      = new ServerWaitingForConnection(controller);
+        this.clientProvideAddress            = new ClientProvideAddress(controller);
+        this.clientConnecting                = new ClientConnecting(controller);
+
+        this.add(this.chooseSingleplayerOrMultiplayer);
+        this.add(this.chooseServerOrClient);
+        this.add(this.serverWaitingForConnection);
+        this.add(this.clientProvideAddress);
+        this.add(this.clientConnecting);
 
           //Frame settings
-        this.setLayout(new BorderLayout());
+        this.setLayout(new GridLayout());
         this.setTitle("MenuConnect Title !");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
         this.setSize(1280,720);
-        this.getContentPane().setBackground(Color.GREEN);
+        this.getContentPane().setBackground(Color.pink);
 //----------------------------------------------------------------------------------------------------------------------
 //======================================================================================================================
 
 
         //Pannels
-        menuLayeredPane = new HostClient_Pane();
         boatSetPane = new BoatSet_LayerPanel();
 
 //ADD components to the frame
         //''this'' -- Frame Component
 
-        this.add(menuLayeredPane);
-        this.add(boatSetPane);
-
 
         this.setVisible(true);
 
-
     }//End of constrctor
 
-    public void showMenu() {
-        this.boatSetPane.setVisible(false);
-        this.menuLayeredPane.setVisible(true);
+
+    public void setScreen(Screen screen) {
+//        this.remove(chooseSingleplayerOrMultiplayer);
+//        this.remove(chooseServerOrClient);
+//        this.remove(serverWaitingForConnection);
+//        this.remove(clientProvideAddress);
+//        this.remove(clientConnecting);
+
+        chooseSingleplayerOrMultiplayer.setVisible(false);
+        chooseServerOrClient.setVisible(false);
+        serverWaitingForConnection.setVisible(false);
+        clientProvideAddress.setVisible(false);
+        clientConnecting.setVisible(false);
+
+        switch (screen) {
+            case ChooseSingleplayerOrMultiplayer:
+                chooseSingleplayerOrMultiplayer.setVisible(true);
+                break;
+            case ChooseServerOrClient:
+                chooseServerOrClient.setVisible(true);
+                break;
+            case ServerWaitingForConnection:
+                serverWaitingForConnection.setVisible(true);
+                break;
+            case ClientProvideAddress:
+                clientProvideAddress.setVisible(true);
+                break;
+            case ClientConnecting:
+                clientConnecting.setVisible(true);
+                break;
+        }
     }
 
-    public void showGame() {
-        this.menuLayeredPane.setVisible(false);
-        this.boatSetPane.setVisible(true);
-    }
+//    private class ModelObserver implements Observer {
+//        public void update(Observable observable, Object object) {
+//            if ((observable instanceof MainModel) == false) return;
+//
+//
+//        }
+//    }
 
 }
  
