@@ -5,6 +5,9 @@ public class Board {
 	Object[][] board = new Object[10][10];
 	private Ocean ocean;
 	private Ship ship;
+	private Bomb bomb;
+	private int X;
+	private int Y;
 
 	public Board() {
 		
@@ -33,6 +36,11 @@ public class Board {
 			}
 		}
 	}
+	
+	public void setBomb ( int X, int Y, Bomb bomb) {
+		board[X][Y]=bomb; 
+		
+	}
 
 	// board[position.getX()][position.getY()]= ship;
 	// board[position.getX()+ship.getLength()-1][position.getY()]= ship;
@@ -60,8 +68,11 @@ public class Board {
 					System.out.print('o');
 				}
 
-				else if (board[i][j] instanceof Ship) {
+				 if (board[i][j] instanceof Ship) {
 					System.out.print('+');
+				}
+				if (board[i][j] instanceof Bomb) {
+					System.out.print('-');
 				}
 			}
 			System.out.println();
