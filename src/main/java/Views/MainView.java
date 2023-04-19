@@ -17,9 +17,6 @@ public class MainView extends JFrame{
 
     public static ImageLibrary graphics = new ImageLibrary();
 
-    JLayeredPane boatSetPane;
-    JButton buttonHost;
-    JButton buttonClient;
 
     private MainController controller;
 
@@ -46,7 +43,7 @@ public class MainView extends JFrame{
         this.add(this.clientConnecting);
 
           //Frame settings
-        this.setLayout(new GridLayout());
+        this.setLayout(new FlowLayout());
         this.setTitle("MenuConnect Title !");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
@@ -56,8 +53,6 @@ public class MainView extends JFrame{
 //======================================================================================================================
 
 
-        //Pannels
-        boatSetPane = new BoatSet_LayerPanel();
 
 //ADD components to the frame
         //''this'' -- Frame Component
