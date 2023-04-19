@@ -17,10 +17,10 @@ public class MainModel extends Observable {
         Screen oldValue = this.screen;
         this.screen = newValue;
 
-        if (oldValue != newValue) {
-            this.setChanged();
-            this.notifyObservers(newValue);
-        }
+//        if (oldValue != newValue) {
+//            this.setChanged();
+//            this.notifyObservers(newValue);
+//        }
     }
 
 }
