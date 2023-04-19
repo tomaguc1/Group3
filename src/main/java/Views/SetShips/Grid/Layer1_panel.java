@@ -1,7 +1,7 @@
-package Views.BoatSetup.Grid;
+package Views.SetShips.Grid;
 
-import Views.BoatSetup.DragPanel.ShipIcon;
-import Views.BoatSetup.DragPanel.ShipLabel;
+import Views.SetShips.DragPanel.ShipIcon;
+import Views.SetShips.DragPanel.ShipLabel;
 
 import javax.swing.*;
 import java.awt.*;

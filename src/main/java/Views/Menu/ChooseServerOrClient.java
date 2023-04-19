@@ -1,12 +1,11 @@
 package Views.Menu;
 
-import Controller.MainController;
-import Views.Menu1_ServerConnection.HostClient_Pane;
+import Controller.MainMenuController;
 
 import java.awt.*;
 
 public class ChooseServerOrClient extends MenuPanel {
-    public ChooseServerOrClient(MainController controller) {
+    public ChooseServerOrClient(MainMenuController controller) {
         super(controller);
 
         this.setBackground(Color.green);

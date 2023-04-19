@@ -1,8 +1,7 @@
-package Views.BoatSetup.Grid;
+package Views.SetShips.Grid;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.jar.JarEntry;
 
 public class Tile_Button extends JButton {
     Tile_Button(){

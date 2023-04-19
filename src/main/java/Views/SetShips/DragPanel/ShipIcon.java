@@ -1,4 +1,4 @@
-package Views.BoatSetup.DragPanel;
+package Views.SetShips.DragPanel;
 
 import Views.MainView;
 

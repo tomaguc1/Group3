@@ -1,23 +1,18 @@
 package Views;
 
-import Controller.MainController;
+import Controller.MainMenuController;
 import Helpers.ImageLibrary;
-import Model.Main.MainModel;
-import Model.Main.Screen;
-import Views.BoatSetup.BoatSet_LayerPanel;
-import Views.Menu1_ServerConnection.HostClient_Pane;
+import Model.Screen;
 import Views.Menu.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Observable;
-import java.util.Observer;
 
 public class MainView extends JFrame{
 
     public static ImageLibrary graphics = new ImageLibrary();
 
-    private MainController controller;
+    private MainMenuController controller;
 
 /* Below we declare all the possible panels that can occur in the main menu,
     And accoring to the user input listened by the MainController object the model is updated
@@ -29,7 +24,7 @@ public class MainView extends JFrame{
     private ClientProvideAddress            clientProvideAddress;
     private ClientConnecting                clientConnecting;
 
-    public MainView(MainController controller) {
+    public MainView(MainMenuController controller) {
 
         this.controller = controller;
 

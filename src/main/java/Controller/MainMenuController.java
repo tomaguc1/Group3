@@ -1,22 +1,25 @@
 package Controller;
-import Model.Main.MainModel;
-import Model.Main.Screen;
+import Model.MainMenu.MainMenuModel;
+import Model.Screen;
 import Views.MainView;
 
 import java.awt.*;
 
-public class MainController {
+public class MainMenuController {
 
-    MainModel model;
+    AppController appController;
+
+    MainMenuModel model;
     MainView view;
 
-    public static void main(String[] args) throws InterruptedException {
-        MainController controller = new MainController();
-//        controller.startup();
-    }
+//    public static void main(String[] args) throws InterruptedException {
+//        MainController controller = new MainController();
+////        controller.startup();
+//    }
 
-    public MainController() { // Constructor : instantiates MainModel and MainView for the MainController object
-        this.model = new MainModel();
+    public MainMenuController(AppController app) { // Constructor : instantiates MainModel and MainView for the MainController object
+        this.appController = app;
+        this.model = new MainMenuModel();
         this.view = new MainView(this);
 
         this.updateView(); // At object instation the view is updated with the current screen that is contained
@@ -53,6 +56,7 @@ public class MainController {
     public Button createBackButton() {
         Button button = new Button("Back");
         button.addActionListener(e -> {
+            //TODO : Add temporary appController transition to the ship setting view
             this.model.setScreen(Screen.ChooseServerOrClient);
             this.updateView();
         });

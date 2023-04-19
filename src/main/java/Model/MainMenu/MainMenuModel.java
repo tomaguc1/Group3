@@ -1,11 +1,13 @@
-package Model.Main;
+package Model.MainMenu;
+import Model.Screen;
+
 import java.util.Observable;
 
-public class MainModel extends Observable {
+public class MainMenuModel extends Observable {
 
     private Screen screen;
 
-    public MainModel() {
+    public MainMenuModel() {
         this.screen = Screen.ChooseServerOrClient;
     }
 

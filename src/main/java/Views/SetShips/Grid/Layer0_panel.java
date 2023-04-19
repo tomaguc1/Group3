@@ -1,4 +1,4 @@
-package Views.BoatSetup.Grid;
+package Views.SetShips.Grid;
 
 import Views.UI_Panels;
 

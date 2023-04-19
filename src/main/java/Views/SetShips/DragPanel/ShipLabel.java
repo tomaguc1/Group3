@@ -1,4 +1,4 @@
-package Views.BoatSetup.DragPanel;
+package Views.SetShips.DragPanel;
 
 import javax.swing.*;
 import java.awt.*;

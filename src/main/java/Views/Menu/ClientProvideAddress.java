@@ -1,14 +1,12 @@
 package Views.Menu;
 
-import Controller.MainController;
-import Model.Main.Screen;
+import Controller.MainMenuController;
 
-import javax.swing.*;
 import java.awt.*;
 
 public class ClientProvideAddress extends MenuPanel {
-    private MainController controller;
-    public ClientProvideAddress(MainController controller) {
+    private MainMenuController controller;
+    public ClientProvideAddress(MainMenuController controller) {
         super(controller);
 
         this.setBackground(Color.cyan);

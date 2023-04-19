@@ -1,9 +1,5 @@
 package STD_Classes;
 
-import Controller.MainController;
-import Model.Main.MainModel;
-import Views.MainView;
-
 public class Run {
 
 	public static void main(String[] args) throws InterruptedException {

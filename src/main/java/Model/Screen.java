@@ -1,4 +1,4 @@
-package Model.Main;
+package Model;
 
 public enum Screen {
     ChooseSingleplayerOrMultiplayer,
@@ -9,6 +9,8 @@ public enum Screen {
 
     ClientProvideAddress,
     ClientConnecting,
+
+    SetShips,
 
     Game
 }

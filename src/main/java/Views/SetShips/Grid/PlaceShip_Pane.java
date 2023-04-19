@@ -1,4 +1,4 @@
-package Views.BoatSetup.Grid;
+package Views.SetShips.Grid;
 
 import javax.swing.*;
 import java.awt.event.MouseAdapter;

@@ -1,13 +1,11 @@
 package Views.Menu;
 
-import Controller.MainController;
-import Model.Main.Screen;
+import Controller.MainMenuController;
 
-import javax.swing.*;
 import java.awt.*;
 
 public class ServerWaitingForConnection extends MenuPanel {
-    public ServerWaitingForConnection(MainController controller) {
+    public ServerWaitingForConnection(MainMenuController controller) {
         super(controller);
 
         this.setBackground(Color.blue);

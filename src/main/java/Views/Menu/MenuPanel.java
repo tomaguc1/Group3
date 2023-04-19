@@ -1,14 +1,14 @@
 package Views.Menu;
 
-import Controller.MainController;
+import Controller.MainMenuController;
 
 import javax.swing.*;
 import java.awt.*;
 
 public abstract class MenuPanel extends JPanel {
-    private MainController controller;
+    private MainMenuController controller;
 
-    public MenuPanel(MainController controller) {
+    public MenuPanel(MainMenuController controller) {
 
         this.controller = controller;
         this.setPreferredSize(new Dimension(150,200));
