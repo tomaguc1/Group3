@@ -1,4 +1,4 @@
 package Model.Board;
 
-public class Ocean {
+public class Ocean extends BoardElements {
 }

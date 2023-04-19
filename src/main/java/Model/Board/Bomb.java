@@ -1,5 +1,5 @@
 package Model.Board;
 
-public class Bomb {
+public class Bomb extends BoardElements {
 
 }

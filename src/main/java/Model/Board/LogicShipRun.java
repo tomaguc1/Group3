@@ -6,27 +6,9 @@ public class LogicShipRun {
 		Board b = new Board();
 		b.printBoard();
 		
-		
-		
-		//hhh
-		
-		/*
-		Ship titanic = new Ship();
-		titanic.setLength(5);
-		titanic.setPosition(y, x);
-		titanic.setDirection(Direction.HORIZONTAL);
-		b.setShip(titanic.position, titanic);
-		b.printBoard();
-		*/
-		
-		System.out.println("test");
-		
-		
-		
-	//int i = 0;
-	//while(i++ <= 5) {
-		
-		Scanner s = new Scanner(System.in);
+		int i=0;
+		while(i++ <= 5) {
+			Scanner s = new Scanner(System.in);
 		
 	
 			System.out.println("Enter ship: ");
@@ -69,59 +51,19 @@ public class LogicShipRun {
 			b.setShip(Patrol.position, Patrol);
 			b.printBoard();
 		}
-		
-	//}
+		}
 	
+	/*
 	//Making a move :
-		 Bomb bomb= new Bomb();
+		 //Bomb bomb= new Bomb();
+		 Miss miss = new Miss();
 		 System.out.println("Attack: ");
 		 System.out.println("Enter X:");
 			int x1=s.nextInt();
 			System.out.println("Enter Y:");
 			int y1=s.nextInt();
-			b.setBomb(x1, y1,bomb );
+			//b.setBomb(x1, y1,bomb,miss );
 			b.printBoard();
-		 
-	
-	
-	
-	
-	
-	
-	
-	
-		/*
-		Ship D = new Ship("Destroyer");
-		D.setPosition(x, y);
-		b.setShip(D.position, D);
-		b.printBoard();
-		*/
-		/*
-		Scanner s = new Scanner(System.in);
-		System.out.println("Enter X:");
-		int x=s.nextInt();
-		System.out.println("Enter Y:");
-		int y=s.nextInt();
-		
-		Position position = new Position(y,x);
-		b.move(position);
-		b.printBoard();
-		
-		*/
-		
-		
-		
-		
-		
-		
-		//b.printBoard();
-		/*
-		int x = 0;
-		int y= 5;
-		Position position = new Position(x,y);
-		b.move(position);
-		b.printBoard();
-		*/
-		
+	*/
 	}
 }
