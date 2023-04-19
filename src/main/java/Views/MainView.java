@@ -17,9 +17,12 @@ public class MainView extends JFrame{
 
     public static ImageLibrary graphics = new ImageLibrary();
 
-
     private MainController controller;
 
+/* Below we declare all the possible panels that can occur in the main menu,
+    And accoring to the user input listened by the MainController object the model is updated
+     and the view is changed by  ....  TODO : finish
+* */
     private ChooseSingleplayerOrMultiplayer chooseSingleplayerOrMultiplayer;
     private ChooseServerOrClient            chooseServerOrClient;
     private ServerWaitingForConnection      serverWaitingForConnection;
@@ -30,19 +33,26 @@ public class MainView extends JFrame{
 
         this.controller = controller;
 
+/*  Instantiation of the above declared all possible panels that will occur in the main menu
+*  */
         this.chooseSingleplayerOrMultiplayer = new ChooseSingleplayerOrMultiplayer(controller);
         this.chooseServerOrClient            = new ChooseServerOrClient(controller);
         this.serverWaitingForConnection      = new ServerWaitingForConnection(controller);
         this.clientProvideAddress            = new ClientProvideAddress(controller);
         this.clientConnecting                = new ClientConnecting(controller);
 
+
+/*  Adding the instantiated panels above to the frame, by default they are NOT visible
+* */
         this.add(this.chooseSingleplayerOrMultiplayer);
         this.add(this.chooseServerOrClient);
         this.add(this.serverWaitingForConnection);
         this.add(this.clientProvideAddress);
         this.add(this.clientConnecting);
 
-          //Frame settings
+
+/*  Frame settings
+* */
         this.setLayout(new FlowLayout());
         this.setTitle("MenuConnect Title !");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -64,11 +74,6 @@ public class MainView extends JFrame{
 
 
     public void setScreen(Screen screen) {
-//        this.remove(chooseSingleplayerOrMultiplayer);
-//        this.remove(chooseServerOrClient);
-//        this.remove(serverWaitingForConnection);
-//        this.remove(clientProvideAddress);
-//        this.remove(clientConnecting);
 
         chooseSingleplayerOrMultiplayer.setVisible(false);
         chooseServerOrClient.setVisible(false);
@@ -98,8 +103,6 @@ public class MainView extends JFrame{
 //    private class ModelObserver implements Observer {
 //        public void update(Observable observable, Object object) {
 //            if ((observable instanceof MainModel) == false) return;
-//
-//
 //        }
 //    }
 

@@ -15,17 +15,23 @@ public class MainController {
 //        controller.startup();
     }
 
-    public MainController() {
+    public MainController() { // Constructor : instantiates MainModel and MainView for the MainController object
         this.model = new MainModel();
         this.view = new MainView(this);
 
-        this.updateView();
+        this.updateView(); // At object instation the view is updated with the current screen that is contained
+                                                                                                    // in the model
     }
 
     void updateView() {
         this.view.setScreen(this.model.getScreen());
     }
 
+/* createServerButton()
+    this {controller} -- listens on the "Host Game" button
+        !(when pressed)! this.model -- screen is updated to the next one
+        this {controller} -- uses updateView() method that works on this.view
+* */
     public Button createServerButton() {
         Button button = new Button("Host Game");
         button.addActionListener(e -> {
