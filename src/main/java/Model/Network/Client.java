@@ -1,8 +1,6 @@
 package Model.Network;
 
 import io.cucumber.java.sl.In;
-import javafx.scene.Scene;
-
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
