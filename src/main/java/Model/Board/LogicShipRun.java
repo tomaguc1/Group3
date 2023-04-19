@@ -16,7 +16,7 @@ public class LogicShipRun {
 		System.out.println("Enter Y:");
 		int y=s.nextInt();
 		
-		
+		//hhh
 		
 		/*
 		Ship titanic = new Ship();
