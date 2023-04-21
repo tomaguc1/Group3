@@ -4,6 +4,7 @@ import static org.junit.Assert.assertTrue;
 import Model.Board.Board;
 import Model.Board.Bomb;
 import Model.Board.Direction;
+import Model.Board.Player;
 import Model.Board.Position;
 import Model.Board.Ship;
 import io.cucumber.java.en.Given;
@@ -14,14 +15,15 @@ import io.cucumber.java.en.When;
 public class StepsOurs {
 	
 	Ship s;
+	
 	Board b = new Board();
 	Bomb bomb= new Bomb();
 	int x;
 	int y;
 	
-	//Player player = new Player;
-	//Miss miss = new Miss();
-	
+	Player p1 = new Player();
+	Player p2 = new Player();
+    
 	@Given("A {string}")
 	public void a(String string) {
 		s = new Ship (string);
@@ -53,26 +55,109 @@ public class StepsOurs {
 	}
 	
 	
-	@Given("Two players: {string} and {string}")
-	public void two_players_and(String string, String string2) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	@Given("A player with {int} ships")
+	public void a_player_with_ships( Integer int1) {
+		   p1.AddShip(s);
+		   p1.AddShip(s);
+		   p1.AddShip(s);
+		   p1.AddShip(s);
+		   p1.AddShip(s);
+		 
 	}
 
-	@When("{string} is finished with setting his ships")
-	public void is_finished_with_setting_his_ships(String string) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	@When("He tries to add another ship")
+	public void tries_to_add_another_ship() {
+		p1.AddShip(s);
+	}
+
+	@Then("He still only has {int} ships")
+	public void still_only_has_ships( int int1) {
+	    assertEquals(p1.getList().size(), int1);
+	}
+	
+	
+	
+	@Given("Two players: {string} and {string}")
+	public void two_players_and(String string, String string2) {
+	    int playerNumber1 =Integer.parseInt(string);
+	    int playerNumber2 =Integer.parseInt(string2);
+		p1.setNumber(playerNumber1);
+		p2.setNumber(playerNumber2);
+	}
+	
+	@When("{string} is finished")
+	public void is_finished(String string) {
+		   p1.AddShip(s);
+		   p1.AddShip(s);
+		   p1.AddShip(s);
+		   p1.AddShip(s);
+		   p1.AddShip(s);
+	}
+
+	@Then("{string} has {int} ships")
+	public void has_ships(String string, Integer int1) {
+		assertEquals(p1.getList().size(),5);
 	}
 
 	@Then("{string} can set his ships")
 	public void can_set_his_ships(String string) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		assertTrue(p2.isYourTurn()==true);
+	}
+	
+	
+	@Given("Player {string} board view")
+	public void player_board_view(String string) {
+	   int  playerNumber1 =Integer.parseInt(string);
+	   p1.setNumber(playerNumber1);
+	   
+	}
+	
+	@Given("there is a ship on the position {string} {string}")
+	public void there_is_a_ship_on_the_position(String string, String string2) {
+		int x = Integer.parseInt(string);
+	    int y = Integer.parseInt(string2);
+	    Ship ship= new Ship();
+	    ship.setLength(2);
+	    ship.setDirection(Direction.VERTICAL);
+	    ship.setPosition(x,y);
+	    b.setShip(ship.getPosition(), ship);
+	    assertTrue(b.getBoardElement(new Position(x,y)) instanceof Ship);
+	}
+	
+	@When("{string} makes a move on the position {string} {string}")
+	public void makes_a_move_on_the_position(String string, String string2, String string3) {
+		    int x = Integer.parseInt(string);
+		    int y = Integer.parseInt(string2);
+			b.setBomb(x,y,bomb,p1);
+	}
+
+	
+
+	@Then("{string} can make another move")
+	public void can_make_another_move(String string) {
+		assertTrue(p1.isYourTurn()==true);
 	}
 	
 	
 	
+/*
+	@When("{string} has {int} ships")
+	public void has_ships(String string) {
+	   p1.AddShip(s);
+	   p1.AddShip(s);
+	   p1.AddShip(s);
+	   p1.AddShip(s);
+	   p1.AddShip(s);
+	}
+
+	@Then("{string} can set his ships")
+	public void can_set_his_ships(String string) {
+		assertEquals(p1.getList().size(),5);
+		assertTrue(p2.isYourTurn()==true);
+	}
+	
+	
+	*/
 	
 	
 	/*

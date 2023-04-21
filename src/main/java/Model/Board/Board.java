@@ -1,5 +1,5 @@
 package Model.Board;
-
+import java.util.ArrayList;
 public class Board {
 
 	BoardElements[][] board = new BoardElements[10][10];
@@ -27,8 +27,6 @@ public class Board {
 				board[position.getX()+i][position.getY()]= ship;
 			}
 		}
-		
-		
 	
 		
 		else if (ship.getDirection()== Direction.HORIZONTAL ) {
@@ -40,19 +38,20 @@ public class Board {
 	public BoardElements getBoardElement (Position position) {
 		return board [position.getX()][position.getY()];
 		
-	}/*
-	public void setBomb ( int X, int Y, Bomb bomb, Miss miss) {
-		if(board[X][Y]== ship) {
-			board[X][Y]=bomb; 
-		}
-		else  {
-			board[X][Y]= miss;
-			board[X][Y]= miss;
-			
-		}
 	}
-*/
-
+	
+	public void setBomb(int X, int Y, Bomb bomb, Player currentPlayer) {
+        BoardElements element = board[X][Y];
+        if (element instanceof Ship) {
+            // Bomb hit a ship
+           //successfulMoves.add(new Position(X, Y));
+           currentPlayer.getSuccessfulMoves().add(new Position(X, Y));
+        } else if (element instanceof Ocean) {
+            // Bomb missed
+            board[X][Y] = new Miss();
+        }
+    }
+	
 	public void printBoard() {
 		System.out.println("+---------+");
 		for (int i = 0; i < 10; i++) {
