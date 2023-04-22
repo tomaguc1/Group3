@@ -59,10 +59,5 @@ public class Layer0_panel extends JPanel {
 
         this.setVisible(true); // Add at the end
 
-
-
-
-
-
     }
 }

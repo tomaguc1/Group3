@@ -1,6 +1,6 @@
 package Views.SetShips.DragPanel;
 
-import Views.MainView;
+import Views.GameView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,16 +23,16 @@ public class ShipIcon extends ImageIcon {
         this(i);
         switch (shipType) {
             case "s":
-                this.setImage(MainView.graphics.smallShip.getImage());
+                this.setImage(GameView.graphics.smallShip.getImage());
                 break;
             case "m":
-                this.setImage(MainView.graphics.mediumShip.getImage());
+                this.setImage(GameView.graphics.mediumShip.getImage());
                 break;
             case "l":
-                this.setImage(MainView.graphics.largeShip.getImage());
+                this.setImage(GameView.graphics.largeShip.getImage());
                 break;
             case "c":
-                this.setImage(MainView.graphics.carrier.getImage());
+                this.setImage(GameView.graphics.carrier.getImage());
                 break;
         }
     }

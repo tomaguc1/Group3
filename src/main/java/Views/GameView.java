@@ -1,49 +1,48 @@
 package Views;
 
-import Controller.MainMenuController;
+import Controller.GameController;
 import Helpers.ImageLibrary;
-import Model.Screen;
-import Views.Menu.*;
+import Model.GameState;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class MainView extends JFrame{
+public class GameView extends JFrame{
 
     public static ImageLibrary graphics = new ImageLibrary();
 
-    private MainMenuController controller;
+    private GameController controller;
 
 /* Below we declare all the possible panels that can occur in the main menu,
     And accoring to the user input listened by the MainController object the model is updated
      and the view is changed by  ....  TODO : finish
 * */
     private ChooseSingleplayerOrMultiplayer chooseSingleplayerOrMultiplayer;
-    private ChooseServerOrClient            chooseServerOrClient;
-    private ServerWaitingForConnection      serverWaitingForConnection;
-    private ClientProvideAddress            clientProvideAddress;
-    private ClientConnecting                clientConnecting;
+    private PrepareForBattle prepareForBattle;
+    private PlayerSelectsTarget playerSelectsTarget;
+    private SwitchPlayer switchPlayer;
+    private PlayerOutOfShips playerOutOfShips;
 
-    public MainView(MainMenuController controller) {
+    public GameView(GameController controller) {
 
         this.controller = controller;
 
 /*  Instantiation of the above declared all possible panels that will occur in the main menu
 *  */
         this.chooseSingleplayerOrMultiplayer = new ChooseSingleplayerOrMultiplayer(controller);
-        this.chooseServerOrClient            = new ChooseServerOrClient(controller);
-        this.serverWaitingForConnection      = new ServerWaitingForConnection(controller);
-        this.clientProvideAddress            = new ClientProvideAddress(controller);
-        this.clientConnecting                = new ClientConnecting(controller);
+        this.prepareForBattle = new PrepareForBattle(controller);
+        this.playerSelectsTarget = new PlayerSelectsTarget(controller);
+        this.switchPlayer = new SwitchPlayer(controller);
+        this.playerOutOfShips = new PlayerOutOfShips(controller);
 
 
 /*  Adding the instantiated panels above to the frame, by default they are NOT visible
 * */
         this.add(this.chooseSingleplayerOrMultiplayer);
-        this.add(this.chooseServerOrClient);
-        this.add(this.serverWaitingForConnection);
-        this.add(this.clientProvideAddress);
-        this.add(this.clientConnecting);
+        this.add(this.prepareForBattle);
+        this.add(this.playerSelectsTarget);
+        this.add(this.switchPlayer);
+        this.add(this.playerOutOfShips);
 
 
 /*  Frame settings
@@ -68,38 +67,37 @@ public class MainView extends JFrame{
     }//End of constrctor
 
 
-    public void setScreen(Screen screen) {
+    public void setScreen(GameState screen) {
 
         chooseSingleplayerOrMultiplayer.setVisible(false);
-        chooseServerOrClient.setVisible(false);
-        serverWaitingForConnection.setVisible(false);
-        clientProvideAddress.setVisible(false);
-        clientConnecting.setVisible(false);
+        prepareForBattle.setVisible(false);
+        playerSelectsTarget.setVisible(false);
+        switchPlayer.setVisible(false);
+        playerOutOfShips.setVisible(false);
 
         switch (screen) {
             case ChooseSingleplayerOrMultiplayer:
                 chooseSingleplayerOrMultiplayer.setVisible(true);
+                this.setTitle("ChooseSingleplayerOrMultiplayer");
                 break;
-            case ChooseServerOrClient:
-                chooseServerOrClient.setVisible(true);
+            case PrepareForBattle:
+                prepareForBattle.setVisible(true);
+                this.setTitle("PrepareForBattle");
                 break;
-            case ServerWaitingForConnection:
-                serverWaitingForConnection.setVisible(true);
+            case PlayerSelectsTarget:
+                playerSelectsTarget.setVisible(true);
+                this.setTitle("PlayerSelectsTarget");
                 break;
-            case ClientProvideAddress:
-                clientProvideAddress.setVisible(true);
+            case SwitchPlayer:
+                switchPlayer.setVisible(true);
+                this.setTitle("SwitchPlayer");
                 break;
-            case ClientConnecting:
-                clientConnecting.setVisible(true);
+            case PlayerOutOfShips:
+                playerOutOfShips.setVisible(true);
+                this.setTitle("PlayerOutOfShips");
                 break;
         }
     }
-
-//    private class ModelObserver implements Observer {
-//        public void update(Observable observable, Object object) {
-//            if ((observable instanceof MainModel) == false) return;
-//        }
-//    }
 
 }
  
