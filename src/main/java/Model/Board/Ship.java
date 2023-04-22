@@ -3,6 +3,7 @@ package Model.Board;
 
 public class Ship {
 	private Direction direction;
+	private boolean isRotated;
 	private int length;
 	protected Position position;
 	protected int x;

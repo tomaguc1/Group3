@@ -9,6 +9,7 @@ public class PlaceShipsController {
 
     PlaceShipsController() {
         view = new PlaceShipsView(this);
+        model = new PlaceShipsModel();
     }
 
 }

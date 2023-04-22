@@ -47,12 +47,12 @@ public class GameView extends JFrame{
 
 /*  Frame settings
 * */
-        this.setLayout(new FlowLayout());
-        this.setTitle("MenuConnect Title !");
+        this.setLayout(new FlowLayout(FlowLayout.CENTER, 0 ,0));
+        this.setTitle("MainFrame Title !");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
         this.setSize(1280,720);
-        this.getContentPane().setBackground(Color.pink);
+        this.getContentPane().setBackground(Color.YELLOW);
 //----------------------------------------------------------------------------------------------------------------------
 //======================================================================================================================
 

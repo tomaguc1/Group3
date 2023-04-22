@@ -27,7 +27,7 @@ public class PlaceShipsView extends JPanel {
     private void initGuiFrame(){
 //        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //        setTitle("SetShipFrame !");
-        setLayout(null);
+        setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
         setBounds(0, 0, 1280, 720);
         setSize(1280, 720);
 //        setResizable(false);

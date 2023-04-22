@@ -25,7 +25,7 @@ public class GameController {
         this.model = new GameModel();
         this.view = new GameView(this);
 
-        this.updateView(); // At object instation the view is updated with the current screen that is contained
+        this.updateView(); // At object instantiation the view is updated with the current screen that is contained
                                                                                                     // in the model
     }
 
@@ -33,12 +33,10 @@ public class GameController {
         this.view.setScreen(this.model.getState());
     }
 
-/* createServerButton()
-    this {controller} -- listens on the "Host Game" button
-        !(when pressed)! this.model -- screen is updated to the next one
-        this {controller} -- uses updateView() method that works on this.view
-* */
-    public Button cre0ateSingleplayerButton() {
+    /**
+     * @return Jbutton with action listener, that sets the singleplayer mode and changes the state
+     */
+    public Button createSingleplayerButton() {
         Button button = new Button("Singleplayer");
         button.addActionListener(e -> {
             this.model.setMode(GameMode.Singleplayer);
@@ -48,6 +46,9 @@ public class GameController {
         return button;
     }
 
+    /**Used in the main menu where we are setting the multiplayer mode and change the state of the game in the model
+     * @return JButton with action listener, that sets the multiplayer mode and changes the state
+     */
     public Button createMultiplayerButton() {
         Button button = new Button("Multiplayer"); // TODO : should change to a panel where when u click the button changes for the other player
         button.addActionListener(e -> {
@@ -58,6 +59,10 @@ public class GameController {
         return button;
     }
 
+
+
+
+    //TODO : UNUSED thus remove probably
     public Button createBackButton() {
         Button button = new Button("Back");
         button.addActionListener(e -> {
@@ -72,5 +77,8 @@ public class GameController {
 
     public PlaceShipsView getPlaceShipsView() {
         return this.placeShipsController.view;
+    }
+    public PlaceShipsController getPlaceShipsController(){
+        return this.placeShipsController;
     }
 }

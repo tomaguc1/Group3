@@ -26,4 +26,6 @@ public class testLayerPane extends JLayeredPane {
 
 //            lay0.setB
     }
+
+
 }

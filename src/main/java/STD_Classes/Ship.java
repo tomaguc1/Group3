@@ -1,6 +1,7 @@
 package STD_Classes;
 
 public class Ship {
+	
 	private Direction direction;
 	private int length;
 	private Position position;
