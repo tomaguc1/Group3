@@ -44,6 +44,39 @@ Feature: List of scenarios.
   When "1" makes a move on the position "1" "1" 
   Then "1" can make another move 
   
+  @tag6
+  Scenario Outline: Unsuccesfull attack
+  Given Player "1" board view 
+  Given there is ocean on the position "1" "1"
+  When "1" makes a move on the position "1" "1"
+  Then it is player "2" turn
   
+  @tag7
+  #Scenario Outline: Unsuccesfull attack
+  #Given Player "1" board view 
+  #Given there is an obstacle on the position "1" "1"
+  #When "1" makes a move on the position "1" "1"
+  #Then it is player "2" turn
   
+  @tag8
+  Scenario Outline: Game ending
+  Given Player "1" has 10 successful moves
+  Then Player "1" is the winner
+  Then The game ends 
+  
+  @tag9
+  Scenario Outline: Setting a ship on top of the other
+  Given Player "1" turn
+  When there is a ship already on the position "1" "1"
+  When "1" sets a ship on the position "1" "1"
+  Then the ship does not stay on the position "1" "1"
+  Then "1" needs to try again
+  
+  #@tag10
+  Scenario Outline: Setting a ship out of bounds
+  Given Player "1" board view 
+  When "1" sets a ship on the position "9" "9"
+  When The ship does not fit on the board if placed on "9" "9"
+  Then the ship does not stay on the position "9" "9"
+  Then "1" needs to try again
  

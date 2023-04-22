@@ -89,7 +89,7 @@ public class LogicShipRun {
 					// Bomb hit a ship
 					currentPlayer.getSuccessfulMoves().add(new Position(x, y));
 					moveSuccessful = true;
-				} else if (element instanceof Ocean) {
+				} else if (element instanceof Ocean || element instanceof Obstacle) {
 					// Bomb missed
 					b.setBomb(x, y, new Bomb(), currentPlayer);
 				}

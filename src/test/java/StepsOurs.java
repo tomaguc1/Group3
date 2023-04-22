@@ -2,6 +2,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import Model.Board.Board;
+import Model.Board.BoardElements;
 import Model.Board.Bomb;
 import Model.Board.Direction;
 import Model.Board.Player;
@@ -10,12 +11,13 @@ import Model.Board.Ship;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-
+import Model.Board.Ocean;
+import Model.Board.Obstacle;
 
 public class StepsOurs {
 	
 	Ship s;
-	
+	//Ocean o = new Ocean;
 	Board b = new Board();
 	Bomb bomb= new Bomb();
 	int x;
@@ -139,6 +141,125 @@ public class StepsOurs {
 	}
 	
 	
+	//Unsuccessful attack
+	
+	@Given("there is ocean on the position {string} {string}")
+	public void there_is_ocean_on_the_position(String string, String string2) {
+		int x = Integer.parseInt(string);
+	    int y = Integer.parseInt(string2);
+	    BoardElements element = b.getBoardElement(new Position(x, y));
+	    assertTrue(element instanceof Ocean);
+	}
+
+	@Then("it is player {string} turn")
+	public void it_is_player_turn(String string) {
+		int  playerNumber2 =Integer.parseInt(string);
+		p2.setNumber(playerNumber2);
+		assertTrue(p2.isYourTurn()==true);
+	}
+	
+	@Given("there is an obstacle on the position {string} {string}")
+	public void there_is_an_obstacle_on_the_position(String string, String string2) {
+		int x = Integer.parseInt(string);
+	    int y = Integer.parseInt(string2);
+	    //we need a class to set obstacles
+	    BoardElements element = b.getBoardElement(new Position(x, y));
+	    assertTrue(element instanceof Obstacle);
+	}
+	
+	@Given("Player {string} has {int} successful moves")
+	public void player_has_successful_moves(String string, int int1) {
+		int  playerNumber1 =Integer.parseInt(string);
+		p1.setNumber(playerNumber1);
+		p1.getSuccessfulMoves().add(new Position(x, y));
+		p1.getSuccessfulMoves().add(new Position(x, y));
+		p1.getSuccessfulMoves().add(new Position(x, y));
+		p1.getSuccessfulMoves().add(new Position(x, y));
+		p1.getSuccessfulMoves().add(new Position(x, y));
+		p1.getSuccessfulMoves().add(new Position(x, y));
+		p1.getSuccessfulMoves().add(new Position(x, y));
+		p1.getSuccessfulMoves().add(new Position(x, y));
+		p1.getSuccessfulMoves().add(new Position(x, y));
+		p1.getSuccessfulMoves().add(new Position(x, y));
+		
+		int W = int1; 
+		assertTrue(p1.getNumSuccessfulMoves()==W);
+	}
+
+	@Then("Player {string} is the winner")
+	public void player_is_the_winner(String string) {
+	   assertTrue(p1.isWinner()==true);
+	}
+
+	@Then("The game ends")
+	public void the_game_ends() {
+	    //method that ends the game 
+	}
+	
+	@Given("Player {string} turn")
+	public void player_turn(String string) {
+		int  playerNumber1 =Integer.parseInt(string);
+		p1.setNumber(playerNumber1);
+		assertTrue(p1.isYourTurn()==true);
+	}
+
+	@When("there is a ship already on the position {string} {string}")
+	public void there_is_a_ship_already_on_the_position(String string, String string2) {
+		int x = Integer.parseInt(string);
+	    int y = Integer.parseInt(string2);
+	    Ship ship= new Ship();
+	    ship.setLength(2);
+	    ship.setDirection(Direction.VERTICAL);
+	    ship.setPosition(x,y);
+	    b.setShip(ship.getPosition(), ship);
+	    assertTrue(b.getBoardElement(new Position(x,y)) instanceof Ship);
+	}
+
+	@When("{string} sets a ship on the position {string} {string}")
+	public void sets_a_ship_on_the_position(String string, String string2, String string3) {
+		int x = Integer.parseInt(string);
+	    int y = Integer.parseInt(string2);
+	    Ship ship1= new Ship();
+	    ship1.setLength(2);
+	    ship1.setDirection(Direction.VERTICAL);
+	    ship1.setPosition(x,y);
+	    b.setShip(ship1.getPosition(), ship1);
+	}
+
+	@Then("the ship does not stay on the position {string} {string}")
+	public void the_ship_does_not_stay_on_the_position(String string, String string2) {
+		int x = Integer.parseInt(string);
+	    int y = Integer.parseInt(string2);
+	    Ship ship= new Ship();
+	    ship.setLength(2);
+	    ship.setDirection(Direction.VERTICAL);
+	    ship.setPosition(x,y);
+	    b.setShip(ship.getPosition(), ship);
+	    Ship ship1= new Ship();
+	    ship1.setLength(2);
+	    ship1.setDirection(Direction.VERTICAL);
+	    assertTrue(b.isValid(new Position(x,y), ship1)==false);
+	}
+	
+	@Then("{string} needs to try again")
+	public void needs_to_try_again(String string) {
+		int  playerNumber1 =Integer.parseInt(string);
+		p1.setNumber(playerNumber1);
+		assertTrue(p1.isYourTurn()==true);
+	}
+	
+	@When("The ship does not fit on the board if placed on {string} {string}")
+	public void the_ship_does_not_fit_on_the_board_if_placed_on(String string, String string2) {
+		int x = Integer.parseInt(string);
+	    int y = Integer.parseInt(string2);
+	    Ship ship= new Ship();
+	    ship.setLength(5);
+	    ship.setDirection(Direction.VERTICAL);
+	    ship.setPosition(x,y);
+	    b.setShip(ship.getPosition(), ship);
+	    assertTrue(b.isValid(new Position(x,y), ship)==false);
+	}
+
 	
 /*
 	@When("{string} has {int} ships")

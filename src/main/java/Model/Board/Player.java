@@ -22,7 +22,14 @@ public class Player {
         return successfulMoves.size();
     }
 	
-	
+	public boolean isWinner() {
+		if (getNumSuccessfulMoves()==10) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 	public boolean isYourTurn() {
 		if (listShip.size()==5) {
 			return false;

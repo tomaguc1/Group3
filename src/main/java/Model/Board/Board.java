@@ -3,12 +3,12 @@ import java.util.ArrayList;
 public class Board {
 
 	BoardElements[][] board = new BoardElements[10][10];
-	private Ocean ocean;
-	private Ship ship;
-	private Bomb bomb;
-	private int X;
-	private int Y;
-	private Miss miss;
+	//private Ocean ocean;
+	//private Ship ship;
+	//private Bomb bomb;
+	//private int X;
+	//private int Y;
+	//private Miss miss;
 
 	public Board() {
 		
@@ -46,11 +46,40 @@ public class Board {
             // Bomb hit a ship
            //successfulMoves.add(new Position(X, Y));
            currentPlayer.getSuccessfulMoves().add(new Position(X, Y));
-        } else if (element instanceof Ocean) {
+        } else if (element instanceof Ocean || element instanceof Obstacle) {
             // Bomb missed
             board[X][Y] = new Miss();
         }
     }
+	
+	public boolean isValid(Position position, Ship ship) {
+	    if (position.getX() < 0 || position.getX() + ship.getLength() > 10 || 
+	        position.getY() < 0 || position.getY() + ship.getLength() > 10) {
+	        // Out of bounds
+	        return false;
+	    }
+
+	    // Check if there's another ship in the given position
+	    for (int i = 0; i < ship.getLength(); i++) {
+	        int x = position.getX();
+	        int y = position.getY();
+
+	        if (ship.getDirection() == Direction.HORIZONTAL) {
+	            y += i;
+	        } else {
+	            x += i;
+	        }
+
+	        if (board[x][y] instanceof Ship) {
+	            // There's already a ship in the given position
+	            return false;
+	        }
+	    }
+
+	    // The position is valid
+	    return true;
+	}
+	
 	
 	public void printBoard() {
 		System.out.println("+---------+");
