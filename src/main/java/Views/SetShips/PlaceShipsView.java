@@ -3,7 +3,6 @@ package Views.SetShips;
 import Controller.PlaceShipsController;
 import Helpers.ImageLibrary;
 import Views.SetShips.Grid.Layer0_panel;
-import Views.SetShips.Grid.Layer1_panel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -60,8 +59,7 @@ public class PlaceShipsView extends JPanel {
             this.setBounds(0, 0, 1280, 720);
     
             lay0 = new Layer0_panel();
-    
-            lay1 = new Layer1_panel();
+
     
     
             this.add(lay0, new Integer(0));

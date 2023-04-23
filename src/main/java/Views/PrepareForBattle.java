@@ -8,18 +8,14 @@ import java.awt.*;
 
 public class PrepareForBattle extends MenuPanel {  // Our Pannel that contains the
 
-    PlaceShip_ChoosePlyrPane upperPanel = new PlaceShip_ChoosePlyrPane();
-    PlaceShip_ContentPane contentPanel = new PlaceShip_ContentPane();
-
     public PrepareForBattle(GameController controller) {
         super(controller);
 
         this.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
-        this.setBackground(Color.MAGENTA);
+        this.setBackground(Color.YELLOW);
 
-//        this.add(controller.getPlaceShipsView()); FIXME : Sorry Frid I commented this
-        this.add(upperPanel);
-        this.add(contentPanel);
+        this.add(controller.getPlaceShipsView());
+
 
 
     }

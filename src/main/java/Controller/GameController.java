@@ -3,6 +3,7 @@ import Model.GameModel;
 import Model.GameState;
 import Model.GameMode;
 import Views.GameView;
+import Views.PlaceShips.PlaceShipsView1;
 import Views.SetShips.PlaceShipsView;
 
 import java.awt.*;
@@ -75,9 +76,11 @@ public class GameController {
         return button;
     }
 
-    public PlaceShipsView getPlaceShipsView() {
+    public PlaceShipsView1 getPlaceShipsView() {
         return this.placeShipsController.view;
     }
+
+
     public PlaceShipsController getPlaceShipsController(){
         return this.placeShipsController;
     }

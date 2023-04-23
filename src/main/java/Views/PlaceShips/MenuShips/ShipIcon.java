@@ -1,4 +1,4 @@
-package Views.SetShips.DragPanel;
+package Views.PlaceShips.MenuShips;
 
 import Views.GameView;
 

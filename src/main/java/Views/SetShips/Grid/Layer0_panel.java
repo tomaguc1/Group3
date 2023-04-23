@@ -1,5 +1,7 @@
 package Views.SetShips.Grid;
 
+import Views.PlaceShips.GridShip.Tile_Button;
+import Views.PlaceShips.GridShip.OceanButtonGrid_Panel;
 import Views.UI_Panels;
 
 import javax.swing.*;
@@ -48,7 +50,7 @@ public class Layer0_panel extends JPanel {
 
 
 
-        Gridpanel = new Tile_Grid(); // size : 720 - 170 - 50
+        Gridpanel = new OceanButtonGrid_Panel(); // size : 720 - 170 - 50
 
         this.add(Npanel, BorderLayout.NORTH);
         this.add(SPanel, BorderLayout.SOUTH);
