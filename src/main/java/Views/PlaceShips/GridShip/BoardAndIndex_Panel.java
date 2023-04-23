@@ -1,5 +1,7 @@
 package Views.PlaceShips.GridShip;
 
+import Views.PlaceShips.PlaceShipsView1;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -10,11 +12,12 @@ public class BoardAndIndex_Panel extends JPanel {
     JPanel numberIndex = new JPanel();
 
     public BoardAndIndex_Panel(){
-        buttonGrid = new OceanButtonGrid_Panel();
+        buttonGrid = new OceanButtonGrid_Panel(PlaceShipsView1.controller);
         init_GridPane();
 
         this.add(buttonGrid);
     }
+
 
 
     /**Initializes the grid indexes and leaves space for the ocean grid of button to pe placed

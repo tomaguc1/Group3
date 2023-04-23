@@ -1,45 +1,45 @@
-import Controller.GameController;
-import Views.MenuPanel;
-
 import javax.swing.*;
 import java.awt.*;
 
-public class Test extends JPanel {
-
-
-    public Test() {
-        this.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
-        this.setPreferredSize(new Dimension(1280,720));
-        this.setBackground(Color.yellow);
-
-        JPanel upperPanel = new JPanel(); // Switch Players Pane
-        upperPanel.setPreferredSize(new Dimension(1280,65));
-        upperPanel.setBackground(Color.LIGHT_GRAY);
-
-        JPanel middlePanel = new JPanel(); // Middle Player Pane
-        middlePanel.setPreferredSize(new Dimension(1280,655));
-        middlePanel.setBackground(Color.CYAN);
-
-        this.add(upperPanel);
-        this.add(middlePanel);
-    }
-
+public class Test {
 
     public static void main(String[] args) {
+        JFrame frame = new JFrame("JLabel on JButton Grid");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(400, 400);
 
-        Test myPane = new Test();
+        int rows = 3;
+        int cols = 3;
 
-        JFrame myFrame = new JFrame();
-        myFrame.add(myPane);
-        myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        myFrame.setLayout(new GridLayout());
-        myFrame.setTitle("MenuConnect Title !");
-        myFrame.setResizable(false);
-        myFrame.setSize(1280,720);
-        myFrame.getContentPane().setBackground(Color.pink);
+        JPanel panel = new JPanel(new GridLayout(rows, cols));
 
-        myFrame.setVisible(true);
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                JPanel buttonLabelPanel = createButtonWithLabel("Button " + i + "," + j, "Label " + i + "," + j);
+                panel.add(buttonLabelPanel);
+            }
+        }
 
+        frame.add(panel);
+        frame.setVisible(true);
     }
 
+    private static JPanel createButtonWithLabel(String buttonText, String labelText) {
+        JPanel panel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                JButton button = new JButton(buttonText);
+                button.setSize(getSize());
+                button.paint(g);
+                JLabel label = new JLabel(labelText, SwingConstants.CENTER);
+                label.setSize(getSize());
+                label.paint(g);
+            }
+        };
+        panel.setPreferredSize(new Dimension(100, 100));
+        panel.setOpaque(false);
+
+        return panel;
+    }
 }

@@ -6,13 +6,13 @@ import javax.swing.*;
 import java.awt.*;
 
 public class PlaceShipsView1 extends JPanel {
-    PlaceShipsController controller;
+    public static PlaceShipsController controller;
 
     PlaceShip_ContentPane contentPane;
     PlaceShip_ChoosePlyrPane plyChoosePane;
 
-    public PlaceShipsView1(PlaceShipsController controller){
-        this.controller = controller;
+    public PlaceShipsView1(PlaceShipsController ctr){
+        controller = ctr;
 
         this.contentPane = new PlaceShip_ContentPane();
         this.plyChoosePane = new PlaceShip_ChoosePlyrPane();
