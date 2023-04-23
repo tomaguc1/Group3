@@ -2,9 +2,13 @@ package Model.Board;
 
 public class Board {
 
-	Object[][] board = new Object[10][10];
+	BoardElements[][] board = new BoardElements[10][10];
 	private Ocean ocean;
 	private Ship ship;
+	private Bomb bomb;
+	private int X;
+	private int Y;
+	private Miss miss;
 
 	public Board() {
 		
@@ -16,10 +20,7 @@ public class Board {
 		
 	}
 
-	// Vertical ship scenario
-
-
-
+	
 	public void setShip(Position position, Ship ship) {
 		if (ship.getDirection()== Direction.VERTICAL ) {
 			for (int i= 0; i<ship.getLength() ; i++) {
@@ -27,30 +28,30 @@ public class Board {
 			}
 		}
 		
+		
+	
+		
 		else if (ship.getDirection()== Direction.HORIZONTAL ) {
 			for (int i= 0; i<ship.getLength() ; i++) {
 				board[position.getX()][position.getY()+i]= ship;
 			}
 		}
 	}
-
-	// board[position.getX()][position.getY()]= ship;
-	// board[position.getX()+ship.getLength()-1][position.getY()]= ship;
-
-	/*
-	 * public void initialize() { for ( int i=0; i<10; i++) { for ( int j=0; j<10;
-	 * j++) { board[i][j]= new Ocean(); } }
-	 * 
-	 * }
-	 */
-	// String [] ship = {"+","+"};
-	/*
-	 * public void move (Position position) { for (int i =0;i<ship.length;i++) {
-	 * board[position.x][position.y+i] = ship; } //board[position.x][position.y] =
-	 * ship; //board[position.x+ship.length][position.y] = ship; }
-	 * 
-	 * 
-	 */
+	public BoardElements getBoardElement (Position position) {
+		return board [position.getX()][position.getY()];
+		
+	}/*
+	public void setBomb ( int X, int Y, Bomb bomb, Miss miss) {
+		if(board[X][Y]== ship) {
+			board[X][Y]=bomb; 
+		}
+		else  {
+			board[X][Y]= miss;
+			board[X][Y]= miss;
+			
+		}
+	}
+*/
 
 	public void printBoard() {
 		System.out.println("+---------+");
@@ -60,8 +61,14 @@ public class Board {
 					System.out.print('o');
 				}
 
-				else if (board[i][j] instanceof Ship) {
+				else  if (board[i][j] instanceof Ship) {
 					System.out.print('+');
+				}
+				else if (board[i][j] instanceof Bomb) {
+					System.out.print('-');
+				}
+				else if (board[i][j] instanceof Miss) {
+					System.out.print('x');
 				}
 			}
 			System.out.println();

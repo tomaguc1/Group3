@@ -1,7 +1,7 @@
 package Model.Board;
 
 
-public class Ship {
+public class Ship extends BoardElements {
 	private Direction direction;
 	private boolean isRotated;
 	private int length;
@@ -46,12 +46,16 @@ public class Ship {
 	public void setLength (int length) {
 		this.length=length;
 	}
+	
+	
 	public int getLength () {
 		return length;
 	}
 	public void setPosition (int x, int y) {
 		this.position=new Position (x,y);
 	}
+	
+	
 	
 	public Position getPosition () {
 		return position; 
