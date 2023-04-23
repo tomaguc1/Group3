@@ -3,9 +3,8 @@ import static org.junit.Assert.assertTrue;
 
 import Model.Board.Board;
 import Model.Board.Bomb;
-import Model.Board.Direction;
-import Model.Board.Position;
-import Model.Board.Ship;
+import Model.Position;
+import Model.Ship.Ship;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
