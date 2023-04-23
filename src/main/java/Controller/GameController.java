@@ -4,7 +4,6 @@ import Model.GameState;
 import Model.GameMode;
 import Views.GameView;
 import Views.PlaceShips.PlaceShipsView1;
-import Views.SetShips.PlaceShipsView;
 
 import java.awt.*;
 

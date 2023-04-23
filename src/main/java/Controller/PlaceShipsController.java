@@ -1,7 +1,6 @@
 package Controller;
 
 import Model.SetShips.PlaceShipsModel;
-import Views.SetShips.PlaceShipsView;
 import Views.PlaceShips.PlaceShipsView1;
 
 public class PlaceShipsController {
