@@ -1,10 +1,8 @@
 package Model.Board;
 
-public class Miss extends BoardElements {
+public class Miss extends BoardElement {
 	
 	public Miss() {
 		
 	}
-	
-	
 }

@@ -10,6 +10,5 @@ public class SwitchPlayer extends MenuPanel {
         super(controller);
 
         this.setBackground(Color.cyan);
-        this.add(controller.createBackButton());
     }
 }

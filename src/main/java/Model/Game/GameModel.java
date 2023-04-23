@@ -1,4 +1,6 @@
-package Model;
+package Model.Game;
+
+import Model.PlayerModel;
 
 public class GameModel {
 

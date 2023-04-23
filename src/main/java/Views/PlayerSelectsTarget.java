@@ -9,6 +9,6 @@ public class PlayerSelectsTarget extends MenuPanel {
         super(controller);
 
         this.setBackground(Color.blue);
-        this.add(controller.createBackButton());
+
     }
 }

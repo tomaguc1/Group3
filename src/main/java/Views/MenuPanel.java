@@ -12,7 +12,7 @@ public abstract class MenuPanel extends JPanel {
 
         this.controller = controller;
         this.setPreferredSize(new Dimension(1280,720));
-        this.setLayout(new GridLayout(1,5));
+        this.setLayout(new GridLayout(1,2));
 //        this.add(new Label(this.getClass().getName()));
     }
 }

@@ -1,7 +1,7 @@
 package Controller;
-import Model.GameModel;
-import Model.GameState;
-import Model.GameMode;
+import Model.Game.GameModel;
+import Model.Game.GameState;
+import Model.Game.GameMode;
 import Views.GameView;
 import Views.PlaceShips.PlaceShipsView1;
 
@@ -59,28 +59,28 @@ public class GameController {
         return button;
     }
 
-
-
-
-    //TODO : UNUSED thus remove probably
-    public Button createBackButton() {
-        Button button = new Button("Back");
-        button.addActionListener(e -> {
-            //TODO : Add temporary appController transition to the ship setting view
-//            this.model.setScreen(Screen.ChooseServerOrClient);
-            this.view.setVisible(false);
-            this.updateView();
-
-        });
-        return button;
-    }
-
     public PlaceShipsView1 getPlaceShipsView() {
         return this.placeShipsController.view;
     }
 
-
     public PlaceShipsController getPlaceShipsController(){
         return this.placeShipsController;
     }
+
+
+    //TODO : UNUSED thus remove probably
+//    public Button createBackButton() {
+//        Button button = new Button("Back");
+//        button.addActionListener(e -> {
+//            //TODO : Add temporary appController transition to the ship setting view
+////            this.model.setScreen(Screen.ChooseServerOrClient);
+//            this.view.setVisible(false);
+//            this.updateView();
+//
+//        });
+
+//        return button;
+
+//    }
+
 }

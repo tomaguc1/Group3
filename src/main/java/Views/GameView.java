@@ -2,7 +2,7 @@ package Views;
 
 import Controller.GameController;
 import Helpers.ImageLibrary;
-import Model.GameState;
+import Model.Game.GameState;
 
 import javax.swing.*;
 import java.awt.*;

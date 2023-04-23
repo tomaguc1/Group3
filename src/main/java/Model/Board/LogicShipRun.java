@@ -19,38 +19,38 @@ public class LogicShipRun {
 			System.out.println("Enter Y:");
 			int y=s.nextInt();
 			
-		if (shipType.equals("carrier")) {
-			Ship Carrier = new Ship("Carrier");
-			Carrier.setPosition(x, y);
-			b.setShip(Carrier.position, Carrier);
-			
-			b.printBoard();
-		}
-		 if (shipType.equals("destroyer")) {
-			Ship Destroyer = new Ship("Destroyer");
-			Destroyer.setPosition(x, y);
-			b.setShip(Destroyer.position, Destroyer);
-			
-			b.printBoard();
-		}
-		 if (shipType.equals("battleship")) {
-			Ship BattleShip = new Ship("BattleShip");
-			BattleShip.setPosition(x, y);
-			b.setShip(BattleShip.position, BattleShip);
-			b.printBoard();
-		}
-		 if (shipType.equals("submarine")) {
-			Ship Submarine = new Ship("Submarine");
-			Submarine.setPosition(x, y);
-			b.setShip(Submarine.position, Submarine);
-			b.printBoard();
-		}
-		 if (shipType.equals("patrol")) {
-			Ship Patrol = new Ship("Patrol");
-			Patrol.setPosition(x, y);
-			b.setShip(Patrol.position, Patrol);
-			b.printBoard();
-		}
+//		if (shipType.equals("carrier")) {
+//			Ship Carrier = new Ship("Carrier");
+//			Carrier.setPosition(x, y);
+//			b.setShip(Carrier.position, Carrier);
+//
+//			b.printBoard();
+//		}
+//		 if (shipType.equals("destroyer")) {
+//			Ship Destroyer = new Ship("Destroyer");
+//			Destroyer.setPosition(x, y);
+//			b.setShip(Destroyer.position, Destroyer);
+//
+//			b.printBoard();
+//		}
+//		 if (shipType.equals("battleship")) {
+//			Ship BattleShip = new Ship("BattleShip");
+//			BattleShip.setPosition(x, y);
+//			b.setShip(BattleShip.position, BattleShip);
+//			b.printBoard();
+//		}
+//		 if (shipType.equals("submarine")) {
+//			Ship Submarine = new Ship("Submarine");
+//			Submarine.setPosition(x, y);
+//			b.setShip(Submarine.position, Submarine);
+//			b.printBoard();
+//		}
+//		 if (shipType.equals("patrol")) {
+//			Ship Patrol = new Ship("Patrol");
+//			Patrol.setPosition(x, y);
+//			b.setShip(Patrol.position, Patrol);
+//			b.printBoard();
+//		}
 		}
 	
 	/*

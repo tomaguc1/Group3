@@ -18,4 +18,10 @@ public class PlayerModel {
         this.board = new Board();
         this.type = PlayerType.Human;
     }
+
+    public enum PlayerType {
+        Human,
+        Kompic,
+    }
+
 }

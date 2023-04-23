@@ -1,4 +1,4 @@
-package Model;
+package Model.Game;
 
 public enum GameState {
     ChooseSingleplayerOrMultiplayer,

@@ -1,7 +1,7 @@
 package Model.Board;
 
 
-public class Ship extends BoardElements {
+public class Ship extends BoardElement {
 	private Direction direction;
 	private boolean isRotated;
 	private int length;
