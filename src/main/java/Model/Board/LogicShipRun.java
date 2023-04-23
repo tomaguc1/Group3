@@ -56,9 +56,17 @@ public class LogicShipRun {
 				Patrol.setPosition(x, y);
 				b.setShip(Patrol.position, Patrol);
 				b.printBoard();
+			
+			
 			}
+			
+			if (shipType.equals("test")) {
+				Ship Test = new Ship("Test");
+				Test.setPosition(x, y);
+				b.setShip(Test.position, Test);
+				b.printBoard();
 		}
-		// }
+	}
 
 		Player player1 = new Player();
 		player1.setNumber(1);
