@@ -1,9 +1,10 @@
 package Model.Ship;
 
 
+import Model.Board.Board;
 import Model.Board.BoardElement;
+import Model.Board.BoardElement_Type;
 import Model.Position;
-import Model.Ship.Direction;
 
 public class Ship extends BoardElement {
 
@@ -53,6 +54,58 @@ public class Ship extends BoardElement {
 
 	public Ship() {
 		
+	}
+	public boolean checkShipPlacement(Board board, Ship ship, Position posit){
+		Direction dir = ship.getDirection();
+		int X = posit.getX();
+		int Y = posit.getY();
+		boolean shipFits = lenghtCheckFits(ship.getShipType(), posit);
+		switch (dir){
+			case HORIZONTAL:
+				for( int y = Y; y < 10; y++){
+					Position newPos = new Position(X, y);
+					if((board.getBoardElementTypeAtPosition(newPos) != BoardElement_Type.Water)
+						|| !shipFits){
+						return false;
+					}
+				}
+				break;
+			case VERTICAL:
+				for(int x = X; x < 10; x++){
+					Position newPos = new Position(x, Y);
+					if((board.getBoardElementTypeAtPosition(newPos) != BoardElement_Type.Water)
+						|| !shipFits){
+						return false;
+					}
+				}
+			default:
+				return true;
+		}
+		return false;
+
+
+	}
+//HELPER Function for checkingShipPlacement
+	public boolean lenghtCheckFits(Ship_Type type, Position posit){
+		int Y = posit.getY();
+		int X = posit.getX();
+		switch (type){
+			case CARRIER:
+				if(Y > 5 || X > 5){ return false; }
+				break;
+			case BATTLESHIP:
+				if(Y > 6 || X > 6){ return false; }
+				break;
+			case DESTROYER:
+				if(Y > 7 || X > 7){ return false; }
+				break;
+			case SUBMARINE:
+				if(Y > 8 || X > 8){ return false; }
+				break;
+			default:
+				return true;
+		}
+		return false;
 	}
 
 }

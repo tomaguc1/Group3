@@ -5,7 +5,7 @@ import Model.Ship.Ship;
 
 public class Board {
 
-	BoardElement[][] board = new BoardElement[10][10];
+	public BoardElement[][] board = new BoardElement[10][10];
 
 	public Board() {
 		for ( int i=0; i<10; i++) {
@@ -54,6 +54,11 @@ public class Board {
 			System.out.println();
 		}
 		System.out.println("+---------+");
+	}
+	public BoardElement_Type getBoardElementTypeAtPosition(Position pos){
+		int X = pos.getX();
+		int Y = pos.getY();
+		return this.board[X][Y].getElementType();
 	}
 
 }
