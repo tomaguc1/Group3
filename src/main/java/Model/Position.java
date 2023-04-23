@@ -1,15 +1,18 @@
-package Model.Board;
+package Model;
 
 public class Position {
-	protected int x;
+	private int x;
+	private int y;
+
 	public int getX() {
 		return x;
 	}
+	public void setX(int X){ this.x = X; }
 
-	protected int y;
 	public int getY() {
 		return y;
 	}
+	public void setY(int Y){ this.y = Y; }
 
 	public Position(int x, int y) {
 		this.x = x;

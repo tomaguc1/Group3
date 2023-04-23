@@ -1,14 +1,11 @@
 package Model.Board;
 
+import Model.Position;
+import Model.Ship.Ship;
+
 public class Board {
 
 	BoardElement[][] board = new BoardElement[10][10];
-
-	private Ship ship;
-	private Bomb bomb;
-	private int X;
-	private int Y;
-	private Miss miss;
 
 	public Board() {
 		for ( int i=0; i<10; i++) {
@@ -31,21 +28,6 @@ public class Board {
 //		}
 //	}
 
-	public BoardElement getBoardElement (Position position) {
-		return board [position.getX()][position.getY()];
-
-	}/*
-	public void setBomb ( int X, int Y, Bomb bomb, Miss miss) {
-		if(board[X][Y]== ship) {
-			board[X][Y]=bomb; 
-		}
-		else  {
-			board[X][Y]= miss;
-			board[X][Y]= miss;
-			
-		}
-	}
-*/
 
 	public void printBoard() {
 		BoardElement_Type elementType;
