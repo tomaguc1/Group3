@@ -20,6 +20,9 @@ public class Ship extends BoardElement {
 	public Position getPosition(){ return this.position; }
 	public void setPosition (int x, int y) { this.position=new Position (x,y); }
 
+	private boolean[] shipHealth;
+
+
 	private int length;
 	public int getLenght(){
 		switch(this.shipType){
