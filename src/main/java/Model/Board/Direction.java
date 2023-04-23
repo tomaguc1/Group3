@@ -2,7 +2,7 @@ package Model.Board;
 
 public enum Direction {
 	
-	VERTICAL("vertical"), HORIZONTAL("horizontal");
+	VERTICAL("vertical"), HORIZONTAL("horizontal"), DIAGONAL("diagonal");
 	
 	private final String d;
 

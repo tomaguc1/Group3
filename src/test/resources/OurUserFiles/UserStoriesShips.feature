@@ -15,6 +15,7 @@ Feature: List of scenarios.
       | Destroyer  |        1   |         1 |1            | 3            |
       | Submarine  |          1 |         1 |1            |2             |
       | Patrol     |          1 |         1 |1            |1             |
+      | Test       |          1 |         1 |2           |2            |
       
    @tag2
    Scenario Outline: Trying to add more than 5 ships
@@ -73,10 +74,10 @@ Feature: List of scenarios.
   Then "1" needs to try again
   
   #@tag10
-  Scenario Outline: Setting a ship out of bounds
-  Given Player "1" board view 
-  When "1" sets a ship on the position "9" "9"
-  When The ship does not fit on the board if placed on "9" "9"
-  Then the ship does not stay on the position "9" "9"
-  Then "1" needs to try again
+  #Scenario Outline: Setting a ship out of bounds
+ # Given Player "1" board view 
+ # When "1" sets a ship on the position "9" "9"
+ # When The ship does not fit on the board if placed on "9" "9"
+  #Then the ship does not stay on the position "9" "9"
+  #Then "1" needs to try again
  

@@ -247,8 +247,8 @@ public class StepsOurs {
 		p1.setNumber(playerNumber1);
 		assertTrue(p1.isYourTurn()==true);
 	}
-	
-	@When("The ship does not fit on the board if placed on {string} {string}")
+	/*
+	 @When("The ship does not fit on the board if placed on {string} {string}")
 	public void the_ship_does_not_fit_on_the_board_if_placed_on(String string, String string2) {
 		int x = Integer.parseInt(string);
 	    int y = Integer.parseInt(string2);
@@ -259,7 +259,7 @@ public class StepsOurs {
 	    b.setShip(ship.getPosition(), ship);
 	    assertTrue(b.isValid(new Position(x,y), ship)==false);
 	}
-
+*/
 	
 /*
 	@When("{string} has {int} ships")

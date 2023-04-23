@@ -39,6 +39,11 @@ public class Ship extends BoardElements {
 			setDirection(Direction.HORIZONTAL);
 		break;
 		
+		case "Test":
+			this.setLength(2);
+			setDirection(Direction.DIAGONAL);
+		break;
+		
 		}
 	}
 	

@@ -34,6 +34,15 @@ public class Board {
 				board[position.getX()][position.getY()+i]= ship;
 			}
 		}
+		else if (ship.getDirection()== Direction.DIAGONAL ) {
+			for (int i= 0; i<ship.getLength() ; i++) {
+				board[position.getX()+i][position.getY()+i]= ship;
+				
+				//for (int j=0; j<ship.getLength() ; j++) {
+					
+				//}
+			}
+		}
 	}
 	public BoardElements getBoardElement (Position position) {
 		return board [position.getX()][position.getY()];
