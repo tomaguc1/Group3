@@ -1,8 +1,6 @@
 package Views;
 
 import Controller.GameController;
-import Views.PlaceShips.PlaceShip_ChoosePlyrPane;
-import Views.PlaceShips.PlaceShip_ContentPane;
 
 import java.awt.*;
 

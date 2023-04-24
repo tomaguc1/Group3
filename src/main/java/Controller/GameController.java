@@ -3,9 +3,9 @@ import Model.Game.GameModel;
 import Model.Game.GameState;
 import Model.Game.GameMode;
 import Views.GameView;
-import Views.PlaceShips.PlaceShipsView1;
+import Views.PlaceShips.PlaceShipsView;
 
-import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class GameController {
 
@@ -20,7 +20,7 @@ public class GameController {
 
     public GameController() { // Constructor : instantiates MainModel and MainView for the MainController object
 
-        this.placeShipsController = new PlaceShipsController();
+        this.placeShipsController = new PlaceShipsController(this);
 
         this.model = new GameModel();
         this.view = new GameView(this);
@@ -34,32 +34,29 @@ public class GameController {
     }
 
     /**
-     * @return Jbutton with action listener, that sets the singleplayer mode and changes the state
+     * @return action listener, that sets the singleplayer mode and changes the state
      */
-    public Button createSingleplayerButton() {
-        Button button = new Button("Singleplayer");
-        button.addActionListener(e -> {
+    public ActionListener actionSingleplayer() {
+        return actionEvent -> {
             this.model.setMode(GameMode.Singleplayer);
             this.model.setState(GameState.PrepareForBattle);
             this.updateView();
-        });
-        return button;
+        };
     }
-
+    
     /**Used in the main menu where we are setting the multiplayer mode and change the state of the game in the model
-     * @return JButton with action listener, that sets the multiplayer mode and changes the state
+     * @return action listener, that sets the multiplayer mode and changes the state
      */
-    public Button createMultiplayerButton() {
-        Button button = new Button("Multiplayer"); // TODO : should change to a panel where when u click the button changes for the other player
-        button.addActionListener(e -> {
+    public ActionListener actionMultiplayer() {
+        return actionEvent -> {
             this.model.setMode(GameMode.Multiplayer);
             this.model.setState(GameState.PrepareForBattle);
             this.updateView();
-        });
-        return button;
+        };
     }
+    
 
-    public PlaceShipsView1 getPlaceShipsView() {
+    public PlaceShipsView getPlaceShipsView() {
         return this.placeShipsController.view;
     }
 

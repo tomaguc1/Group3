@@ -1,5 +1,7 @@
 package Views.PlaceShips.MenuShips;
 
+import Model.Ship.Ship_Type;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -7,16 +9,9 @@ public class ShipBox_Panel extends JPanel {
 
     ShipBox_Label label;
 
-    ShipBox_Panel(){
+    public ShipBox_Panel(Ship_Type shipType){
         this.setPreferredSize(new Dimension(295, 50));
-
-    }
-    public ShipBox_Panel(String shipType){
-        this();
         label = new ShipBox_Label(shipType);
         this.add(label);
-
-
-
     }
 }

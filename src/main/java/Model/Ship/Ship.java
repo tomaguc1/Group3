@@ -24,7 +24,7 @@ public class Ship extends BoardElement {
 
 
 	private int length;
-	public int getLenght(){
+	public int getLength(){
 		switch(this.shipType){
 			case CARRIER:
 				return 5;

@@ -10,6 +10,7 @@ public class Board {
 	public Board() {
 		for ( int i=0; i<10; i++) {
 			for ( int j=0; j<10; j++) {
+				// TODO : Replace new Ocean with Board_Element
 				board[i][j]= new Ocean();
 			}
 		}

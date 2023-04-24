@@ -1,7 +1,13 @@
 package Model.SetShips;
 
 public class PlaceShipsModel {
-    //TODO : TO be filled up
+    public String name;
 
-
+    public PlaceShipsModel() {
+        this.name = "";
+    }
+    
+    public boolean isValid() {
+        return this.name.isEmpty() == false;
+    }
 }

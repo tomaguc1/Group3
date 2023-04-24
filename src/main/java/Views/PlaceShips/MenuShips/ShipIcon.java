@@ -1,5 +1,6 @@
 package Views.PlaceShips.MenuShips;
 
+import Model.Ship.Ship_Type;
 import Views.GameView;
 
 import javax.swing.*;
@@ -19,19 +20,19 @@ public class ShipIcon extends ImageIcon {
         this.corner = new Point(530 , 50*i);
     }
 
-    public ShipIcon(String shipType, int i){
+    public ShipIcon(Ship_Type shipType, int i){
         this(i);
         switch (shipType) {
-            case "s":
+            case SUBMARINE:
                 this.setImage(GameView.graphics.smallShip.getImage());
                 break;
-            case "m":
+            case DESTROYER:
                 this.setImage(GameView.graphics.mediumShip.getImage());
                 break;
-            case "l":
+            case BATTLESHIP:
                 this.setImage(GameView.graphics.largeShip.getImage());
                 break;
-            case "c":
+            case CARRIER:
                 this.setImage(GameView.graphics.carrier.getImage());
                 break;
         }
