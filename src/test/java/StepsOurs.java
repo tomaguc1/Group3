@@ -22,7 +22,7 @@ public class StepsOurs {
 	Bomb bomb= new Bomb();
 	int x;
 	int y;
-	
+	//Position position= new Position();
 	Player p1 = new Player();
 	Player p2 = new Player();
     
@@ -247,6 +247,62 @@ public class StepsOurs {
 		p1.setNumber(playerNumber1);
 		assertTrue(p1.isYourTurn()==true);
 	}
+	
+	//Placing an obstacle
+	
+	@When("{string} is placing an {string} on the position {string} {string}")
+	public void is_placing_an_on_the_position(String string, String string2, String string3, String string4) {
+		
+		int x = Integer.parseInt(string3);
+		int y = Integer.parseInt(string4);
+		
+		Obstacle obstacle = new Obstacle(string2);
+		b.setObstacle(new Position(x,y), string2);
+		//assertTrue(b.getBoardElement(new Position(x,y)) instanceof Obstacle);
+		
+	}
+
+	@Then("There should be a obstacle on the position {string} {string}")
+	public void there_should_be_a_obstacle_on_the_position(String string, String string2) {
+		int x = Integer.parseInt(string);
+	    int y = Integer.parseInt(string2);
+	    assertTrue(b.getBoardElement(new Position(x,y)) instanceof Obstacle);
+	}
+	
+	
+	//Hitting a Treasure Chest
+	
+	@Given("there is a {string} on the position {string} {string}")
+	public void there_is_a_on_the_position(String string, String string2, String string3) {
+	    Obstacle Treasure = new Obstacle (string);
+	    int x = Integer.parseInt(string2);
+	    int y = Integer.parseInt(string3);
+	    b.setObstacle(new Position(x,y), string);
+	    assertTrue(b.getBoardElement(new Position(x,y)) instanceof Obstacle);
+	}
+	
+	
+	//Hitting a Volcano
+	@When("{string} sets a bomb on the position {string} {string}")
+	public void sets_a_bomb_on_the_position(String string, String string2, String string3) {
+		//private Player player1 = new Player();
+	    //private Player player2 = new Player();
+		
+		int playerNumber =Integer.parseInt(string);
+		Player currentPlayer = (playerNumber == 1) ? p1 : p2 ;
+        Position position = new Position(x, y);
+        //currentPlayer.setBomb(position);
+	}
+	
+	@Then("it is player {string} turn twice in a row")
+	public void it_is_player_turn_twice_in_a_row(String string) {
+	   
+		
+		
+	}
+	
+	
+	
 	/*
 	 @When("The ship does not fit on the board if placed on {string} {string}")
 	public void the_ship_does_not_fit_on_the_board_if_placed_on(String string, String string2) {

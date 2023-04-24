@@ -1,5 +1,6 @@
 package Model.Board;
 import java.util.ArrayList;
+import Model.Board.Obstacle;
 public class Board {
 
 	BoardElements[][] board = new BoardElements[10][10];
@@ -43,6 +44,18 @@ public class Board {
 				//}
 			}
 		}
+	}
+	
+	public void setObstacle(Position position, String obstacleType) {
+	    BoardElements element = board[position.getX()][position.getY()];
+	    if (element instanceof Ocean) {
+	        Obstacle obstacle = new Obstacle(obstacleType);
+	        obstacle.setPosition(position.getX(), position.getY());
+	        setBoardElement(position, obstacle);
+	    }
+	}
+	private void setBoardElement(Position position, BoardElements element) {
+	    board[position.getX()][position.getY()] = element;
 	}
 	public BoardElements getBoardElement (Position position) {
 		return board [position.getX()][position.getY()];

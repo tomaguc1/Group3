@@ -15,7 +15,7 @@ Feature: List of scenarios.
       | Destroyer  |        1   |         1 |1            | 3            |
       | Submarine  |          1 |         1 |1            |2             |
       | Patrol     |          1 |         1 |1            |1             |
-      | Test       |          1 |         1 |2           |2            |
+      | Test       |          1 |         1 |2           |2              |
       
    @tag2
    Scenario Outline: Trying to add more than 5 ships
@@ -72,6 +72,35 @@ Feature: List of scenarios.
   When "1" sets a ship on the position "1" "1"
   Then the ship does not stay on the position "1" "1"
   Then "1" needs to try again
+  
+  #@tag10
+  #Scenario Outline: Hitting out of bounds
+  
+   @tag10
+  	Scenario Outline: Placing a volcanic island
+    Given Player "1" turn
+    When "1" is placing an "Volcano" on the position "1" "1"
+    Then There should be a obstacle on the position "1" "1" 
+   
+ 
+  
+  @tag11
+  Scenario Outline: Hitting a treasureChest
+  Given Player "1" board view 
+  Given there is a "TreasureChest" on the position "1" "1"
+  When "1" makes a move on the position "1" "1"
+  Then it is player "1" turn 
+  
+	 @tag12
+  Scenario Outline: Hitting a volcano
+  Given Player "1" board view 
+  Given there is a "Volcano" on the position "1" "1"
+  When "1" sets a bomb on the position "1" "1"
+  Then it is player "2" turn twice in a row
+  
+  
+  #@tag11
+  #Scenario Outline: What happens to the ship after it sinks 
   
   #@tag10
   #Scenario Outline: Setting a ship out of bounds
