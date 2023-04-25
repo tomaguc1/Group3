@@ -1,23 +1,25 @@
-package Model.Board;
+package Model.TestsModel;
+import Model.Board.Board;
+
 import java.util.Scanner;
 public class LogicShipRun {
 
 	public static void main(String[] args) {
-		Board b = new Board();
-		b.printBoard();
-		
-		int i=0;
-		while(i++ <= 5) {
-			Scanner s = new Scanner(System.in);
-		
-	
-			System.out.println("Enter ship: ");
-			String shipType = s.nextLine();
-			
-			System.out.println("Enter X:");
-			int x=s.nextInt();
-			System.out.println("Enter Y:");
-			int y=s.nextInt();
+//		Board b = new Board();
+//		b.printBoard();
+//
+//		int i=0;
+//		while(i++ <= 5) {
+//			Scanner s = new Scanner(System.in);
+//
+//
+//			System.out.println("Enter ship: ");
+//			String shipType = s.nextLine();
+//
+//			System.out.println("Enter X:");
+//			int x=s.nextInt();
+//			System.out.println("Enter Y:");
+//			int y=s.nextInt();
 			
 //		if (shipType.equals("carrier")) {
 //			Ship Carrier = new Ship("Carrier");
@@ -51,7 +53,6 @@ public class LogicShipRun {
 //			b.setShip(Patrol.position, Patrol);
 //			b.printBoard();
 //		}
-		}
 	
 	/*
 	//Making a move :

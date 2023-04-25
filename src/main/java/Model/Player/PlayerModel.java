@@ -1,11 +1,22 @@
-package Model;
+package Model.Player;
 
 import Model.Board.Board;
+import Model.Ship.Ship;
+import Model.Ship.Ship_Type;
+
+import java.util.ArrayList;
 
 public class PlayerModel {
     private String name;
     private Board board;
     private PlayerType type;
+
+    Ship_Type[] shipSetOfTypes = {Ship_Type.SUBMARINE, Ship_Type.SUBMARINE,
+            Ship_Type.DESTROYER, Ship_Type.BATTLESHIP, Ship_Type.CARRIER };
+
+
+    private ArrayList<Ship> shipCollection;
+    //TODO : Method that fetches ships noses, types, and direction from controller that calls view on lock in
 
     public PlayerModel() {          // Constructor fot the AI
         this.name = "BattleshipGPT";
@@ -19,9 +30,5 @@ public class PlayerModel {
         this.type = PlayerType.Human;
     }
 
-    public enum PlayerType {
-        Human,
-        Kompic,
-    }
 
 }

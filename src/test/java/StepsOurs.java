@@ -2,7 +2,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import Model.Board.Board;
-import Model.Board.Bomb;
 import Model.Position;
 import Model.Ship.Ship;
 import io.cucumber.java.en.Given;
@@ -33,7 +32,7 @@ public class StepsOurs {
 		int x = Integer.parseInt(string);
 		int y = Integer.parseInt(string2);
 		s.setPosition(x,y);	
-		b.setShip(s.getPosition(), s);
+		b.setShip(s.getNoseShip(), s);
 	
 	}
 	

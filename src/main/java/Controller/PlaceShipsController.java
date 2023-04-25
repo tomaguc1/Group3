@@ -1,7 +1,7 @@
 package Controller;
 
 import Helpers.DocumentChangedListener;
-import Model.SetShips.PlaceShipsModel;
+import Model.Ship.PlaceShipsModel;
 import Views.PlaceShips.PlaceShipsView;
 
 import javax.swing.*;

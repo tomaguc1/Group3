@@ -1,4 +1,4 @@
-package Model.SetShips;
+package Model.Ship;
 
 public class PlaceShipsModel {
     public String name;

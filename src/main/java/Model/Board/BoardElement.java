@@ -1,12 +1,21 @@
 package Model.Board;
 
+import Model.Position;
+import javafx.geometry.Pos;
+
 public class BoardElement {
 
-    private BoardElement_Type elementType;
-    public BoardElement_Type getElementType() { return elementType; }
-    public void setElementType(BoardElement_Type elementType) { this.elementType = elementType; }
+    private Position elementPosition;
+    public Position getElementPosition() { return elementPosition; }
+    public void setElementPosition(Position pos){ this.elementPosition = pos; }
+
+    private boolean wasHit;
+    public boolean getElementHitBool() { return this.wasHit; }
+    public void setWasHit() { this.wasHit = true; }
+//    public void setWasHit(BoardElement boardElement) { boardElement.wasHit = true; } // No bool arg because wasHit is boolean and not interchangable
 
     public BoardElement(){
-        elementType = BoardElement_Type.Water;
+        this.wasHit = false;
+
     }
 }

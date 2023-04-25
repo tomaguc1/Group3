@@ -1,6 +1,6 @@
 package Model.Game;
 
-import Model.PlayerModel;
+import Model.Player.PlayerModel;
 
 public class GameModel {
 
