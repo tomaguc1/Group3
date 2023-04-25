@@ -1,31 +1,40 @@
 package Views.PlaceShips.GridShip;
 
 import Controller.PlaceShipsController;
+import Model.Position;
 import Views.PlaceShips.PlaceShipsView;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class BoardAndIndex_Panel extends JPanel {
-    OceanButtonGrid_Panel buttonGrid;
+    boardGrid_Panel boardGrid;
 
     JPanel letterIndex = new JPanel();
     JPanel numberIndex = new JPanel();
 
     public BoardAndIndex_Panel(PlaceShipsController controller) {
-        buttonGrid = new OceanButtonGrid_Panel(controller);
-        init_GridPane();
+        boardGrid = new boardGrid_Panel(controller);
+        init_IndexPanes();
 
-        this.add(buttonGrid);
+        this.add(boardGrid);
     }
 
+    public void clearShips() {
+        this.boardGrid.clearShips();
+    }
 
+    public void addShip(ArrayList<Position> list) {
+        this.boardGrid.addShip(list);
+    }
 
-    /**Initializes the grid indexes and leaves space for the ocean grid of button to pe placed
-     *
-     * @return
-     */
-    void init_GridPane(){
+    public void highlightCoordinates(boolean valid, ArrayList<Position> list) {
+        this.boardGrid.highlightCoordinates(valid, list);
+    }
+
+//=-=-  Initializes the grid indexes and leaves space for the ocean grid of button to pe placed =-=-=-=-=-=-=-=
+    void init_IndexPanes(){
         setLayout(null);
         setPreferredSize(new Dimension(550, 550));
         setBackground(Color.MAGENTA);
@@ -51,7 +60,7 @@ public class BoardAndIndex_Panel extends JPanel {
 
         add(letterIndex);
         add(numberIndex);
-
+//---------------------------------------------------------------------------------------------------------
 
     }
 }

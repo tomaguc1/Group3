@@ -32,7 +32,7 @@ public class StepsOurs {
 		int x = Integer.parseInt(string);
 		int y = Integer.parseInt(string2);
 		s.setPosition(x,y);	
-		b.setShip(s.getNoseShip(), s);
+		b.setShip(s.getPosition(), s);
 	
 	}
 	

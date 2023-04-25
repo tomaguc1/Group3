@@ -1,20 +1,28 @@
 package Views.PlaceShips;
 
 import Controller.PlaceShipsController;
+import Model.Position;
+import Model.Ship.Ship_Type;
 import Views.PlaceShips.GridShip.BoardAndIndex_Panel;
 import Views.PlaceShips.MenuShips.ShipsMenu_Panel;
-import Views.PlaceShips.ReadyToPlay.ReadyToPlay_Panel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 public class PlaceShipsView extends JPanel {
+
     private PlaceShipsController controller;
 
     JPanel contentPane;
     JPanel lockInShipPanel;
 
-    public PlaceShipsView(PlaceShipsController controller){
+    BoardAndIndex_Panel boardAndIndex_panel;
+    ShipsMenu_Panel shipsMenu_panel;
+
+    public PlaceShipsView(PlaceShipsController controller) {
         this.controller = controller;
 
         this.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
@@ -51,9 +59,8 @@ public class PlaceShipsView extends JPanel {
     //=-=-  Content Pane   =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
         contentPane = new JPanel();
 
-        BoardAndIndex_Panel boardAndIndex_panel = new BoardAndIndex_Panel(controller);
-        ShipsMenu_Panel shipsMenu_panel = new ShipsMenu_Panel();
-        ReadyToPlay_Panel readyToPlay_panel = new ReadyToPlay_Panel();
+        this.boardAndIndex_panel = new BoardAndIndex_Panel(controller);
+        this.shipsMenu_panel = new ShipsMenu_Panel();
 
 
         contentPane.setLayout(new FlowLayout(FlowLayout.CENTER, 30 , 30));
@@ -62,12 +69,26 @@ public class PlaceShipsView extends JPanel {
 
         contentPane.add(boardAndIndex_panel);
         contentPane.add(shipsMenu_panel);
-        contentPane.add(readyToPlay_panel);
 
 
         this.add(contentPane);
     //-------------------------------------------------------------------------
     }
 
+    public void clearShips() {
+        this.shipsMenu_panel.clearShips();
+        this.boardAndIndex_panel.clearShips();
+    }
 
+    public void addShipToMenu(Ship_Type type, int index, boolean isSelected) {
+        this.shipsMenu_panel.addShip(this.controller, type, index, isSelected);
+    }
+
+    public void addShipToBoard(ArrayList<Position> list) {
+        this.boardAndIndex_panel.addShip(list);
+    }
+
+    public void highlightCoordinates(boolean valid, ArrayList<Position> list) {
+        this.boardAndIndex_panel.highlightCoordinates(valid, list);
+    }
 }

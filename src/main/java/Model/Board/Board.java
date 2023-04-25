@@ -1,5 +1,7 @@
 package Model.Board;
 
+import Model.Position;
+
 public class Board {
 
 	public BoardElement[][] board = new WaterElement[10][10];
@@ -7,7 +9,6 @@ public class Board {
 	public Board() {
 		for ( int i=0; i<10; i++) {
 			for ( int j=0; j<10; j++) {
-				// TODO : Replace new Ocean with Board_Element
 				board[i][j]= new WaterElement();
 			}
 		}
@@ -15,6 +16,12 @@ public class Board {
 
 	//TODO : Method to take player ship collection and place the elements
 
+	public BoardElement getBoardElementAtPosition(Position position){
+		return board[position.getX()][position.getY()];
+	}
+	public void setBoardElementTypeAtPosition(BoardElement element, Position position){
+		this.board[position.getX()][position.getY()] = element;
+	}
 
 
 

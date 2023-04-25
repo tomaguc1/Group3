@@ -10,7 +10,7 @@ public class ShipBox_Label extends JLabel {
     ImageLibrary graphics = new ImageLibrary();
 
 
-    ShipBox_Label(Ship_Type shipType){
+    public ShipBox_Label(Ship_Type shipType){
 
         switch(shipType) {
             case SUBMARINE:

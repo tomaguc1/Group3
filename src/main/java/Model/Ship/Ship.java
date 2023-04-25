@@ -1,143 +1,163 @@
 package Model.Ship;
 
 
-import Model.Board.Board;
-import Model.Board.BoardElement;
-import Model.Board.ShipElement;
 import Model.Position;
+
+import java.util.ArrayList;
 
 public class Ship {
 
+	private boolean isPlaced;
+
+	public boolean getIsPlaced() { return isPlaced; }
+
+	public void setIsPlaced(boolean isPlaced) { this.isPlaced = isPlaced; }
+
 	private Direction direction;
+
 	public Direction getDirection(){ return this.direction; }
+
 	public void setDirection (Direction direction) { this.direction=direction; }
 
-	private Position noseShip;
-	public Position getNoseShip(){ return this.noseShip; }
-	public void setPosition (int x, int y) { this.noseShip = new Position (x,y); }
+	public void rotate() {
+		this.direction = this.direction == Direction.HORIZONTAL ? Direction.VERTICAL : Direction.HORIZONTAL;
+	}
+
+	private Position position;
+
+	public Position getPosition(){ return this.position; }
+
+	public void setPosition (int x, int y) { this.position = new Position (x,y); }
+	public void setPosition (Position position) { this.position = position; }
 
 	private Ship_Type shipType;
+
 	public Ship_Type getShipType() { return shipType; }
+
 	public void setShipType(Ship_Type shipType) { this.shipType = shipType; }
 
-	private int length;
-	public int getLength(){
+	public int getLength() {
 		switch(this.shipType){
-			case CARRIER:
-				return 5;
-			case BATTLESHIP:
-				return 4;
-			case DESTROYER:
-				return 3;
 			case SUBMARINE:
 				return 2;
-			default:
-				return 0;
-		}
-	}
-	public void setLength(Ship_Type type){
-		switch (type){
-			case SUBMARINE:
-				this.length = 2;
-				break;
 			case DESTROYER:
-				this.length = 3;
-				break;
+				return 3;
 			case BATTLESHIP:
-				this.length = 4;
-				break;
+				return 4;
 			case CARRIER:
-				this.length = 5;
-				break;
+				return 5;
+			default:
+				return -1;
 		}
 	}
 
-	private BoardElement[] shipCells;
+//	private BoardElement[] shipCells; // FIXME: Maps ship body cells to the board
 
-
-	public Ship(){
+	public Ship(Ship_Type type) {
+		this.shipType = type;
+		this.direction = Direction.HORIZONTAL;
+		this.position = new Position(0, 0);
 	}
+
 	public Ship(Ship_Type type, Position nose, Direction direction) { // Before instantiation check if it fits
 
 		this.setShipType(type);
-		this.setLength(type);
-		this.noseShip = nose;
+
+		this.position = nose;
 		this.setDirection(direction);
 
-	//=-=- Instantiate and set position of ship elements =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-		shipCells = new ShipElement[this.getLength()]; // Adapts lenght to the ShipType
-		switch (this.getDirection()){
-			case HORIZONTAL:
-				for(int i = 0; i < this.getLength(); i++){
-					shipCells[i].setElementPosition(new Position(nose.getX() + i, nose.getY()));
-				}
-				break;
-
-			case VERTICAL:
-				for(int i = 0; i < this.getLength(); i++){
-					shipCells[i].setElementPosition(new Position(nose.getX(), nose.getY() + i));
-				}
-				break;
-		}
-	//-------------------------------------------------------------------------------------------------
+		//=-=- Instantiate and set position of ship elements =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+//		shipCells = new ShipElement[this.getLength()]; // Adapts lenght to the ShipType
+//		switch (this.getDirection()){
+//			case HORIZONTAL:
+//				for(int i = 0; i < this.getLength(); i++){
+//					shipCells[i].setElementPosition(new Position(nose.getX() + i, nose.getY()));
+//				}
+//				break;
+//
+//			case VERTICAL:
+//				for(int i = 0; i < this.getLength(); i++){
+//					shipCells[i].setElementPosition(new Position(nose.getX(), nose.getY() + i));
+//				}
+//				break;
+//		}
+		//-------------------------------------------------------------------------------------------------
 	}
 
 //=-=-=-=-    Placement Checks =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-//	public boolean checkShipPlacement(Board board, Ship ship, Position noseShip){
+//public boolean checkShipPlacement(Board board, Ship ship, Position noseShip){
 //
-//		Direction dir = ship.getDirection();
-//		int lenShip = ship.getLength();
+//	Direction dir = ship.getDirection();
+//	int lenShip = ship.getLength();
 //
-//		int X = noseShip.getX();// Ship Position
-//		int Y = noseShip.getY();
+//	int X = noseShip.getX();// Ship Position
+//	int Y = noseShip.getY();
 //
-//		boolean shipFits = lenghtCheckFits(ship.getShipType(), noseShip);
-//		switch (dir){
-//			case HORIZONTAL:
-//				for( int y = Y; y < Y + lenShip; y++){ // checks the ship body coordinates for water
-//					Position newPos = new Position(X, y);
-//					if((board.getBoardElementTypeAtPosition(newPos) != BoardElement_Type.Water)
+//	boolean shipFits = isInBounds(ship.getShipType(), noseShip);
+//	switch (dir){
+//		case HORIZONTAL:
+//			for( int y = Y; y < Y + lenShip; y++){ // checks the ship body coordinates for water
+//				Position newPos = new Position(X, y);
+//				if((board.getBoardElementTypeAtPosition(newPos) != BoardElement_Type.Water)
 //						|| !shipFits){
-//						return false;
-//					}
+//					return false;
 //				}
-//				break;
-//			case VERTICAL:
-//				for(int x = X; x < X + lenShip; x++){ // checks the ship body coordinates for water
-//					Position newPos = new Position(x, Y);
-//					if((board.getBoardElementTypeAtPosition(newPos) != BoardElement_Type.Water)
+//			}
+//			break;
+//		case VERTICAL:
+//			for(int x = X; x < X + lenShip; x++){ // checks the ship body coordinates for water
+//				Position newPos = new Position(x, Y);
+//				if((board.getBoardElementTypeAtPosition(newPos) != BoardElement_Type.Water)
 //						|| !shipFits){
-//						return false;
-//					}
+//					return false;
 //				}
-//			default:
-//				return true;
-//		}
-//		return true;
+//			}
+//		default:
+//			return true;
 //	}
-//
+//	return true;
+//}
+
+	public ArrayList<Position> getAllPositions() {
+		ArrayList<Position> positions = new ArrayList<Position>();
+		int length = this.getLength();
+		for (int offset = 0; offset < length; offset++) {
+			positions.add(this.position.offset(this.direction, offset));
+		}
+		return positions;
+	}
+
+	public boolean doesItOverlapWith(Ship other) {
+		ArrayList<Position> thisPositions = this.getAllPositions();
+		ArrayList<Position> otherPositions = other.getAllPositions();
+
+		for (Position thisPosition: thisPositions) {
+			for (Position otherPosition: otherPositions) {
+				if (thisPosition.equals(otherPosition)) {
+					return true;
+				}
+			}
+		}
+
+		return false;
+	}
+
 ////HELPER Function for checkingShipPlacement
-//	public boolean lenghtCheckFits(Ship_Type type, Position posit){
-//		int Y = posit.getY();
-//		int X = posit.getX();
-//		switch (type){
-//			case CARRIER:
-//				if(Y > 5 || X > 5){ return false; }
-//				break;
-//			case BATTLESHIP:
-//				if(Y > 6 || X > 6){ return false; }
-//				break;
-//			case DESTROYER:
-//				if(Y > 7 || X > 7){ return false; }
-//				break;
-//			case SUBMARINE:
-//				if(Y > 8 || X > 8){ return false; }
-//				break;
-//			default:
-//				return true;
-//		}
-//		return false;
-//	}
+	public boolean isInBounds() {
+		int y = this.position.getY();
+		int x = this.position.getX();
+
+		if (x < 0 || y < 0)
+			return false;
+
+		if (x > 9 || y > 9)
+			return false;
+
+		int coord = this.direction == Direction.HORIZONTAL ? x : y;
+		int maxCoord = 10 - this.getLength();
+
+		return coord <= maxCoord;
+	}
 //----------------------------------------------------------------------------------------------------------
 
 }

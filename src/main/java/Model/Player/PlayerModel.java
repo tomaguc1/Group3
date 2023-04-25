@@ -11,7 +11,7 @@ public class PlayerModel {
     private Board board;
     private PlayerType type;
 
-    Ship_Type[] shipSetOfTypes = {Ship_Type.SUBMARINE, Ship_Type.SUBMARINE,
+    static Ship_Type[] shipSetOfTypes = {Ship_Type.SUBMARINE, Ship_Type.SUBMARINE,
             Ship_Type.DESTROYER, Ship_Type.BATTLESHIP, Ship_Type.CARRIER };
 
 
@@ -28,6 +28,8 @@ public class PlayerModel {
         this.name = name;
         this.board = new Board();
         this.type = PlayerType.Human;
+
+        //TODO : Instantiate shipCollection when controller fetches GUI shipElements with nose, type and direction
     }
 
 

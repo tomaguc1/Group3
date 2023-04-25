@@ -1,5 +1,7 @@
 package Model;
 
+import Model.Ship.Direction;
+
 public class Position {
 	private int x;
 	private int y;
@@ -26,5 +28,15 @@ public class Position {
 		
 		Position other =(Position) obj;
 		return other.x == this.x && other.y == this.y;
+	}
+
+	public Position offset(Direction direction, int amount) {
+		switch (direction) {
+			case HORIZONTAL:
+				return new Position(x + amount, y);
+			case VERTICAL:
+				return new Position(x, y + amount);
+		}
+		return new Position(x, y);
 	}
 }
