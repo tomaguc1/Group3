@@ -8,10 +8,16 @@ public class Player {
 	private boolean turn;
 	ArrayList<Ship> listShip = new ArrayList<Ship>() ;
 	private ArrayList<Position> successfulMoves = new ArrayList<Position>();
+	ArrayList<Obstacle> listO = new ArrayList<Obstacle>() ;
+	
 	int length= listShip.size();
 	
 	public ArrayList getList () {
 		return this.listShip;
+	}
+	
+	public ArrayList getListObstacles () {
+		return this.listO;
 	}
 	
 	public ArrayList<Position> getSuccessfulMoves() {
@@ -22,6 +28,7 @@ public class Player {
         return successfulMoves.size();
     }
 	
+    //Checking who has won
 	public boolean isWinner() {
 		if (getNumSuccessfulMoves()==10) {
 			return true;
@@ -30,8 +37,10 @@ public class Player {
 			return false;
 		}
 	}
+	
+	//Iterating between players in the beginning of the game when setting ships or obstacles 
 	public boolean isYourTurn() {
-		if (listShip.size()==5) {
+		if (listShip.size()==5 || listO.size()==2) {
 			return false;
 		}
 		else {
@@ -46,6 +55,17 @@ public class Player {
 		}
 		else { }
 	}
+	
+	public void AddObstacle(Obstacle obstacle) {
+		if (listO.size()<2) {
+			this.listO.add(obstacle);
+		}
+		else {}
+	}
+	
+	
+	
+	
 	public Player() {
 		
 	}

@@ -4,13 +4,8 @@ import Model.Board.Obstacle;
 public class Board {
 
 	BoardElements[][] board = new BoardElements[10][10];
-	//private Ocean ocean;
-	//private Ship ship;
-	//private Bomb bomb;
-	//private int X;
-	//private int Y;
-	//private Miss miss;
-
+	
+//A constructor that initializes the board with only ocean 
 	public Board() {
 		
 		for ( int i=0; i<10; i++) {
@@ -21,7 +16,7 @@ public class Board {
 		
 	}
 
-	
+//Method that sets ships	
 	public void setShip(Position position, Ship ship) {
 		if (ship.getDirection()== Direction.VERTICAL ) {
 			for (int i= 0; i<ship.getLength() ; i++) {
@@ -38,14 +33,12 @@ public class Board {
 		else if (ship.getDirection()== Direction.DIAGONAL ) {
 			for (int i= 0; i<ship.getLength() ; i++) {
 				board[position.getX()+i][position.getY()+i]= ship;
-				
-				//for (int j=0; j<ship.getLength() ; j++) {
-					
-				//}
 			}
 		}
 	}
 	
+	
+//Method that lets each player set obstacles	
 	public void setObstacle(Position position, String obstacleType) {
 	    BoardElements element = board[position.getX()][position.getY()];
 	    if (element instanceof Ocean) {
@@ -54,14 +47,18 @@ public class Board {
 	        setBoardElement(position, obstacle);
 	    }
 	}
+	
+	
 	private void setBoardElement(Position position, BoardElements element) {
 	    board[position.getX()][position.getY()] = element;
 	}
+	
+	
 	public BoardElements getBoardElement (Position position) {
 		return board [position.getX()][position.getY()];
 		
 	}
-	
+	//Making a move == setting a bomb
 	public void setBomb(int X, int Y, Bomb bomb, Player currentPlayer) {
         BoardElements element = board[X][Y];
         if (element instanceof Ship) {
@@ -74,6 +71,8 @@ public class Board {
         }
     }
 	
+	
+	//Checking if it is valid to place a ship on a certain position 
 	public boolean isValid(Position position, Ship ship) {
 	    if (position.getX() < 0 || position.getX() + ship.getLength() > 10 || 
 	        position.getY() < 0 || position.getY() + ship.getLength() > 10) {
@@ -102,6 +101,7 @@ public class Board {
 	    return true;
 	}
 	
+	//Method to display the board
 	
 	public void printBoard() {
 		System.out.println("+---------+");

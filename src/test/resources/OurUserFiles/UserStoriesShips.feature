@@ -96,7 +96,14 @@ Feature: List of scenarios.
   Given Player "1" board view 
   Given there is a "Volcano" on the position "1" "1"
   When "1" sets a bomb on the position "1" "1"
-  Then it is player "2" turn twice in a row
+  Then "2" makes a move on the position "1" "1" 
+  Then "2" makes another move on the position "2" "2"
+  
+  @tag13
+  Scenario Outline: Trying to set more than 2 obstacles 
+  Given Player "1" set 2 obstacles
+  When "1" tries to set another obstacle 
+  Then "1" still only has 2 obstacles set
   
   
   #@tag11

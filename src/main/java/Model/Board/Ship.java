@@ -8,10 +8,12 @@ public class Ship extends BoardElements {
 	protected int x;
 	protected int y;
 	
-	public Ship() {
+	//Empty constructor to create empty ships for our steps
+	public Ship () {
 		
 	}
 	
+	//Constructor that defines the different types of ships 
 	public Ship (String shipType) {
 		switch (shipType) {
 		case "Carrier": 

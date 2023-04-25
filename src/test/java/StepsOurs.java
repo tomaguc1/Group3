@@ -17,12 +17,13 @@ import Model.Board.Obstacle;
 public class StepsOurs {
 	
 	Ship s;
-	//Ocean o = new Ocean;
+	Obstacle o;
 	Board b = new Board();
 	Bomb bomb= new Bomb();
+	
 	int x;
 	int y;
-	//Position position= new Position();
+	
 	Player p1 = new Player();
 	Player p2 = new Player();
     
@@ -287,112 +288,52 @@ public class StepsOurs {
 	public void sets_a_bomb_on_the_position(String string, String string2, String string3) {
 		//private Player player1 = new Player();
 	    //private Player player2 = new Player();
-		
+		int x = Integer.parseInt(string2);
+		int y= Integer.parseInt(string3);
 		int playerNumber =Integer.parseInt(string);
 		Player currentPlayer = (playerNumber == 1) ? p1 : p2 ;
         Position position = new Position(x, y);
-        //currentPlayer.setBomb(position);
+        Bomb bomb = new Bomb();
+        b.setBomb(x, y,  bomb, currentPlayer );
 	}
 	
-	@Then("it is player {string} turn twice in a row")
-	public void it_is_player_turn_twice_in_a_row(String string) {
-	   
-		
-		
-	}
-	
-	
-	
-	/*
-	 @When("The ship does not fit on the board if placed on {string} {string}")
-	public void the_ship_does_not_fit_on_the_board_if_placed_on(String string, String string2) {
-		int x = Integer.parseInt(string);
-	    int y = Integer.parseInt(string2);
-	    Ship ship= new Ship();
-	    ship.setLength(5);
-	    ship.setDirection(Direction.VERTICAL);
-	    ship.setPosition(x,y);
-	    b.setShip(ship.getPosition(), ship);
-	    assertTrue(b.isValid(new Position(x,y), ship)==false);
-	}
-*/
-	
-/*
-	@When("{string} has {int} ships")
-	public void has_ships(String string) {
-	   p1.AddShip(s);
-	   p1.AddShip(s);
-	   p1.AddShip(s);
-	   p1.AddShip(s);
-	   p1.AddShip(s);
-	}
-
-	@Then("{string} can set his ships")
-	public void can_set_his_ships(String string) {
-		assertEquals(p1.getList().size(),5);
+	@Then("{string} makes another move on the position {string} {string}")
+	public void makes_another_move_on_the_position(String string, String string2, String string3) {
+	    int playerNumber2 =Integer.parseInt(string);
+	    p2.setNumber(playerNumber2);
 		assertTrue(p2.isYourTurn()==true);
+		int x = Integer.parseInt(string2);
+		int y= Integer.parseInt(string3);
+		Bomb bomb = new Bomb();
+        b.setBomb(x, y,  bomb,p2 );
 	}
 	
 	
-	*/
+	//Trying to set more than 2 obstacles 
 	
-	
-	/*
-	
-	@Given("My board")
-	public void my_board() {
-	    b.printBoard();
-	}
-	@When("I am choosing the position to attack {string} {string}")
-	public void i_am_choosing_the_position_to_attack(String string, String string2) {
-		int x = Integer.parseInt(string);
-		int y = Integer.parseInt(string2);
-		
-		//b.setBomb(x,y,bomb, miss); ?? Is miss necesarry 
-	}
-	@Then("A bomb replaces the ship at that position and you can shoot again")
-	public void a_bomb_replaces_the_ship_at_that_position_and_you_can_shoot_again() {
-	    //how to make it shoot again
-		
-		b.printBoard();
-	}
-	
-	@Given("I am a player")
-	public void i_am_a_player() {
-	    Player player = new Player(); //why player cannnot be resolved to a type?
-		
-	}
-	@Then("I have a board view")
-	public void i_have_a_board_view() {
-	   
-		
-	}
-	
-	
-	@Given("I have a board")
-	public void i_have_a_board() {
-	    b.printBoard();
-
-	}
-	
-	@When("I am choosing the position to attack {string} {string} and there is an obstacle")
-	public void i_am_choosing_the_position_to_attack_and_there_is_an_obstacle(String string, String string2) {
-		int x = Integer.parseInt(string);
-		int y = Integer.parseInt(string2);
-		//b.setBomb();
-		
-	}
-	@Then("the obstacle explodes")
-	public void the_obstacle_explodes() {
-	    
-		
+	@Given("Player {string} set {int} obstacles")
+	public void player_set_obstacles(String string, Integer int1) {
+		int playerNumber1 =Integer.parseInt(string);
+	    p1.setNumber(playerNumber1);
+	    p1.AddObstacle(o);
+	    p1.AddObstacle(o);
+	    //assertEquals(p1.listO)
 		
 	}
 
-*/
+	@When("{string} tries to set another obstacle")
+	public void tries_to_set_another_obstacle(String string) {
+		p1.AddObstacle(o);
+	}
+
+	@Then("{string} still only has {int} obstacles set")
+	public void still_only_has_obstacles_set(String string, int int1) {
+	    assertEquals(p1.getListObstacles().size(), int1);
+	}
+
 	
 }
-
+	
 
 
 
