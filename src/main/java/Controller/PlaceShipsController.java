@@ -70,7 +70,7 @@ public class PlaceShipsController {
         this.componentSubmitShipPlacement = component;
         return actionEvent -> {
             System.out.println("submit ship placement");
-            
+            // TODO next thing to work on
         };
     }
 
