@@ -115,7 +115,6 @@ public class PlaceShipsController {
             if (mouseEvent.getButton() != MouseEvent.BUTTON1)
                 return;
 
-
             if (!this.model.isShipSelected || !this.model.isCursorOverTheBoard)
                 return;
 

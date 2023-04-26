@@ -7,7 +7,8 @@ import Views.PlaceShips.PlaceShipsView;
 
 import java.awt.event.ActionListener;
 
-public class GameController {
+public class
+GameController {
 
     GameModel model;
     GameView view;
