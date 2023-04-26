@@ -37,18 +37,7 @@ public class Ship {
 	public void setShipType(Ship_Type shipType) { this.shipType = shipType; }
 
 	public int getLength() {
-		switch(this.shipType){
-			case SUBMARINE:
-				return 2;
-			case DESTROYER:
-				return 3;
-			case BATTLESHIP:
-				return 4;
-			case CARRIER:
-				return 5;
-			default:
-				return -1;
-		}
+		return this.shipType.length();
 	}
 
 //	private BoardElement[] shipCells; // FIXME: Maps ship body cells to the board

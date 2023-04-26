@@ -2,6 +2,7 @@ package Views.PlaceShips.GridShip;
 
 import Controller.PlaceShipsController;
 import Helpers.DebugListener;
+import Helpers.ImageLibrary;
 import Model.Position;
 import Model.Ship.Ship_Type;
 import Views.PlaceShips.MenuShips.ShipBox_Label;
@@ -15,6 +16,8 @@ import java.awt.dnd.*;
 import java.util.ArrayList;
 
 public class boardGrid_Panel extends JPanel  {
+    ImageLibrary graphics = new ImageLibrary();
+
     JButton[][] buttonArray = new JButton[10][10];
     Tile[][] tiles = new Tile[10][10];
 
