@@ -37,16 +37,17 @@ Feature: List of scenarios.
 	When "2" is finished
 	Then "2" has 5 ships
 	Then "1" can set his ships
+    #Shouldnt player 1 now be setting missile?
   
   @tag5
-  Scenario Outline: Succesfull attack
+  Scenario Outline: Successful attack
   Given Player "1" board view 
   Given there is a ship on the position "1" "1"
   When "1" makes a move on the position "1" "1" 
   Then "1" can make another move 
   
   @tag6
-  Scenario Outline: Unsuccesfull attack
+  Scenario Outline: Unsuccessful attack
   Given Player "1" board view 
   Given there is ocean on the position "1" "1"
   When "1" makes a move on the position "1" "1"
@@ -106,8 +107,7 @@ Feature: List of scenarios.
   Then "1" still only has 2 obstacles set
   
   
-  #@tag11
-  #Scenario Outline: What happens to the ship after it sinks 
+  #@tag11 Scenario Outline: What happens to the ship after it sinks
   
   #@tag10
   #Scenario Outline: Setting a ship out of bounds
