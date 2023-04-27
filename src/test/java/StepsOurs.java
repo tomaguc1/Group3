@@ -7,10 +7,55 @@ import Model.Ship.Ship;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import Model.Ship.Ship_Type;
+import Model.Ship.PlaceShipsModel;
 
 
 public class StepsOurs {
 	
+	
+	Board b = new Board();
+	Ship s;
+	
+	@Given("Player {int} boar view")
+	public void player_boar_view(Integer int1) {
+	    
+	}
+	@When("{string} chooses to place a {string}")
+	public void chooses_to_place_a(String string, String string2) {
+		Ship_Type type = Ship_Type.valueOf(string2.toUpperCase());
+        s = new Ship(type);
+        
+	}
+	
+	@Then("{string} has the length {string}")
+	public void has_the_length(String string, String string2) {
+		int x = Integer.parseInt(string2);
+		assertEquals(s.getLength(),x);
+	}
+	
+}
+	/*
+	@Given("Player {int} boar view")
+	public void player_boar_view(Integer int1) {
+	    
+	}
+	@When("{string} chooses to place a {string}")
+	public void chooses_to_place_a(String string, String string2) {
+		Ship_Type type = Ship_Type.valueOf(string2.toUpperCase());
+        s = new Ship(type);
+        
+	}
+	@Then("{string} has the length {int}")
+	public void has_the_length(String string, int int1) {
+	    
+		assertEquals(s.getLength(),int1);
+		
+	}
+	
+}
+	
+/*	
 	Ship s;
 	Board b = new Board();
 	Bomb bomb= new Bomb();
@@ -127,7 +172,7 @@ public class StepsOurs {
 
 */
 	
-}
+
 
 
 

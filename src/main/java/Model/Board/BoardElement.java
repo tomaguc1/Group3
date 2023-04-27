@@ -1,7 +1,7 @@
 package Model.Board;
 
 import Model.Position;
-import javafx.geometry.Pos;
+//import javafx.geometry.Pos;
 
 public class BoardElement {
 
