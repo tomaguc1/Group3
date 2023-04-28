@@ -1,6 +1,7 @@
 package Model.Board;
 
 import Model.Position;
+import Model.Ship.Direction;
 import Model.Ship.Ship;
 
 import java.util.ArrayList;
@@ -29,6 +30,21 @@ public class Board {
 
 	public BoardElement getBoardElementAtPosition(Position position){
 		return board[position.getY()][position.getX()];
+	}
+	
+	public void setShip(Position position, Ship ship) {
+		if (ship.getDirection()== Direction.VERTICAL ) {
+			for (int i= 0; i<ship.getLength() ; i++) {
+				board[position.getX()+i][position.getY()]= ship;
+			}
+		}
+	
+		
+		else if (ship.getDirection()== Direction.HORIZONTAL ) {
+			for (int i= 0; i<ship.getLength() ; i++) {
+				board[position.getX()][position.getY()+i]= ship;
+			}
+		}
 	}
 
 	public void setBoardElementTypeAtPosition(BoardElement element, Position position){

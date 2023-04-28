@@ -34,6 +34,22 @@ public class StepsOurs {
 		assertEquals(s.getLength(),x);
 	}
 	
+	@Given("Player {string} board view")
+	public void player_board_view(String string) {
+	    
+	}
+	@When("{string} places {string}  on the position {int} {int}")
+	public void places_on_the_position(String string, String string2, int int1, int int2) {
+		Ship_Type type = Ship_Type.valueOf(string2.toUpperCase());
+        s = new Ship(type);
+        b.setShip( new Position(int1,int2),s);
+        
+        
+	}
+	@Then("there should be a ship on the initial positon {int} {int}")
+	public void there_should_be_a_ship_on_the_initial_positon(int int1, int int2) {
+		assertTrue(b.getBoardElementAtPosition(new Position(int1,int2)) instanceof Ship);
+	}
 	
 	
 }

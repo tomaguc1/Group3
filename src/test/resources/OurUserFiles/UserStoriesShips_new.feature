@@ -32,5 +32,10 @@ Feature: List of scenarios.
   | Submarine  |     2    |
   
   @tag2
-  Scenario: 
+  Scenario: Placing a ship
+  Given Player "1" board view
+  When "1" places "carrier"  on the position 2 2
+  Then there should be a ship on the initial positon 2 2
+ 
+  
  

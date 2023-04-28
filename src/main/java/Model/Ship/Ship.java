@@ -5,7 +5,8 @@ import Model.Position;
 
 import java.util.ArrayList;
 
-public class Ship {
+import Model.Board.BoardElement;
+public class Ship extends BoardElement {
 
 	private boolean isPlaced;
 
