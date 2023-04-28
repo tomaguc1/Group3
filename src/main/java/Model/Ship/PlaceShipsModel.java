@@ -16,13 +16,13 @@ public class PlaceShipsModel {
     public boolean isCursorOverTheBoard;
 //    public Position hoveredTileCoordinates;
 
-    public PlaceShipsModel() {
+    public PlaceShipsModel(ArrayList<Ship_Type> types) {
         this.playerName = "";
 
         this.ships = new ArrayList<Ship>();
-        this.ships.add(new Ship(Ship_Type.SUBMARINE));
-        this.ships.add(new Ship(Ship_Type.CARRIER));
-        this.ships.add(new Ship(Ship_Type.BATTLESHIP));
+        for (Ship_Type type: types) {
+            this.ships.add(new Ship(type));
+        }
 
         this.isShipSelected = false;
         this.selectedShipIndex = 0;

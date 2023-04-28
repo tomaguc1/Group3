@@ -22,7 +22,7 @@ public class PlaceShipsView extends JPanel {
     BoardAndIndex_Panel boardAndIndex_panel;
     ShipsMenu_Panel shipsMenu_panel;
 
-    public PlaceShipsView(PlaceShipsController controller) {
+    public PlaceShipsView(PlaceShipsController controller, String hint) {
         this.controller = controller;
 
         this.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
@@ -38,7 +38,7 @@ public class PlaceShipsView extends JPanel {
         lockInShipPanel.setBackground(Color.LIGHT_GRAY);
 
         JPanel panelName = new JPanel(); {
-            JLabel labelName = new JLabel("Name:");
+            JLabel labelName = new JLabel(hint + " Name:");
             panelName.add(labelName);
 
             JTextField textName = new JTextField();

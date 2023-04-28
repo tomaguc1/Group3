@@ -9,7 +9,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import Model.Ship.Ship_Type;
 import Model.Ship.PlaceShipsModel;
-
+import Model.Board.*;
 
 public class StepsOurs {
 	
@@ -33,6 +33,8 @@ public class StepsOurs {
 		int x = Integer.parseInt(string2);
 		assertEquals(s.getLength(),x);
 	}
+	
+	
 	
 }
 	/*

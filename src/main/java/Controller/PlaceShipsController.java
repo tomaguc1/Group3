@@ -6,12 +6,14 @@ import Helpers.MouseHoverListener;
 import Model.Position;
 import Model.Ship.PlaceShipsModel;
 import Model.Ship.Ship;
+import Model.Ship.Ship_Type;
 import Views.PlaceShips.PlaceShipsView;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 public class PlaceShipsController {
     GameController gameController;
@@ -20,10 +22,10 @@ public class PlaceShipsController {
 
     JComponent componentSubmitShipPlacement;
     
-    PlaceShipsController(GameController gameController) {
+    PlaceShipsController(GameController gameController, ArrayList<Ship_Type> types, String hint) {
         this.gameController = gameController;
-        this.model = new PlaceShipsModel();
-        this.view = new PlaceShipsView(this);
+        this.model = new PlaceShipsModel(types);
+        this.view = new PlaceShipsView(this, hint);
         
         if (this.componentSubmitShipPlacement == null)
             throw new NullPointerException();
@@ -69,8 +71,7 @@ public class PlaceShipsController {
     public ActionListener actionSubmitShipPlacement(JComponent component) {
         this.componentSubmitShipPlacement = component;
         return actionEvent -> {
-            System.out.println("submit ship placement");
-            // TODO next thing to work on
+            this.gameController.submitPlayerData(this.model.playerName, this.model.ships);
         };
     }
 
@@ -114,7 +115,6 @@ public class PlaceShipsController {
             // only left click
             if (mouseEvent.getButton() != MouseEvent.BUTTON1)
                 return;
-
 
             if (!this.model.isShipSelected || !this.model.isCursorOverTheBoard)
                 return;
