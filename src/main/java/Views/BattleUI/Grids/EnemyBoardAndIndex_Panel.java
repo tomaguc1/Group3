@@ -1,38 +1,25 @@
-package Views.PlaceShips.GridShip;
+package Views.BattleUI.Grids;
 
-import Controller.PlaceShipsController;
-import Model.Position;
+import Controller.BattleController;
+import Model.Board.Board;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 
-public class BoardAndIndex_Panel extends JPanel {
-    BoardGrid_Panel boardGrid;
+public class EnemyBoardAndIndex_Panel extends JPanel {
+
+    EnemyGridBoard enemyGridBoard;
 
     JPanel letterIndex = new JPanel();
     JPanel numberIndex = new JPanel();
 
-    public BoardAndIndex_Panel(PlaceShipsController controller) {
-        boardGrid = new BoardGrid_Panel(controller);
+    public EnemyBoardAndIndex_Panel(BattleController controller){
+        enemyGridBoard = new EnemyGridBoard(controller);
         init_IndexPanes();
 
-        this.add(boardGrid);
-    }
+        this.add(enemyGridBoard);
 
-    public void clearShips() {
-        this.boardGrid.clearShips();
     }
-
-    public void addShip(ArrayList<Position> list) {
-        this.boardGrid.addShip(list);
-    }
-
-    public void highlightCoordinates(boolean valid, ArrayList<Position> list) {
-        this.boardGrid.highlightCoordinates(valid, list);
-    }
-
-//=-=-  Initializes the grid indexes and leaves space for the ocean grid of button to pe placed =-=-=-=-=-=-=-=
     void init_IndexPanes(){
         setLayout(null);
         setPreferredSize(new Dimension(550, 550));
@@ -62,4 +49,13 @@ public class BoardAndIndex_Panel extends JPanel {
 //---------------------------------------------------------------------------------------------------------
 
     }
+
+    public void clearBoard() {
+        this.enemyGridBoard.clearBoard();
+    }
+
+    public void populate(Board board) {
+        this.enemyGridBoard.populate(board);
+    }
+
 }

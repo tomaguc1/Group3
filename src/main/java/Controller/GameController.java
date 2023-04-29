@@ -1,4 +1,6 @@
 package Controller;
+import Model.DifficultAI.DifficultAI;
+import Model.Difficulty;
 import Model.EasyAI.EasyAI;
 import Model.Game.GameModel;
 import Model.Game.GameState;
@@ -10,6 +12,7 @@ import Model.Ship.Ship_Type;
 import Views.ChooseSingleplayerOrMultiplayer;
 import Views.GameView;
 import Views.PlaceShips.PlaceShipsView;
+import sun.plugin.dom.exception.InvalidStateException;
 
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -23,22 +26,11 @@ GameController {
     PlaceShipsController placeShipsController;
     BattleController battleController;
 
-    private ArrayList<Ship_Type> types;
-    private Kompic kompic;
-
     public static void main(String[] args) throws InterruptedException {
         GameController controller = new GameController();
     }
 
     public GameController() { // Constructor : instantiates MainModel and MainView for the MainController object
-
-        this.types = new ArrayList<>();
-        this.types.add(Ship_Type.SUBMARINE);
-        this.types.add(Ship_Type.CARRIER);
-        this.types.add(Ship_Type.BATTLESHIP);
-
-        // could be switched by user to adjust difficulty
-        this.kompic = new EasyAI();
 
         this.model = new GameModel();
         this.view = new GameView();
@@ -47,18 +39,20 @@ GameController {
                                                                                                     // in the model
     }
 
-    void updateView() {
+    private void updateView() {
         this.view.getContentPane().removeAll();
 
         switch (this.model.state) {
             case ChooseSingleplayerOrMultiplayer:
-                this.view.setTitle("Battle The Ships");
+                this.view.setTitle("Battleship: Main Menu");
                 this.view.add(new ChooseSingleplayerOrMultiplayer(this));
                 break;
             case PrepareForBattle:
+                this.view.setTitle("Battleship: Prepare for Battle");
                 this.view.add(this.placeShipsController.view);
                 break;
             case PlayerSelectsTarget:
+                this.view.setTitle("Battleship: daVAI dratza");
                 this.view.add(this.battleController.view);
                 break;
         }
@@ -67,14 +61,25 @@ GameController {
         this.view.repaint();
     }
 
+    private Kompic kompic() {
+        switch (this.model.difficulty) {
+            case Easy:
+                return new EasyAI();
+            case Difficult:
+                return new DifficultAI();
+        }
+        throw new InvalidStateException("");
+    }
+
     /**
      * @return action listener, that sets the singleplayer mode and changes the state
      */
-    public ActionListener actionSingleplayer() {
+    public ActionListener actionSingleplayer(Difficulty difficulty) {
         return actionEvent -> {
             this.model.mode = GameMode.Singleplayer;
             this.model.state = GameState.PrepareForBattle;
-            this.placeShipsController = new PlaceShipsController(this, this.types, "Player");
+            this.model.difficulty = difficulty;
+            this.placeShipsController = new PlaceShipsController(this, this.model.types, "Player");
             this.updateView();
         };
     }
@@ -86,7 +91,7 @@ GameController {
         return actionEvent -> {
             this.model.mode = GameMode.Multiplayer;
             this.model.state = GameState.PrepareForBattle;
-            this.placeShipsController = new PlaceShipsController(this, this.types, "Player 1");
+            this.placeShipsController = new PlaceShipsController(this, this.model.types, "Player 1");
             this.updateView();
         };
     }
@@ -94,9 +99,9 @@ GameController {
     public ActionListener actionRandomMultiplayer() {
         return actionEvent -> {
             this.model.mode = GameMode.Multiplayer;
-            PlayerModel one = new PlayerModel("one", this.kompic.placeShips(this.types));
-            PlayerModel two = new PlayerModel("two", this.kompic.placeShips(this.types));
-            this.battleController = new BattleController(one, two);
+            PlayerModel one = new PlayerModel("one", this.kompic().placeShips(this.model.types));
+            PlayerModel two = new PlayerModel("two", this.kompic().placeShips(this.model.types));
+            this.battleController = new BattleController(one, two, this.model.types);
             this.model.state = GameState.PlayerSelectsTarget;
             this.updateView();
         };
@@ -113,17 +118,17 @@ GameController {
         // if playerTwo is missing
         switch (this.model.mode) {
             case Singleplayer:
-                this.model.playerTwo = new PlayerModel(kompic, this.types);
+                this.model.playerTwo = new PlayerModel(this.kompic(), this.model.types);
                 break;
             case Multiplayer:
-                this.placeShipsController = new PlaceShipsController(this, this.types, "Player 2");
+                this.placeShipsController = new PlaceShipsController(this, this.model.types, "Player 2");
                 break;
         }
 
         // at least playerOne is ready by now
         if (this.model.playerTwo != null) {
             // if both players are ready
-            this.battleController = new BattleController(this.model.playerOne, this.model.playerTwo);
+            this.battleController = new BattleController(this.model.playerOne, this.model.playerTwo, this.model.types);
             this.model.state = GameState.PlayerSelectsTarget;
         }
 

@@ -1,16 +1,23 @@
 package Model.DifficultAI;
 
 
+import Model.Board.Board;
+import Model.Player.Kompic;
+import Model.Position;
+import Model.Ship.Ship;
+import Model.Ship.Ship_Type;
+
+import javax.swing.*;
 import java.util.*;
 
-public class DifficultAI {
+public class DifficultAI implements Kompic {
     private final int board_size = 10;  // board size is defined
     private int[][] board = new int[board_size][board_size]; //board is defined
     
     private Set<String> remainingMoves = new HashSet<>(); //creates a private instance 
-    													//variable called remainingMoves of type 
-    													//Set<String> and initialises it as an empty 
-    													//HashSet
+    //variable called remainingMoves of type
+    //Set<String> and initialises it as an empty
+    //HashSet
     
     public DifficultAI() {
         // Initialise remainingMoves set with all possible coordinates
@@ -23,19 +30,19 @@ public class DifficultAI {
 
     public void updateBoard(int x, int y, boolean hit) { //verify "hit"
         // Update grid with result of last move
-    	board[x][y] = hit ? 1 : -1;
+        board[x][y] = hit ? 1 : -1;
         remainingMoves.remove(x + "," + y);
     }
 
     public int[] getNextMove() { //decides next move
         // Calculate Probability Density Function for each remaining move
-    	
-    	/**
-    	 * creates map object which stores key value pairs
-    	 * Initialized to an empty hashmap
-    	 */
-        Map<String, Double> moveProbs = new HashMap<>();  
-        												
+
+        /**
+         * creates map object which stores key value pairs
+         * Initialized to an empty hashmap
+         */
+        Map<String, Double> moveProbs = new HashMap<>();
+
         for (String move : remainingMoves) {
             int x = Integer.parseInt(move.split(",")[0]);
             int y = Integer.parseInt(move.split(",")[1]);
@@ -64,5 +71,17 @@ public class DifficultAI {
             }
         }
         return (double) adjHits / (adjHits + adjMisses + adjUnknowns);
+    }
+
+    @Override
+    public ArrayList<Ship> placeShips(ArrayList<Ship_Type> types) {
+        JOptionPane.showMessageDialog(null, "not yet implemented");
+        throw new RuntimeException("not yet implemented");
+    }
+
+    @Override
+    public Position attack(Board board, ArrayList<Ship_Type> types) {
+        JOptionPane.showMessageDialog(null, "not yet implemented");
+        throw new RuntimeException("not yet implemented");
     }
 }

@@ -1,6 +1,7 @@
 package Views;
 
 import Controller.GameController;
+import Model.Difficulty;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,10 +9,15 @@ import java.awt.*;
 public class ChooseSingleplayerOrMultiplayer extends JPanel {
     public ChooseSingleplayerOrMultiplayer(GameController controller) {
         this.setPreferredSize(new Dimension(1280,720));
-        
-        JButton buttonSingleplayer = new JButton("Singleplayer");
-        buttonSingleplayer.addActionListener(controller.actionSingleplayer());
-        this.add(buttonSingleplayer);
+        this.setLayout(new FlowLayout(FlowLayout.CENTER, 50, 55));
+
+        JButton buttonSingleplayerEasy = new JButton("Singleplayer (Easy)");
+        buttonSingleplayerEasy.addActionListener(controller.actionSingleplayer(Difficulty.Easy));
+        this.add(buttonSingleplayerEasy);
+
+        JButton buttonSingleplayerDifficult = new JButton("Singleplayer (Difficult)");
+        buttonSingleplayerDifficult.addActionListener(controller.actionSingleplayer(Difficulty.Difficult));
+        this.add(buttonSingleplayerDifficult);
 
         JButton buttonMultiplayer = new JButton("Multiplayer");
         buttonMultiplayer.addActionListener(controller.actionMultiplayer());
