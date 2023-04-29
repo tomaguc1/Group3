@@ -8,9 +8,9 @@ import Model.Position;
 
 public class BoardElement {
 
-    private boolean wasHit;
+    protected boolean wasHit;
     public boolean getWasHit() { return this.wasHit; }
-    public void setWasHit() { this.wasHit = true; }
+    public void setWasHit(boolean wasHit) { this.wasHit = true; }
 
     public BoardElement(){
         this.wasHit = false;

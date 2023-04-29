@@ -51,6 +51,26 @@ public class StepsOurs {
 		assertTrue(b.getBoardElementAtPosition(new Position(int1,int2)) instanceof Ship);
 	}
 	
+	@Given("A {string} on the position {int} {int} with health {int}")
+	public void a_on_the_position_with_health(String string, int int1, int int2, int int3) {
+		Ship_Type type = Ship_Type.valueOf(string.toUpperCase());
+        s = new Ship(type);
+        b.setShip( new Position(int1,int2),s);
+		assertTrue(b.getBoardElementAtPosition(new Position(int1, int2)) instanceof Ship);
+	}
+	@When("It was hit by a move on the position {int} {int}")
+	public void it_was_hit_by_a_move_on_the_position(int int1, int int2) {
+		//Ship s = (ShipElement) b.getBoardElementAtPosition(new Position(1, 1));
+	    s.setWasHit(true);
+		assertTrue(s.getWasHit()==true);
+	   
+	}
+	@Then("the health is {int}")
+	public void the_health_is(int int1) {
+	   assertEquals(b.getHealth(), int1);
+	}
+
+	
 	
 }
 	/*

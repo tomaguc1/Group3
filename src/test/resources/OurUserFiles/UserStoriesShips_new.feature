@@ -32,10 +32,22 @@ Feature: List of scenarios.
   | Submarine  |     2    |
   
   @tag2
-  Scenario: Placing a ship
+  Scenario Outline: Placing a ship
   Given Player "1" board view
-  When "1" places "carrier"  on the position 2 2
+  When "1" places "<ShipType>"  on the position 2 2
   Then there should be a ship on the initial positon 2 2
- 
+ 	
+ 	Examples:
+ 	| ShipType   |
+ 	| Carrier    |
+  | BattleShip |
+  | Destroyer  |
+  | Submarine  |
+  
+  @tag3
+  Scenario Outline: Health check
+  Given A "carrier" on the position 1 1 with health 1
+  When It was hit by a move on the position 1 1
+  Then the health is 0
   
  

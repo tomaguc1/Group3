@@ -57,7 +57,7 @@ public class BattleController {
             if (tile.getWasHit())
                 break;
 
-            tile.setWasHit();
+            tile.setWasHit(true);
 
             if (this.model.isGameOver()) {
                 this.updateView();
@@ -84,7 +84,7 @@ public class BattleController {
             if (tile.getWasHit())
                 return;
 
-            tile.setWasHit();
+            tile.setWasHit(true);
 
             if (tile instanceof ShipElement) {
                 PlayerModel winner = this.model.getWinner();

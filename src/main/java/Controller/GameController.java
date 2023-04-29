@@ -12,7 +12,7 @@ import Model.Ship.Ship_Type;
 import Views.ChooseSingleplayerOrMultiplayer;
 import Views.GameView;
 import Views.PlaceShips.PlaceShipsView;
-import sun.plugin.dom.exception.InvalidStateException;
+//import sun.plugin.dom.exception.InvalidStateException;
 
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -68,7 +68,7 @@ GameController {
             case Difficult:
                 return new DifficultAI();
         }
-        throw new InvalidStateException("");
+        throw new IllegalThreadStateException("");
     }
 
     /**
