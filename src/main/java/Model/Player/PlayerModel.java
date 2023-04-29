@@ -7,11 +7,11 @@ import Model.Ship.Ship_Type;
 import java.util.ArrayList;
 
 public class PlayerModel {
-    private String name;
-    private Board board;
-    private ArrayList<Ship> ships;
-    private PlayerType type;
-
+    public String name;
+    public Board board;
+    public ArrayList<Ship> ships;
+    public PlayerType type;
+    public Kompic kompic;
 
     //TODO : Method that fetches ships noses, types, and direction from controller that calls view on lock in
 
@@ -22,6 +22,7 @@ public class PlayerModel {
         if (this.ships.size() != types.size())
             throw new IllegalStateException("cheater blin");
         this.board = new Board(this.ships);
+        this.kompic = kompic;
     }
 
     public PlayerModel(String name, ArrayList<Ship> ships) {// Constructor for the human player
