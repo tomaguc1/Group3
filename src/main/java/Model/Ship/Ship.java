@@ -55,58 +55,7 @@ public class Ship extends BoardElement {
 
 		this.position = nose;
 		this.setDirection(direction);
-
-		//=-=- Instantiate and set position of ship elements =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-//		shipCells = new ShipElement[this.getLength()]; // Adapts lenght to the ShipType
-//		switch (this.getDirection()){
-//			case HORIZONTAL:
-//				for(int i = 0; i < this.getLength(); i++){
-//					shipCells[i].setElementPosition(new Position(nose.getX() + i, nose.getY()));
-//				}
-//				break;
-//
-//			case VERTICAL:
-//				for(int i = 0; i < this.getLength(); i++){
-//					shipCells[i].setElementPosition(new Position(nose.getX(), nose.getY() + i));
-//				}
-//				break;
-//		}
-		//-------------------------------------------------------------------------------------------------
 	}
-
-//=-=-=-=-    Placement Checks =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-//public boolean checkShipPlacement(Board board, Ship ship, Position noseShip){
-//
-//	Direction dir = ship.getDirection();
-//	int lenShip = ship.getLength();
-//
-//	int X = noseShip.getX();// Ship Position
-//	int Y = noseShip.getY();
-//
-//	boolean shipFits = isInBounds(ship.getShipType(), noseShip);
-//	switch (dir){
-//		case HORIZONTAL:
-//			for( int y = Y; y < Y + lenShip; y++){ // checks the ship body coordinates for water
-//				Position newPos = new Position(X, y);
-//				if((board.getBoardElementTypeAtPosition(newPos) != BoardElement_Type.Water)
-//						|| !shipFits){
-//					return false;
-//				}
-//			}
-//			break;
-//		case VERTICAL:
-//			for(int x = X; x < X + lenShip; x++){ // checks the ship body coordinates for water
-//				Position newPos = new Position(x, Y);
-//				if((board.getBoardElementTypeAtPosition(newPos) != BoardElement_Type.Water)
-//						|| !shipFits){
-//					return false;
-//				}
-//			}
-//		default:
-//			return true;
-//	}
-//	return true;
-//}
 
 	public ArrayList<Position> getAllPositions() {
 		ArrayList<Position> positions = new ArrayList<Position>();

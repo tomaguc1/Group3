@@ -31,7 +31,8 @@ public class Board {
 	public BoardElement getBoardElementAtPosition(Position position){
 		return board[position.getY()][position.getX()];
 	}
-	
+
+//Mila setShipMethod TODO: Check it out
 	public void setShip(Position position, Ship ship) {
 		if (ship.getDirection()== Direction.VERTICAL ) {
 			for (int i= 0; i<ship.getLength() ; i++) {
