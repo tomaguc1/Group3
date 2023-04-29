@@ -20,9 +20,10 @@ Feature: List of scenarios.
      
   @tag1
   Scenario Outline: Picking a ship
-  Given Player 1 boar view
-  When "1" chooses to place a "<ShipType>"
-  Then "<ShipType>" has the length "<length>"
+  Given Player 1 with some ships
+  When 1 chooses to place a "Ship" of length
+  Then Has the appropiate length
+
   
   Examples:
   | ShipType   |  length  |
@@ -34,8 +35,8 @@ Feature: List of scenarios.
   @tag2
   Scenario Outline: Placing a ship
   Given Player "1" board view
-  When "1" places "<ShipType>"  on the position 2 2
-  Then there should be a ship on the initial positon 2 2
+  When places on the position 2 2
+  Then there should be a ship on the positon 2 2
  	
  	Examples:
  	| ShipType   |
@@ -46,7 +47,7 @@ Feature: List of scenarios.
   
   @tag3
   Scenario Outline: Health check
-  Given A "carrier" on the position 1 1 with health 1
+  Given "ShipElelment" on the position 1 1 with health 1
   When It was hit by a move on the position 1 1
   Then the health is 0
   

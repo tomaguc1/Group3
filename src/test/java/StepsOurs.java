@@ -9,7 +9,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import Model.Ship.Ship_Type;
-import Views.PlaceShips.GridShip.BoardGrid_Panel.Tile;
+//import Views.PlaceShips.GridShip.BoardGrid_Panel.Tile;
 import Model.Ship.PlaceShipsModel;
 import Model.Board.*;
 import Model.Player.PlayerModel;
@@ -27,15 +27,15 @@ public class StepsOurs {
 	
 	
 	@Given("Player {int} with some ships")
-	public void player_with_ships(Integer int1) {
+	public void player_with_some_ships(Integer int1)  {
 		this.shipArray = new ArrayList<Ship>();
 	    PlayerModel player = new PlayerModel("Player" + int1, shipArray);
 		for (Ship_Type type : Ship_Type.values()) {
 			shipArray.add(new Ship(type));
 		}
 	}
-	@When("Player {int} chooses a {String}")
-	public void chooses_a_ship(PlayerModel player, String shipType) {
+	@When("{int} chooses to place a {string} of length")
+	public void chooses_to_place_a_of_length(Integer int1, String string) {
 		for (Ship ship : shipArray) {
 			if (ship.getShipType().toString().equals(shipType)) {
 				this.s = ship;
@@ -46,9 +46,9 @@ public class StepsOurs {
 			}
 		}                
 	}
-	
-	@Then("Ship has the apropriate length")
-	public void has_the_length() {
+
+	@Then("Has the appropiate length")
+	public void has_the_appropiate_length() {
 		
 		assertEquals(s.getLength(),this.shipLength);
 	}
@@ -61,8 +61,8 @@ public class StepsOurs {
 			shipArray.add(new Ship(type));
 		}
 	}
-	@When("The Player places a Ship on the position {int} {int}")
-	public void places_on_the_position(int int1, int int2) {
+	@When("places on the position {int} {int}")
+	public void places_on_the_position(Integer int1, Integer int2)  {
 		
         this.s = this.shipArray.get(0);
         b.setShip( new Position(int1,int2),s);
@@ -73,15 +73,16 @@ public class StepsOurs {
 	public void there_should_be_a_ship_on_the_positon(int int1, int int2) {
 		assertTrue(b.getBoardElementAtPosition(new Position(int1,int2)) instanceof ShipElement);
 	}
-	
-	@Given("{ShipElelment} on the position {int} {int} with health {int}")
-	public void a_on_the_position_with_health(ShipElement shipElement, int int1, int int2, int int3) {
+
+	@Given("{string} on the position {int} {int} with health {int}")
+	public void on_the_position_with_health(String string, Integer int1, Integer int2, Integer int3) {
 		//Ship_Type type = Ship_Type.valueOf(string.toUpperCase());
         //s = new Ship(type);
         //b.setShip( new Position(int1,int2),s);
 		this.position = new Position(int1, int2);
 		b.setBoardElementTypeAtPosition(shipElement, position);
 		assertTrue(b.getBoardElementAtPosition(position) instanceof ShipElement);
+		throw new io.cucumber.java.PendingException();
 	}
 	@When("It was hit by a move on the position {int} {int}")
 	public void it_was_hit_by_a_move_on_the_position(int int1, int int2) {
