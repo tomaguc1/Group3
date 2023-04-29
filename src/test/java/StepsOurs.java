@@ -28,7 +28,7 @@ public class StepsOurs {
 	
 	@Given("Player {int} with some ships")
 	public void player_with_some_ships(Integer int1)  {
-		this.shipArray = new ArrayList<Ship>();
+		shipArray = new ArrayList<Ship>();
 	    PlayerModel player = new PlayerModel("Player" + int1, shipArray);
 		for (Ship_Type type : Ship_Type.values()) {
 			shipArray.add(new Ship(type));
@@ -37,8 +37,8 @@ public class StepsOurs {
 	@When("{int} chooses to place a {string} of length")
 	public void chooses_to_place_a_of_length(Integer int1, String string) {
 		for (Ship ship : shipArray) {
-			if (ship.getShipType().toString().equals(shipType)) {
-				this.s = ship;
+			if (ship.getShipType().toString().equals(string.toUpperCase())) {
+				s = ship;
 				shipLength = ship.getShipType().length();
 				
 			} else {
@@ -50,12 +50,12 @@ public class StepsOurs {
 	@Then("Has the appropiate length")
 	public void has_the_appropiate_length() {
 		
-		assertEquals(s.getLength(),this.shipLength);
+		assertEquals(s.getLength(),shipLength);
 	}
 	
 	@Given("Player {int} with some ships")
 	public void player_with_ships_to_place(Integer int1) {
-		this.shipArray = new ArrayList<Ship>();
+		shipArray = new ArrayList<Ship>();
 	    PlayerModel player = new PlayerModel("Player" + int1, shipArray);
 		for (Ship_Type type : Ship_Type.values()) {
 			shipArray.add(new Ship(type));
@@ -64,38 +64,41 @@ public class StepsOurs {
 	@When("places on the position {int} {int}")
 	public void places_on_the_position(Integer int1, Integer int2)  {
 		
-        this.s = this.shipArray.get(0);
+        s = shipArray.get(0);
         b.setShip( new Position(int1,int2),s);
         
         
 	}
 	@Then("there should be a ship on the positon {int} {int}")
-	public void there_should_be_a_ship_on_the_positon(int int1, int int2) {
+	public void there_should_be_a_ship_on_the_positon(Integer int1, Integer int2) {
 		assertTrue(b.getBoardElementAtPosition(new Position(int1,int2)) instanceof ShipElement);
 	}
+
+	ShipElement shipElement;
 
 	@Given("{string} on the position {int} {int} with health {int}")
 	public void on_the_position_with_health(String string, Integer int1, Integer int2, Integer int3) {
 		//Ship_Type type = Ship_Type.valueOf(string.toUpperCase());
         //s = new Ship(type);
         //b.setShip( new Position(int1,int2),s);
-		this.position = new Position(int1, int2);
+		shipElement = new ShipElement();
+		position = new Position(int1, int2);
 		b.setBoardElementTypeAtPosition(shipElement, position);
 		assertTrue(b.getBoardElementAtPosition(position) instanceof ShipElement);
-		throw new io.cucumber.java.PendingException();
+		//throw new io.cucumber.java.PendingException();
 	}
 	@When("It was hit by a move on the position {int} {int}")
-	public void it_was_hit_by_a_move_on_the_position(int int1, int int2) {
+	public void it_was_hit_by_a_move_on_the_position(Integer int1, Integer int2) {
 			
-		this.position = new Position(int1, int2);
-		ShipElement shipElement = (ShipElement) b.getBoardElementAtPosition(this.position);
+		position = new Position(int1, int2);
+		shipElement = (ShipElement) b.getBoardElementAtPosition(position);
 		//Ship s = (ShipElement) b.getBoardElementAtPosition(new Position(1, 1));
 	    shipElement.setWasHit();
 		assertTrue(shipElement.getWasHit()==true);
 	   
 	}
 	@Then("the health is {int}")
-	public void the_health_is(int int3) {
+	public void the_health_is(Integer int3) {
 	   assertEquals(b.getHealth(), int3 -1);
 	}
 
