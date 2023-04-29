@@ -8,9 +8,9 @@ import Model.Position;
 
 public class BoardElement {
 
-    protected boolean wasHit;
+    private boolean wasHit;
     public boolean getWasHit() { return this.wasHit; }
-    public void setWasHit(boolean wasHit) { this.wasHit = true; }
+    public void setWasHit() { this.wasHit = true; } // used to recive (boolean wasHit) but did nothing with imput
 
     public BoardElement(){
         this.wasHit = false;

@@ -57,7 +57,7 @@ public class Board {
 		for ( int i=0; i<10; i++) {
 			for ( int j=0; j<10; j++) {
 				BoardElement boardElement = board[i][j];
-				if (boardElement instanceof Ship) {
+				if (boardElement instanceof ShipElement) {
 					if (!boardElement.getWasHit()) {
 						health++;
 					}
