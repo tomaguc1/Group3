@@ -1,73 +1,101 @@
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import Model.Board.Board;
+import java.util.ArrayList;
+
 import Model.Position;
 import Model.Ship.Ship;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import Model.Ship.Ship_Type;
+import Views.PlaceShips.GridShip.BoardGrid_Panel.Tile;
 import Model.Ship.PlaceShipsModel;
 import Model.Board.*;
+import Model.Player.PlayerModel;
+
+
 
 public class StepsOurs {
 	
 	
 	Board b = new Board();
 	Ship s;
+	Position position;
+	ArrayList<Ship> shipArray;
+	int shipLength;
 	
-	@Given("Player {int} boar view")
-	public void player_boar_view(Integer int1) {
-	    
+	
+	@Given("Player {int} with some ships")
+	public void player_with_ships(Integer int1) {
+		this.shipArray = new ArrayList<Ship>();
+	    PlayerModel player = new PlayerModel("Player" + int1, shipArray);
+		for (Ship_Type type : Ship_Type.values()) {
+			shipArray.add(new Ship(type));
+		}
 	}
-	@When("{string} chooses to place a {string}")
-	public void chooses_to_place_a(String string, String string2) {
-		Ship_Type type = Ship_Type.valueOf(string2.toUpperCase());
-        s = new Ship(type);
-        
+	@When("Player {int} chooses a {String}")
+	public void chooses_a_ship(PlayerModel player, String shipType) {
+		for (Ship ship : shipArray) {
+			if (ship.getShipType().toString().equals(shipType)) {
+				this.s = ship;
+				shipLength = ship.getShipType().length();
+				
+			} else {
+				continue;
+			}
+		}                
 	}
 	
-	@Then("{string} has the length {string}")
-	public void has_the_length(String string, String string2) {
-		int x = Integer.parseInt(string2);
-		assertEquals(s.getLength(),x);
+	@Then("Ship has the apropriate length")
+	public void has_the_length() {
+		
+		assertEquals(s.getLength(),this.shipLength);
 	}
 	
-	@Given("Player {string} board view")
-	public void player_board_view(String string) {
-	    
+	@Given("Player {int} with some ships")
+	public void player_with_ships_to_place(Integer int1) {
+		this.shipArray = new ArrayList<Ship>();
+	    PlayerModel player = new PlayerModel("Player" + int1, shipArray);
+		for (Ship_Type type : Ship_Type.values()) {
+			shipArray.add(new Ship(type));
+		}
 	}
-	@When("{string} places {string}  on the position {int} {int}")
-	public void places_on_the_position(String string, String string2, int int1, int int2) {
-		Ship_Type type = Ship_Type.valueOf(string2.toUpperCase());
-        s = new Ship(type);
+	@When("The Player places a Ship on the position {int} {int}")
+	public void places_on_the_position(int int1, int int2) {
+		
+        this.s = this.shipArray.get(0);
         b.setShip( new Position(int1,int2),s);
         
         
 	}
-	@Then("there should be a ship on the initial positon {int} {int}")
-	public void there_should_be_a_ship_on_the_initial_positon(int int1, int int2) {
-		assertTrue(b.getBoardElementAtPosition(new Position(int1,int2)) instanceof Ship);
+	@Then("there should be a ship on the positon {int} {int}")
+	public void there_should_be_a_ship_on_the_positon(int int1, int int2) {
+		assertTrue(b.getBoardElementAtPosition(new Position(int1,int2)) instanceof ShipElement);
 	}
 	
-	@Given("A {string} on the position {int} {int} with health {int}")
-	public void a_on_the_position_with_health(String string, int int1, int int2, int int3) {
-		Ship_Type type = Ship_Type.valueOf(string.toUpperCase());
-        s = new Ship(type);
-        b.setShip( new Position(int1,int2),s);
-		assertTrue(b.getBoardElementAtPosition(new Position(int1, int2)) instanceof Ship);
+	@Given("{ShipElelment} on the position {int} {int} with health {int}")
+	public void a_on_the_position_with_health(ShipElement shipElement, int int1, int int2, int int3) {
+		//Ship_Type type = Ship_Type.valueOf(string.toUpperCase());
+        //s = new Ship(type);
+        //b.setShip( new Position(int1,int2),s);
+		this.position = new Position(int1, int2);
+		b.setBoardElementTypeAtPosition(shipElement, position);
+		assertTrue(b.getBoardElementAtPosition(position) instanceof ShipElement);
 	}
 	@When("It was hit by a move on the position {int} {int}")
 	public void it_was_hit_by_a_move_on_the_position(int int1, int int2) {
+			
+		this.position = new Position(int1, int2);
+		ShipElement shipElement = (ShipElement) b.getBoardElementAtPosition(this.position);
 		//Ship s = (ShipElement) b.getBoardElementAtPosition(new Position(1, 1));
-	    s.setWasHit(true);
-		assertTrue(s.getWasHit()==true);
+	    shipElement.setWasHit();
+		assertTrue(shipElement.getWasHit()==true);
 	   
 	}
 	@Then("the health is {int}")
-	public void the_health_is(int int1) {
-	   assertEquals(b.getHealth(), int1);
+	public void the_health_is(int int3) {
+	   assertEquals(b.getHealth(), int3 -1);
 	}
 
 	
