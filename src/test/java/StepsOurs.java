@@ -39,7 +39,10 @@ public class StepsOurs {
 	private Kompic kompic;
 	private ArrayList<Ship_Type> types;
 	private ArrayList<Ship_Type> types_new;
-	
+	private boolean isCursorOverTheBoard;
+    
+    private int selectedShipIndex;
+    private boolean shipPlacementValid;
 	
 	
 	//private Kompic type;
@@ -321,5 +324,22 @@ public class StepsOurs {
  	        assertFalse(model.isShipSelected);
  		}
 
+ 		@Given("a PlaceShipsModel with ship types [{string}, {string}, {string}, {string}, {string}]")
+ 		public void a_place_ships_model_with_ship_types(String string, String string2, String string3, String string4, String string5) {
+ 			types_new = new ArrayList<Ship_Type>();
+ 	        types_new.add(Ship_Type.CARRIER);
+ 	        types_new.add(Ship_Type.BATTLESHIP);
+ 	        types_new.add(Ship_Type.DESTROYER);
+ 	        types_new.add(Ship_Type.SUBMARINE);
+ 	       model = new PlaceShipsModel(types_new);
+ 		}
+ 		@When("the cursor is over the board")
+ 		public void the_cursor_is_over_the_board() {
+ 			isCursorOverTheBoard = true;
+ 		}
+ 		@Then("the isCursorOverTheBoard should be true")
+ 		public void the_is_cursor_over_the_board_should_be_true() {
+ 			 assertEquals(true, isCursorOverTheBoard);
+ 		}
  		
 }
