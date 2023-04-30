@@ -103,7 +103,9 @@ When the objects direction is set
 When the position of the ship is set 1 1
 Then the function should return a list of all the positions that the Ship takes up on the board.
  
-#@tag11 
+ 
+ 
+ #@tag11 
 #Scenario: Check if two Ships do not overlap
 #Given Two ships "carrier" and "submarine" are placed
 #When The "carrier" is being placed on the position 1 1
