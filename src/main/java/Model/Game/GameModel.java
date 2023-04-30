@@ -23,6 +23,8 @@ public class GameModel {
 
         this.types = new ArrayList<>();
         this.types.add(Ship_Type.SUBMARINE);
+        this.types.add(Ship_Type.SUBMARINE);
+        this.types.add(Ship_Type.DESTROYER);
         this.types.add(Ship_Type.CARRIER);
         this.types.add(Ship_Type.BATTLESHIP);
     }
