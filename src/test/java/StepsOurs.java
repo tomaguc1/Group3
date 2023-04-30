@@ -1,4 +1,5 @@
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import Model.Ship.Ship_Type;
+import Model.Ship.Direction;
 //import Views.PlaceShips.GridShip.BoardGrid_Panel.Tile;
 import Model.Ship.PlaceShipsModel;
 import Model.Board.*;
@@ -21,8 +23,10 @@ public class StepsOurs {
 	
 	
 	Board b = new Board();
+	private ArrayList<Ship> ships;
 	Ship s;
 	Ship s1;
+	private ArrayList<Position> positions;
 	
 	@Given("Player {int} board view")
 	public void player_board_view(Integer int1) {
@@ -81,8 +85,10 @@ public class StepsOurs {
  	public void two_ships_and(String string, String string2) {
  		Ship_Type type = Ship_Type.valueOf(string.toUpperCase());
         s = new Ship(type);
+        
         Ship_Type type1 = Ship_Type.valueOf(string2.toUpperCase());
         s1 = new Ship(type1);
+        
  	}
  	@When("{string} is placed on the position {int} {int}")
  	public void is_placed_on_the_position(String string, int int1, int int2) {
@@ -100,6 +106,8 @@ public class StepsOurs {
  		boolean overlap = s.doesItOverlapWith(s1);
  		assertTrue(overlap);
  	}
+ 	
+ 	
 
  	@Given("{string} on the position {int} {int}")
  	public void on_the_position(String string, int int1, int int2) {
@@ -119,7 +127,141 @@ public class StepsOurs {
  		boolean actualResult = this.s.isInBounds();
         assertEquals(expectedResult, actualResult);
  	}
+ 	
+ 	@Given("a Board object is created")
+ 	public void a_board_object_is_created() {
+ 		ships = new ArrayList<Ship>();
+       // Ship shipA = new Ship(Ship_Type.BATTLESHIP);
+       // Ship shipB = new Ship(Ship_Type.BATTLESHIP);
+       // ships.add(shipA);
+      //  ships.add(shipB);
+        b = new Board(ships);
+ 	}
+ 	@Then("the board array should be initialized with 10x10 WaterElement objects")
+ 	public void the_board_array_should_be_initialized_with_10x10_water_element_objects() {
+ 		for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                assertTrue(b.getBoardElementAtPosition(new Position(i, j)) instanceof WaterElement);
+            }
+        }
+ 	}
 
+ 	@Given("a Board object is created with default constructor")
+ 	public void a_board_object_is_created_with_default_constructor() {
+ 	    
+ 	}
+ 	@Given("a Position and a Ship object is provided")
+ 	public void a_position_and_a_ship_object_is_provided() {
+ 		ships = new ArrayList<Ship>();
+        Ship shipA = new Ship(Ship_Type.BATTLESHIP);
+         Ship shipB = new Ship(Ship_Type.BATTLESHIP);
+        ships.add(shipA);
+      ships.add(shipB);
+         b = new Board(ships);
+ 	}
+ 	@When("the setShip method is called with the Position and Ship object")
+ 	public void the_set_ship_method_is_called_with_the_position_and_ship_object() {
+ 	    
+ 	}
+ 	@Then("the Ship object should be set at the positions on the Board")
+ 	public void the_ship_object_should_be_set_at_the_positions_on_the_board() {
+ 		for (Ship ship : ships) {
+            for (Position position : ship.getAllPositions()) {
+               assertTrue(b.getBoardElementAtPosition(position) instanceof ShipElement);
+            }
+ 		}
+ 	}
+ 		
+ 		@Given("a Board object is created with {int} ships")
+ 		public void a_board_object_is_created_with_ships(int int1) {
+ 			ships = new ArrayList<Ship>();
+ 			b.setBoardElementTypeAtPosition(new ShipElement(), new Position(2, 3));
+ 			b.setBoardElementTypeAtPosition(new ShipElement(), new Position(4, 5));
+ 			b.setBoardElementTypeAtPosition(new ShipElement(), new Position(7, 5));
+ 			b.setBoardElementTypeAtPosition(new ShipElement(), new Position(7, 2));
+ 			b.setBoardElementTypeAtPosition(new ShipElement(), new Position(1, 1));
+ 		}
+ 		
+ 		@Then("the total health of all the ships on the Board equal to {int}")
+ 		public void the_total_health_of_all_the_ships_on_the_board_equal_to(int int1) {
+ 		    int totalHealth=b.getHealth();
+ 		    assertEquals(totalHealth, int1);
+ 		}
+ 		
+ 		@Given("a Ship object is created")
+ 		public void a_ship_object_is_created() {
+ 		    s  = new Ship(Ship_Type.CARRIER);
+ 		   
+ 	      
+ 		}
+ 		@When("the object is rotated")
+ 		public void the_object_is_rotated() {
+ 			assertEquals(Direction.HORIZONTAL, s.getDirection());
+ 	        s.rotate();
+ 		}
+ 		@Then("the object direction should be updated")
+ 		public void the_object_direction_should_be_updated() {
+ 			  assertEquals(Direction.VERTICAL, s.getDirection());
+ 	 	        s.rotate();
+ 	 	        assertEquals(Direction.HORIZONTAL, s.getDirection());
+ 		}
+ 		
+ 		@Given("a ship {string} is created")
+ 		public void a_ship_is_created(String string) {
+ 			Ship_Type type = Ship_Type.valueOf(string.toUpperCase());
+ 	        s = new Ship(type);
+ 		}
+ 		@When("the objects direction is set")
+ 		public void the_objects_direction_is_set() {
+ 			
+ 	        Direction direction = Direction.VERTICAL;
 
-}
+ 	        
+ 	        this.s.setDirection(direction);
+
+ 	        
+ 		}
+ 		@When("the position of the ship is set {int} {int}")
+ 		public void the_position_of_the_ship_is_set(int int1, int int2) {
+ 			Position position = new Position(int1, int2);
+ 			this.s.setPosition(position);
+ 			this.positions = this.s.getAllPositions();
+ 		}
+ 		@Then("the function should return a list of all the positions that the Ship takes up on the board.")
+ 		public void the_function_should_return_a_list_of_all_the_positions_that_the_ship_takes_up_on_the_board() {
+ 			ArrayList<Position> expectedPositions = new ArrayList<>();
+ 	        expectedPositions.add(new Position(1, 1));
+ 	        expectedPositions.add(new Position(1, 2));
+ 	        expectedPositions.add(new Position(1, 3));
+ 	        expectedPositions.add(new Position(1, 4));
+ 	        expectedPositions.add(new Position(1, 5));
+ 	        //assertEquals(positions, expectedPositions);
+ 	        assert this.positions.equals(expectedPositions);
+ 		}
+ 		
+ 		/*
+ 		@Given("Two ships {string} and {string} are placed")
+ 		public void two_ships_and_are_placed(String string, String string2) {
+ 			Ship_Type type = Ship_Type.valueOf(string.toUpperCase());
+ 	        s = new Ship(type);
+ 	       Ship_Type type1 = Ship_Type.valueOf(string.toUpperCase());
+	        s1 = new Ship(type1);
+ 	        
+ 	       
+ 		}
+ 		@When("The {string} is being placed on the position {int} {int}")
+ 		public void the_is_being_placed_on_the_position(String string, int int1, int int2) {
+ 			b.setShip( new Position(int1,int2),s);
+ 	 		assertTrue(b.getBoardElementAtPosition(new Position(int1,int2)) instanceof Ship);
+ 		}
+ 		
+ 		
+ 		@Then("the overlap method should return false")
+ 		public void the_overlap_method_should_return_false() {
+ 			boolean overlap = s.doesItOverlapWith(s1);
+ 	 		assertTrue(overlap==false);
+ 		}
+ 		*/
+ 	}
+
 

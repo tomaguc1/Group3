@@ -64,10 +64,48 @@ Feature: List of scenarios.
     When I check if the ship is in bounds
     Then the player should be allowed to place it and the method returns true
     
-    	Examples:
+    Examples:
    | ShipType   |
    | Carrier    |
    | BattleShip |
    | Destroyer  |
    | Submarine  |
-    
+   
+   @tag6
+   Scenario: Create Board object with default constructor
+	Given a Board object is created
+	Then the board array should be initialized with 10x10 WaterElement objects
+
+@tag7
+Scenario: Set Ship on the Board
+Given a Board object is created with default constructor
+And a Position and a Ship object is provided
+When the setShip method is called with the Position and Ship object
+Then the Ship object should be set at the positions on the Board
+  
+  @tag8
+  Scenario: Get Health of all Ships on the Board
+Given a Board object is created with 5 ships
+Then the total health of all the ships on the Board equal to 5     
+
+@tag9
+Scenario: Rotate a Ship object
+Given a Ship object is created
+When the object is rotated
+Then the object direction should be updated
+#As a player,
+#I want to be able to get all the positions that a Ship takes up on the board,
+#So that I can ensure that the Ship is placed correctly.
+@tag10
+Scenario: Get all positions of a Ship
+Given a ship "carrier" is created
+When the objects direction is set 
+When the position of the ship is set 1 1
+Then the function should return a list of all the positions that the Ship takes up on the board.
+
+#@tag11
+#Scenario: Check if two Ships do not overlap
+#Given Two ships "carrier" and "submarine" are placed
+#When The "carrier" is being placed on the position 1 1
+#When The "submarine" is placed on the position 5 3
+#Then the overlap method should return false
