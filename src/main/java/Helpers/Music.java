@@ -54,14 +54,11 @@ public class Music {
     String response = "";
 
 
+    response = scanner.next();
+
+    while(!response.equals("QUIT")) {
 
 
-    if(!response.equals("QUIT")) {
-            System.out.println("P = play, S = Stop, R = Reset, Q = Quit");
-            System.out.print("Enter your choice: ");
-
-            response = scanner.next();
-            System.out.println(response);
             response = response.toUpperCase();
 
             switch(response) {
@@ -70,24 +67,57 @@ public class Music {
                     clip2.stop();
                     clip3.stop();
                     clip4.stop();
+
+                    if (!clip.isActive()){
+                        clip.setMicrosecondPosition(0);
+                        clip.start();
+                        //System.out.println("You did it!!");
+                    }else{
+                        continue;
+
+                    }
                     break;
                 case ("MARIO"):
                     clip2.start();
                     clip.stop();
                     clip3.stop();
                     clip4.stop();
+                    if (!clip2.isActive()){
+                        clip2.setMicrosecondPosition(0);
+                        clip2.start();
+                        //System.out.println("You did it!!!");
+                    }else{
+                        continue;
+
+                    }
                     break;
                 case ("GOOFY"):
                     clip3.start();
                     clip.stop();
                     clip2.stop();
                     clip4.stop();
+                    if (!clip3.isActive()){
+                        clip3.setMicrosecondPosition(0);
+                        clip3.start();
+                        //System.out.println("You did it!!!");
+                    }else{
+                        continue;
+
+                    }
                     break;
                 case ("RICKROLL"):
                     clip4.start();
                     clip.stop();
                     clip2.stop();
                     clip3.stop();
+                    if (!clip4.isActive()){
+                        clip4.setMicrosecondPosition(0);
+                        clip4.start();
+
+                    }else{
+                        continue;
+
+                    }
                     break;
                 case ("STOP"):
                     clip.stop();
@@ -95,17 +125,18 @@ public class Music {
                     clip3.stop();
                     clip4.stop();
                     break;
-                //case ("RESTART"): clip.setMicrosecondPosition(0);
-                //    break;
+                case ("QUIT"):
+                    clip.close();
+                    clip2.close();
+                    clip3.close();
+                    clip4.close();
+                    break;
                 default: System.out.println("Not a valid response");
             }
 
         }
-else{
-        clip.close();
-        clip2.close();
-        clip3.close();
-        clip4.close();
+{
+
 
       System.out.println("Byeeee!");
 }
