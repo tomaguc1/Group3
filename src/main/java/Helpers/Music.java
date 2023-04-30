@@ -10,6 +10,8 @@ public class Music {
     Clip clip2;
     Clip clip3;
 
+    Clip clip4;
+
 
 
     public Music() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
@@ -27,6 +29,11 @@ public class Music {
         AudioInputStream audioStream3 = AudioSystem.getAudioInputStream(file3);
         this.clip3 = AudioSystem.getClip();
         clip3.open(audioStream3);
+
+        File file4 = new File("./src/main/java/Helpers/RICKROLL.wav");
+        AudioInputStream audioStream4 = AudioSystem.getAudioInputStream(file4);
+        this.clip4 = AudioSystem.getClip();
+        clip4.open(audioStream4);
 
 
 
@@ -62,32 +69,44 @@ public class Music {
                     clip.start();
                     clip2.stop();
                     clip3.stop();
+                    clip4.stop();
                     break;
                 case ("MARIO"):
                     clip2.start();
                     clip.stop();
                     clip3.stop();
+                    clip4.stop();
                     break;
                 case ("GOOFY"):
                     clip3.start();
                     clip.stop();
                     clip2.stop();
+                    clip4.stop();
+                    break;
+                case ("RICKROLL"):
+                    clip4.start();
+                    clip.stop();
+                    clip2.stop();
+                    clip3.stop();
                     break;
                 case ("STOP"):
                     clip.stop();
                     clip2.stop();
                     clip3.stop();
+                    clip4.stop();
                     break;
                 //case ("RESTART"): clip.setMicrosecondPosition(0);
                 //    break;
-                case ("QUIT"): clip.close();
-                    break;
                 default: System.out.println("Not a valid response");
             }
 
         }
 else{
         clip.close();
+        clip2.close();
+        clip3.close();
+        clip4.close();
+
       System.out.println("Byeeee!");
 }
 } }
