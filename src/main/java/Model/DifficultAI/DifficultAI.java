@@ -21,6 +21,7 @@ public class DifficultAI implements Kompic {
     
     int startcorner = -1;
     int startsweep = -1;
+    int sweepdirection = 0;
     Position startposition;
 
     @Override
@@ -66,12 +67,18 @@ public class DifficultAI implements Kompic {
         Random random = new Random();
         Position position; 
         
-        if (this.startcorner != -1){//determine where to start the sweep only once
-            this.startcorner = random.nextInt(1);
+        if (this.startcorner == -1){//determine where to start the sweep only once
+            this.startcorner = random.nextInt(2);
             this.startsweep = random.nextInt(1);
         }
-        if (true){
+        
+        if (this.startcorner == 0){
             this.startposition = new Position(0,0);
+            this.sweepdirection = 1;
+        }
+        else if (this.startcorner == 1){
+            this.startposition = new Position(0,9);
+            this.sweepdirection = -1;
         }
 
         int i = 0;
@@ -81,7 +88,7 @@ public class DifficultAI implements Kompic {
             
             int ydown = (int) Math.floor(x);
          
-            position = new Position(startposition.getX() + i - 10*ydown , startposition.getY() + ydown );
+            position = new Position(startposition.getX() + i - 10*ydown , startposition.getY() + sweepdirection * ydown );
 
             BoardElement boardElement = board.getBoardElementAtPosition(position);
 
