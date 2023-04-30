@@ -101,6 +101,25 @@ public class StepsOurs {
  		assertTrue(overlap);
  	}
 
+ 	@Given("{string} on the position {int} {int}")
+ 	public void on_the_position(String string, int int1, int int2) {
+ 		Ship_Type type = Ship_Type.valueOf(string.toUpperCase());
+        s = new Ship(type);
+        b.setShip( new Position(int1,int2),s);
+        assertTrue(b.getBoardElementAtPosition(new Position(int1,int2)) instanceof Ship);
+ 	}
+ 	@When("I check if the ship is in bounds")
+ 	public void i_check_if_the_ship_is_in_bounds() {
+ 		 boolean inBounds = this.s.isInBounds();
+       assertTrue(inBounds);
+ 	}
+ 	@Then("the player should be allowed to place it and the method returns (true|false)$")
+ 	public void the_player_should_be_allowed_to_place_it_and_the_method_returns_true(boolean expectedResult) {
+ 		expectedResult =true;
+ 		boolean actualResult = this.s.isInBounds();
+        assertEquals(expectedResult, actualResult);
+ 	}
+
 
 }
 

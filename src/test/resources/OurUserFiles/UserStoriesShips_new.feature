@@ -51,9 +51,23 @@ Feature: List of scenarios.
    When The "<ShipType>" is placed on the position 2 1
    Then the overlap method should return true 
     
-   		Examples:
+   	Examples:
    | ShipType   |
    | Carrier    |
    | BattleShip |
    | Destroyer  |
    | Submarine  |
+   
+   @tag5
+   Scenario: Check if a ship is in bounds of the game board
+    Given "<ShipType>" on the position 1 1
+    When I check if the ship is in bounds
+    Then the player should be allowed to place it and the method returns true
+    
+    	Examples:
+   | ShipType   |
+   | Carrier    |
+   | BattleShip |
+   | Destroyer  |
+   | Submarine  |
+    
