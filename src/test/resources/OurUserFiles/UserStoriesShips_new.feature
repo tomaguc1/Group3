@@ -119,6 +119,7 @@ Given a "carrier" is picked
 When the "carrier" is placed on the board
 Then the ship should be saved as placed
 
+
 @tag13
 Scenario: Create PlaceShipsModel with valid ship types
 Given a list of ship types ["Carrier", "Battleship", "Destroyer", "Submarine"]
@@ -126,14 +127,16 @@ When a PlaceShipsModel is created with the ship types
 Then the PlaceShipsModel should be created with empty player name, ships, and unselected ship
   
 
-#Scenario: Create an AI PlayerModel
-#Given a Kompic AI instance
-#And a list of ship types
-#When the PlayerModel is created with the Kompic instance and list of ship types
-#Then the PlayerModels type should be "Kompic"
-#And the PlayerModels name should be "BattleshipGPT"
-#And the PlayerModels ships list should match the given list of ship types
-#And the PlayerModels board should be updated with the given ships
+
+@tag14
+Scenario: Hover over the board
+Given a PlaceShipsModel with ship types ["Carrier", "Battleship", "Destroyer", "Submarine", "Patrol Boat"]
+When the cursor is over the board
+Then the isCursorOverTheBoard should be true
+
+
+
+
 
  
  
