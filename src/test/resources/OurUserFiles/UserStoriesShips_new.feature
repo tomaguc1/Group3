@@ -124,7 +124,7 @@ Scenario: Create PlaceShipsModel with valid ship types
 Given a list of ship types ["Carrier", "Battleship", "Destroyer", "Submarine"]
 When a PlaceShipsModel is created with the ship types
 Then the PlaceShipsModel should be created with empty player name, ships, and unselected ship
-
+  
 
 #Scenario: Create an AI PlayerModel
 #Given a Kompic AI instance
