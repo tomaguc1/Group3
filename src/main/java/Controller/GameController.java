@@ -12,9 +12,15 @@ import Model.Ship.Ship_Type;
 import Views.ChooseSingleplayerOrMultiplayer;
 import Views.GameView;
 import Views.PlaceShips.PlaceShipsView;
+import Helpers.Music;
+
 //import sun.plugin.dom.exception.InvalidStateException;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.*;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class GameController {
@@ -24,6 +30,10 @@ public class GameController {
 
     PlaceShipsController placeShipsController;
     BattleController battleController;
+
+
+    public static JTextField textMusic=new JTextField("Select Music");
+
 
     public static void main(String[] args) throws InterruptedException {
         GameController controller = new GameController();
@@ -103,6 +113,22 @@ public class GameController {
             this.battleController = new BattleController(one, two, this.model.types);
             this.model.state = GameState.PlayerSelectsTarget;
             this.updateView();
+        };
+    }
+
+    public ActionListener actionMusic() {
+        return actionEvent -> {
+            String s1=textMusic.getText(); //get text from textMusic on ChooseSingleplayerOrMultiplayer
+            try {
+                 new  Music(s1);
+            } catch (UnsupportedAudioFileException e) {
+                throw new RuntimeException(e);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            } catch (LineUnavailableException e) {
+                throw new RuntimeException(e);
+            }
+
         };
     }
 

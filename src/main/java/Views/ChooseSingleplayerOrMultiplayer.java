@@ -27,6 +27,11 @@ public class ChooseSingleplayerOrMultiplayer extends JPanel {
         buttonRandomMultiplayer.addActionListener(controller.actionRandomMultiplayer());
         this.add(buttonRandomMultiplayer);
 
+        JButton buttonMusic = new JButton("Submit music");
+        buttonMusic.addActionListener(controller.actionMusic());
+        this.add(buttonMusic);
+        this.add(GameController.textMusic);
+
         this.setVisible(true);
     }
 }
