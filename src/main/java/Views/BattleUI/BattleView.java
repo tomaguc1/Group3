@@ -4,7 +4,7 @@ import Controller.BattleController;
 import Model.Board.Board;
 import Views.BattleUI.Grids.EnemyBoardAndIndex_Panel;
 import Views.BattleUI.Grids.LilPlayerGrid;
-import Views.BattleUI.Weapons.WeaponPanel;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,7 +13,7 @@ public class BattleView extends JPanel {
 
     EnemyBoardAndIndex_Panel enemyBoardAndIndex_panel;
     LilPlayerGrid lilPlayerGrid;
-    WeaponPanel weaponPanel;
+
 
     JLabel labelStatus;
     JLabel labelReady;
@@ -35,11 +35,11 @@ public class BattleView extends JPanel {
 
             enemyBoardAndIndex_panel = new EnemyBoardAndIndex_Panel(controller);
             lilPlayerGrid = new LilPlayerGrid(controller);
-            weaponPanel = new WeaponPanel(controller);
+
 
             panelBoards.add(lilPlayerGrid);
             panelBoards.add(enemyBoardAndIndex_panel);
-            panelBoards.add(weaponPanel);
+
         }
         this.add(panelBoards, BorderLayout.CENTER);
 
@@ -78,7 +78,7 @@ public class BattleView extends JPanel {
     public void clearPlayerData() {
         this.enemyBoardAndIndex_panel.clearBoard();
         this.lilPlayerGrid.clearBoard();
-        this.weaponPanel.clearWeapons();
+
     }
 
     public void populateAllyBoard(Board board) {
@@ -89,8 +89,5 @@ public class BattleView extends JPanel {
         this.enemyBoardAndIndex_panel.populate(board);
     }
 
-    public void addWeapons() {
-        // TODO
-        this.weaponPanel.addWeapons();
-    }
+
 }

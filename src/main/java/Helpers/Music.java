@@ -56,7 +56,7 @@ public class Music {
 
     response = scanner.next();
 
-    while(!response.equals("QUIT")) {
+    if(!response.equals("QUIT")) {
 
 
             response = response.toUpperCase();
@@ -68,56 +68,28 @@ public class Music {
                     clip3.stop();
                     clip4.stop();
 
-                    if (!clip.isActive()){
-                        clip.setMicrosecondPosition(0);
-                        clip.start();
-                        //System.out.println("You did it!!");
-                    }else{
-                        continue;
 
-                    }
                     break;
                 case ("MARIO"):
                     clip2.start();
                     clip.stop();
                     clip3.stop();
                     clip4.stop();
-                    if (!clip2.isActive()){
-                        clip2.setMicrosecondPosition(0);
-                        clip2.start();
-                        //System.out.println("You did it!!!");
-                    }else{
-                        continue;
 
-                    }
                     break;
                 case ("GOOFY"):
                     clip3.start();
                     clip.stop();
                     clip2.stop();
                     clip4.stop();
-                    if (!clip3.isActive()){
-                        clip3.setMicrosecondPosition(0);
-                        clip3.start();
-                        //System.out.println("You did it!!!");
-                    }else{
-                        continue;
 
-                    }
                     break;
                 case ("RICKROLL"):
                     clip4.start();
                     clip.stop();
                     clip2.stop();
                     clip3.stop();
-                    if (!clip4.isActive()){
-                        clip4.setMicrosecondPosition(0);
-                        clip4.start();
 
-                    }else{
-                        continue;
-
-                    }
                     break;
                 case ("STOP"):
                     clip.stop();
