@@ -22,7 +22,7 @@ public class StepsOurs {
 	
 	Board b = new Board();
 	Ship s;
-	
+	Ship s1;
 	
 	@Given("Player {int} board view")
 	public void player_board_view(Integer int1) {
@@ -77,6 +77,29 @@ public class StepsOurs {
  	   assertEquals(b.getHealth(), int1);
  	}
 
+ 	@Given("Two ships {string} and {string}")
+ 	public void two_ships_and(String string, String string2) {
+ 		Ship_Type type = Ship_Type.valueOf(string.toUpperCase());
+        s = new Ship(type);
+        Ship_Type type1 = Ship_Type.valueOf(string2.toUpperCase());
+        s1 = new Ship(type1);
+ 	}
+ 	@When("{string} is placed on the position {int} {int}")
+ 	public void is_placed_on_the_position(String string, int int1, int int2) {
+ 		b.setShip( new Position(int1,int2),s);
+ 		assertTrue(b.getBoardElementAtPosition(new Position(int1,int2)) instanceof Ship);
+ 	}
+ 	@When("The {string} is placed on the position {int} {int}")
+ 	public void the_is_placed_on_the_position(String string, int int1, int int2) {
+ 		
+ 		b.setShip( new Position(int1,int2),s1);
+ 		assertTrue(b.getBoardElementAtPosition(new Position(int1,int2)) instanceof Ship);
+ 	}
+ 	@Then("the overlap method should return true")
+ 	public void the_overlap_method_should_return_true() {
+ 		boolean overlap = s.doesItOverlapWith(s1);
+ 		assertTrue(overlap);
+ 	}
 
 
 }

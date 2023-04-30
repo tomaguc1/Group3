@@ -1,22 +1,5 @@
 @tag
 Feature: List of scenarios.
-
-  
-  #@tag1
- # Scenario Outline: Placing a ship
-   # Given A "<ShipType>"
-    #When I am placing the ship on the position "<positionX>" "<positionY>"
-    #Then There should be a ship on the initial position "<positionX>" "<positionY>" 
-   # Then There should be a ship on the final position  "<positionXEnd>" "<positionYEnd>"
-
-    #Examples: 
-    #  | ShipType   |  positionX | positionY |positionXEnd | positionYEnd |
-    #  | Carrier    |          1 |         1 | 5           | 1            |
-     # | BattleShip |         1  |         1 |4            |1             |
-    #  | Destroyer  |        1   |         1 |1            | 3            |
-     # | Submarine  |          1 |         1 |1            |2             |
-    #  | Patrol     |          1 |         1 |1            |1             |
-      
      
  @tag1
   Scenario Outline: Picking a ship
@@ -41,21 +24,12 @@ Feature: List of scenarios.
 
 
   	Examples:
-  	| ShipType   |
-  	| Carrier    |
+   | ShipType   |
+   | Carrier    |
    | BattleShip |
    | Destroyer  |
    | Submarine  |
 
-  
-  #@tag3
-  #Scenario: Calculate the health of ships on the board
-   # Given a board with the following ship elements:
-     # | x | y | isHit |
-      #| 1 | 1 | false |
-    #  | 2 | 2 | true  |
-  #  When I calculate the health of the board
-  #  Then the health should be 1
 
   @tag3
   Scenario Outline: Health check
@@ -64,8 +38,22 @@ Feature: List of scenarios.
   Then the health is 0
   
  	Examples:
-  	| ShipType   |
-  	| Carrier    |
+   | ShipType   |
+   | Carrier    |
+   | BattleShip |
+   | Destroyer  |
+   | Submarine  |
+   
+   @tag4
+   Scenario: Overlapping ships
+   Given Two ships "<ShipType>" and "<ShipType>"
+   When "<ShipType>" is placed on the position 1 1
+   When The "<ShipType>" is placed on the position 2 1
+   Then the overlap method should return true 
+    
+   		Examples:
+   | ShipType   |
+   | Carrier    |
    | BattleShip |
    | Destroyer  |
    | Submarine  |
