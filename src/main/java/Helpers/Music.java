@@ -5,27 +5,43 @@ import java.io.IOException;
 import java.util.Scanner;
 import javax.sound.sampled.*;
 public class Music {
-    public Music(String text) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+    String command;
+    Clip clip;
+    Clip clip2;
+    Clip clip3;
 
-    File file4 = new File("./src");
-        for(String fileNames : file4.list()) System.out.println(fileNames);
 
-    Scanner scanner = new Scanner(text);
 
-    File file = new File("./src/main/java/Helpers/PIRATE.wav");
-    AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
-    Clip clip = AudioSystem.getClip();
-    clip.open(audioStream);
+    public Music() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+        File file = new File("./src/main/java/Helpers/PIRATE.wav");
+        AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
+        this.clip = AudioSystem.getClip();
+        clip.open(audioStream);
 
-    File file2 = new File("./src/main/java/Helpers/MARIO.wav");
-    AudioInputStream audioStream2 = AudioSystem.getAudioInputStream(file2);
-    Clip clip2 = AudioSystem.getClip();
-    clip2.open(audioStream2);
+        File file2 = new File("./src/main/java/Helpers/MARIO.wav");
+        AudioInputStream audioStream2 = AudioSystem.getAudioInputStream(file2);
+        this.clip2 = AudioSystem.getClip();
+        clip2.open(audioStream2);
 
-    File file3 = new File("./src/main/java/Helpers/GOOFY.wav");
-    AudioInputStream audioStream3 = AudioSystem.getAudioInputStream(file3);
-    Clip clip3 = AudioSystem.getClip();
-    clip3.open(audioStream3);
+        File file3 = new File("./src/main/java/Helpers/GOOFY.wav");
+        AudioInputStream audioStream3 = AudioSystem.getAudioInputStream(file3);
+        this.clip3 = AudioSystem.getClip();
+        clip3.open(audioStream3);
+
+
+
+
+    }
+    public void setCommand(String command){
+        this.command = command;
+
+    }
+    public void musicPlayer(String order) {
+        setCommand(order);
+
+
+
+    Scanner scanner = new Scanner(command);
 
 
     String response = "";
@@ -33,8 +49,7 @@ public class Music {
 
 
 
-
-    while(!response.equals("QUIT")) {
+    if(!response.equals("QUIT")) {
             System.out.println("P = play, S = Stop, R = Reset, Q = Quit");
             System.out.print("Enter your choice: ");
 
@@ -48,11 +63,20 @@ public class Music {
                     clip2.stop();
                     clip3.stop();
                     break;
-                case ("MARIO"): clip2.start(); clip.stop(); clip3.stop();
+                case ("MARIO"):
+                    clip2.start();
+                    clip.stop();
+                    clip3.stop();
                     break;
-                case ("GOOFY"): clip3.start(); clip.stop(); clip2.stop();
+                case ("GOOFY"):
+                    clip3.start();
+                    clip.stop();
+                    clip2.stop();
                     break;
-                case ("STOP"): clip.stop(); clip2.stop(); clip3.stop();
+                case ("STOP"):
+                    clip.stop();
+                    clip2.stop();
+                    clip3.stop();
                     break;
                 //case ("RESTART"): clip.setMicrosecondPosition(0);
                 //    break;
@@ -62,10 +86,10 @@ public class Music {
             }
 
         }
-
-
+else{
+        clip.close();
       System.out.println("Byeeee!");
 }
-}
+} }
 
 

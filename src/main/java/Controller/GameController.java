@@ -28,6 +28,16 @@ public class GameController {
     GameModel model;
     GameView view;
 
+    Music music;
+
+    {
+        try {
+            music = new Music();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     PlaceShipsController placeShipsController;
     BattleController battleController;
 
@@ -119,15 +129,10 @@ public class GameController {
     public ActionListener actionMusic() {
         return actionEvent -> {
             String s1=textMusic.getText(); //get text from textMusic on ChooseSingleplayerOrMultiplayer
-            try {
-                 new  Music(s1);
-            } catch (UnsupportedAudioFileException e) {
-                throw new RuntimeException(e);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            } catch (LineUnavailableException e) {
-                throw new RuntimeException(e);
-            }
+
+
+                 music.musicPlayer(s1);
+
 
         };
     }
