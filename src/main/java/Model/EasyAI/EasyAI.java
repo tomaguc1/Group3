@@ -12,9 +12,9 @@ import java.util.Random;
 import java.util.ArrayList;
 
 public class EasyAI implements Kompic {
-    public static void main(String[] args) {
+    // public static void main(String[] args) {
         
-    }
+    // }
 
     @Override
     public ArrayList<Ship> placeShips(ArrayList<Ship_Type> types) {
