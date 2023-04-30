@@ -1,87 +1,97 @@
 package Model.DifficultAI;
 
-
 import Model.Board.Board;
+import Model.Board.BoardElement;
+import Model.Board.ShipElement;
 import Model.Player.Kompic;
 import Model.Position;
+import Model.Ship.Direction;
 import Model.Ship.Ship;
 import Model.Ship.Ship_Type;
 
-import javax.swing.*;
-import java.util.*;
+import java.util.Random;
+import java.util.Set;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
 
 public class DifficultAI implements Kompic {
-    private final int board_size = 10;  // board size is defined
-    private int[][] board = new int[board_size][board_size]; //board is defined
     
-    private Set<String> remainingMoves = new HashSet<>(); //creates a private instance 
-    //variable called remainingMoves of type
-    //Set<String> and initialises it as an empty
-    //HashSet
-    
-    public DifficultAI() {
-        // Initialise remainingMoves set with all possible coordinates
-        for (int i = 0; i < board_size; i++) {
-            for (int j = 0; j < board_size; j++) {
-                remainingMoves.add(i + "," + j);
-            }
-        }
-    }
-
-    public void updateBoard(int x, int y, boolean hit) { //verify "hit"
-        // Update grid with result of last move
-        board[x][y] = hit ? 1 : -1;
-        remainingMoves.remove(x + "," + y);
-    }
-
-    public int[] getNextMove() { //decides next move
-        // Calculate Probability Density Function for each remaining move
-
-        /**
-         * creates map object which stores key value pairs
-         * Initialized to an empty hashmap
-         */
-        Map<String, Double> moveProbs = new HashMap<>();
-
-        for (String move : remainingMoves) {
-            int x = Integer.parseInt(move.split(",")[0]);
-            int y = Integer.parseInt(move.split(",")[1]);
-            double prob = getPDF(x, y);
-            moveProbs.put(move, prob);
-        }
-        
-        // Choose move with highest PDF value
-        String bestMove = Collections.max(moveProbs.entrySet(), Map.Entry.comparingByValue()).getKey();
-        int[] nextMove = {Integer.parseInt(bestMove.split(",")[0]), Integer.parseInt(bestMove.split(",")[1])};
-        return nextMove;
-    }
-    
-    private double getPDF(int x, int y) {
-        // Calculate PDF for a given coordinate
-        int adjHits = 0, adjMisses = 0, adjUnknowns = 0;
-        for (int i = Math.max(0, x - 1); i <= Math.min(board_size - 1, x + 1); i++) {
-            for (int j = Math.max(0, y - 1); j <= Math.min(board_size - 1, y + 1); j++) {
-                if (board[i][j] == 1) {
-                    adjHits++;
-                } else if (board[i][j] == -1) {
-                    adjMisses++;
-                } else {
-                    adjUnknowns++;
-                }
-            }
-        }
-        return (double) adjHits / (adjHits + adjMisses + adjUnknowns);
-    }
+    int startcorner = -1;
+    int startsweep = -1;
+    Position startposition;
 
     @Override
     public ArrayList<Ship> placeShips(ArrayList<Ship_Type> types) {
-        JOptionPane.showMessageDialog(null, "not yet implemented");
-        throw new RuntimeException("not yet implemented");
-    }
+        ArrayList<Ship> ships = new ArrayList<>();
+        Random rand = new Random();
+        int min = 0;
+        int max = 99;
+        int i=0;
 
+    	while(i < types.size()) {
+            int testing = rand.nextInt(max - min + 1) + min;//random number for a coordinate in the array
+
+            Position position = new Position(testing % 10, testing / 10);
+            Direction direction = testing % 2 == 0 ? Direction.HORIZONTAL : Direction.VERTICAL;
+            Ship ship = new Ship(types.get(i), position, direction);
+            boolean isGood = true;
+            for (Ship other: ships) {
+                if (!ship.isInBounds() || ship.doesItOverlapWith(other))
+                    isGood = false;
+            }
+
+            if(isGood) {
+                //method to set ship
+                ship.setIsPlaced(true);
+                ships.add(ship);// Removes the space from the array, keeps array length
+            } else {
+                i=i-1;
+            }
+            i++;
+        }
+        return ships;
+    }
+        
     @Override
     public Position attack(Board board, ArrayList<Ship_Type> types) {
-        JOptionPane.showMessageDialog(null, "not yet implemented");
-        throw new RuntimeException("not yet implemented");
+        Position nextAttack = nextPosition(board);
+        return nextAttack;
+    }
+
+    private Position nextPosition(Board board){
+        
+        Random random = new Random();
+        Position position; 
+        
+        if (this.startcorner != -1){//determine where to start the sweep only once
+            this.startcorner = random.nextInt(1);
+            this.startsweep = random.nextInt(1);
+        }
+        if (true){
+            this.startposition = new Position(0,0);
+        }
+
+        int i = 0;
+        while(i < 100) {
+            
+            float x = i / 10;
+            
+            int ydown = (int) Math.floor(x);
+         
+            position = new Position(startposition.getX() + i - 10*ydown , startposition.getY() + ydown );
+
+            BoardElement boardElement = board.getBoardElementAtPosition(position);
+
+            if (!boardElement.getWasHit()) {//an array containing all the coordinates in which enemy ships are placed) {
+                //method to set missile
+                return position;
+                //end turn
+            }
+            i++;
+        }
+    return new Position(0, 0);
     }
 }
