@@ -11,6 +11,7 @@ import Model.Ship.Ship;
 import Model.Ship.Ship_Type;
 import Views.ChooseSingleplayerOrMultiplayer;
 import Views.GameView;
+import Views.HelpWindow;
 import Views.PlaceShips.PlaceShipsView;
 import Helpers.Music;
 
@@ -133,6 +134,13 @@ public class GameController {
 
                  music.musicPlayer(s1);
 
+
+        };
+    }
+
+    public ActionListener actionHelp() {
+        return actionEvent -> {
+        HelpWindow helpWindow = new HelpWindow();
 
         };
     }
