@@ -1,4 +1,6 @@
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -15,8 +17,10 @@ import Model.Ship.Direction;
 //import Views.PlaceShips.GridShip.BoardGrid_Panel.Tile;
 import Model.Ship.PlaceShipsModel;
 import Model.Board.*;
+import Model.Player.Kompic;
 import Model.Player.PlayerModel;
-
+import Model.Player.PlayerType;
+import org.junit.Test;
 
 
 public class StepsOurs {
@@ -26,8 +30,19 @@ public class StepsOurs {
 	private ArrayList<Ship> ships;
 	Ship s;
 	Ship s1;
+	private PlaceShipsModel model;
+
 	private ArrayList<Position> positions;
+	private String name;
+	private PlayerModel playerModel;
+	private PlayerModel playerModel1;
+	private Kompic kompic;
+	private ArrayList<Ship_Type> types;
+	private ArrayList<Ship_Type> types_new;
 	
+	
+	
+	//private Kompic type;
 	@Given("Player {int} board view")
 	public void player_board_view(Integer int1) {
 	    
@@ -238,30 +253,73 @@ public class StepsOurs {
  	        //assertEquals(positions, expectedPositions);
  	        assert this.positions.equals(expectedPositions);
  		}
+ 		@Given("a player name {string}")
+ 		public void a_player_name(String string) {
+ 			this.name = string;
+ 		}
+ 		@Given("a list of ships of different types and positions")
+ 		public void a_list_of_ships_of_different_types_and_positions() {
+ 			this.ships = new ArrayList<>();
+ 	        ships.add(new Ship(Ship_Type.CARRIER));
+ 	        ships.add(new Ship(Ship_Type.BATTLESHIP));
+ 	        
+ 	        ships.add(new Ship(Ship_Type.SUBMARINE));
+ 	        ships.add(new Ship(Ship_Type.DESTROYER));
+ 		}
+ 		@When("the PlayerModel is created with the given name and list of ships")
+ 		public void the_player_model_is_created_with_the_given_name_and_list_of_ships() {
+ 			 this.playerModel = new PlayerModel(name, ships);
+ 	        this.b = playerModel.board;
+ 		}
+ 		@Then("the PlayerModels name should be {string}")
+ 		public void the_player_models_name_should_be(String string) {
+ 			
+ 			assertEquals(string, playerModel.name);
+ 		}
+ 		@Then("the PlayerModels ships list should match the given list of ships")
+ 		public void the_player_models_ships_list_should_match_the_given_list_of_ships() {
+ 			assertArrayEquals(ships.toArray(), playerModel.ships.toArray());
+ 		}
  		
- 		/*
- 		@Given("Two ships {string} and {string} are placed")
- 		public void two_ships_and_are_placed(String string, String string2) {
+ 		@Given("a {string} is picked")
+ 		public void a_is_picked(String string) {
  			Ship_Type type = Ship_Type.valueOf(string.toUpperCase());
  	        s = new Ship(type);
- 	       Ship_Type type1 = Ship_Type.valueOf(string.toUpperCase());
-	        s1 = new Ship(type1);
  	        
+ 		}
+ 		@When("the {string} is placed on the board")
+ 		public void the_is_placed_on_the_board(String string) {
+ 			s.setIsPlaced(true);
+ 			
+ 		}
+ 		@Then("the ship should be saved as placed")
+ 		public void the_ship_should_be_saved_as_placed() {
+ 			assertEquals(true, s.getIsPlaced());
+ 		}
+ 		
+ 		@Given("a list of ship types [{string}, {string}, {string}, {string}]")
+ 		public void a_list_of_ship_types(String string, String string2, String string3, String string4) {
+ 			types_new = new ArrayList<Ship_Type>();
+ 	        types_new.add(Ship_Type.CARRIER);
+ 	        types_new.add(Ship_Type.BATTLESHIP);
+ 	        types_new.add(Ship_Type.DESTROYER);
+ 	        types_new.add(Ship_Type.SUBMARINE);
+
+ 		}
+ 		
+ 		@When("a PlaceShipsModel is created with the ship types")
+ 		public void a_place_ships_model_is_created_with_the_ship_types() {
+ 		
+ 			model = new PlaceShipsModel(types_new);
+ 	    
+ 		}
+ 		@Then("the PlaceShipsModel should be created with empty player name, ships, and unselected ship")
+ 		public void the_place_ships_model_should_be_created_with_empty_player_name_ships_and_unselected_ship() {
+ 		 
+ 			assertEquals("", model.playerName);
  	       
+ 	        assertFalse(model.isShipSelected);
  		}
- 		@When("The {string} is being placed on the position {int} {int}")
- 		public void the_is_being_placed_on_the_position(String string, int int1, int int2) {
- 			b.setShip( new Position(int1,int2),s);
- 	 		assertTrue(b.getBoardElementAtPosition(new Position(int1,int2)) instanceof Ship);
- 		}
- 		
- 		
- 		@Then("the overlap method should return false")
- 		public void the_overlap_method_should_return_false() {
- 			boolean overlap = s.doesItOverlapWith(s1);
- 	 		assertTrue(overlap==false);
- 		}
- 		*/
- 	}
 
-
+ 		
+}

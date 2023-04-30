@@ -96,6 +96,7 @@ Then the object direction should be updated
 #As a player,
 #I want to be able to get all the positions that a Ship takes up on the board,
 #So that I can ensure that the Ship is placed correctly.
+
 @tag10
 Scenario: Get all positions of a Ship
 Given a ship "carrier" is created
@@ -103,11 +104,38 @@ When the objects direction is set
 When the position of the ship is set 1 1
 Then the function should return a list of all the positions that the Ship takes up on the board.
  
+ @tag11
+ Scenario: Create a Human PlayerModel
+Given a player name "Alice"
+And a list of ships of different types and positions
+When the PlayerModel is created with the given name and list of ships
+Then the PlayerModels name should be "Alice"
+And the PlayerModels ships list should match the given list of ships
+
+
+@tag12
+Scenario: Test getIsPlaced() method in Ship class
+Given a "carrier" is picked 
+When the "carrier" is placed on the board
+Then the ship should be saved as placed
+
+@tag13
+Scenario: Create PlaceShipsModel with valid ship types
+Given a list of ship types ["Carrier", "Battleship", "Destroyer", "Submarine"]
+When a PlaceShipsModel is created with the ship types
+Then the PlaceShipsModel should be created with empty player name, ships, and unselected ship
+
+
+#Scenario: Create an AI PlayerModel
+#Given a Kompic AI instance
+#And a list of ship types
+#When the PlayerModel is created with the Kompic instance and list of ship types
+#Then the PlayerModels type should be "Kompic"
+#And the PlayerModels name should be "BattleshipGPT"
+#And the PlayerModels ships list should match the given list of ship types
+#And the PlayerModels board should be updated with the given ships
+
  
  
- #@tag11 
-#Scenario: Check if two Ships do not overlap
-#Given Two ships "carrier" and "submarine" are placed
-#When The "carrier" is being placed on the position 1 1
-#When The "submarine" is placed on the position 5 3
-#Then the overlap method should return false
+ 
+ 
