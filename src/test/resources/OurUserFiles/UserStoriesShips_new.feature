@@ -33,7 +33,7 @@ Feature: List of scenarios.
   
  @tag2
    Scenario: Placing a ship
-   Scenario Outline: Placing a ship
+   
    Given Player "1" board view
    When "1" places "carrier"  on the position 2 2
    When "1" places "<ShipType>"  on the position 2 2
@@ -48,11 +48,24 @@ Feature: List of scenarios.
    | Submarine  |
 
   
+  #@tag3
+  #Scenario: Calculate the health of ships on the board
+   # Given a board with the following ship elements:
+     # | x | y | isHit |
+      #| 1 | 1 | false |
+    #  | 2 | 2 | true  |
+  #  When I calculate the health of the board
+  #  Then the health should be 1
+
+  @tag3
+  Scenario Outline: Health check
+  Given "<ShipType>" on the position 1 1 with health 1
+ 	When It was hit by a move on the position 1 1
+  Then the health is 0
   
- # @tag3
- # Scenario Outline: Health check
-  #Given "ShipElelment" on the position 1 1 with health 1
- # When It was hit by a move on the position 1 1
-  #Then the health is 0
-  
- 
+ 	Examples:
+  	| ShipType   |
+  	| Carrier    |
+   | BattleShip |
+   | Destroyer  |
+   | Submarine  |
