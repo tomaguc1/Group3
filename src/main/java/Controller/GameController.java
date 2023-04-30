@@ -11,6 +11,7 @@ import Model.Ship.Ship;
 import Model.Ship.Ship_Type;
 import Views.ChooseSingleplayerOrMultiplayer;
 import Views.GameView;
+import Views.HelpWindow;
 import Views.PlaceShips.PlaceShipsView;
 import Helpers.Music;
 
@@ -27,6 +28,16 @@ public class GameController {
 
     GameModel model;
     GameView view;
+
+    Music music;
+
+    {
+        try {
+            music = new Music();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     PlaceShipsController placeShipsController;
     BattleController battleController;
@@ -119,15 +130,17 @@ public class GameController {
     public ActionListener actionMusic() {
         return actionEvent -> {
             String s1=textMusic.getText(); //get text from textMusic on ChooseSingleplayerOrMultiplayer
-            try {
-                 new  Music(s1);
-            } catch (UnsupportedAudioFileException e) {
-                throw new RuntimeException(e);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            } catch (LineUnavailableException e) {
-                throw new RuntimeException(e);
-            }
+
+
+                 music.musicPlayer(s1);
+
+
+        };
+    }
+
+    public ActionListener actionHelp() {
+        return actionEvent -> {
+        HelpWindow helpWindow = new HelpWindow();
 
         };
     }
